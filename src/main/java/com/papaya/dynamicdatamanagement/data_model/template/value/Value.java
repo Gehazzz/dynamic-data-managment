@@ -17,6 +17,7 @@ public class Value {
     @GeneratedValue
     private Long id;
     private String value;
+    @Column(columnDefinition="LONGTEXT")
     private String longTextValue;
     private String boundTableName;
     private String boundClassName;
