@@ -1,6 +1,5 @@
 package com.papaya.dynamicdatamanagement.data_model.template;
 
-import com.papaya.dynamicdatamanagement.data_model.template.value.RadioGroupValue;
 import com.papaya.dynamicdatamanagement.data_model.template.value.Value;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,9 +20,7 @@ public class RadioGroup extends AbstractInputField{
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "parent_radio_group_id")
     private List<Choice> choices;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_radio_group_id")
-    private List<RadioGroupValue> radioGroupValues;
+
     @OneToMany(cascade=CascadeType.ALL)
     @JoinTable(name = "radio_group_value",
             joinColumns = @JoinColumn(name = "radio_group_id"),

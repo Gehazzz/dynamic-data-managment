@@ -1,6 +1,5 @@
 package com.papaya.dynamicdatamanagement.data_model.template;
 
-import com.papaya.dynamicdatamanagement.data_model.template.value.TextAreaValue;
 import com.papaya.dynamicdatamanagement.data_model.template.value.Value;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,9 +18,6 @@ import java.util.List;
 @AllArgsConstructor
 public class TextArea extends AbstractInputField {
     private String placeholder;
-    @OneToMany(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "text_area_id")
-    private List<TextAreaValue> textAreaValues;
     @OneToMany(cascade=CascadeType.ALL)
     @JoinTable(name = "text_area_value",
             joinColumns = @JoinColumn(name = "text_area_id"),

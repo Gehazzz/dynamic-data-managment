@@ -23,22 +23,8 @@ public class SectionValue {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "parent_section_value_id")
     private List<SectionValue> sectionValues;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "parent_section_value_id")
-    private List<InputFieldValue> inputFieldsValues;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_section_value_id")
-    private List<TextAreaValue> textAreasValues;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_section_value_id")
-    private List<CheckboxValue> checkboxesValues;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_section_value_id")
-    private List<CheckboxGroupValue> checkboxGroupsValues;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_section_value_id")
-    private List<RadioGroupValue> radioGroupsValues;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_section_value_id")
-    private List<DropDownValue> dropDownsValues;
+    private List<Value> dropDownsValues;
 }
