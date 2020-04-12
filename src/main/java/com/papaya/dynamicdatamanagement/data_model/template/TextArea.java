@@ -1,17 +1,14 @@
 package com.papaya.dynamicdatamanagement.data_model.template;
 
-import com.papaya.dynamicdatamanagement.data_model.template.value.InputFieldValue;
 import com.papaya.dynamicdatamanagement.data_model.template.value.TextAreaValue;
+import com.papaya.dynamicdatamanagement.data_model.template.value.Value;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -25,4 +22,10 @@ public class TextArea extends AbstractInputField {
     @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "text_area_id")
     private List<TextAreaValue> textAreaValues;
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinTable(name = "text_area_value",
+            joinColumns = @JoinColumn(name = "text_area_id"),
+            inverseJoinColumns = @JoinColumn(name = "value_id")
+    )
+    List<Value> values;
 }

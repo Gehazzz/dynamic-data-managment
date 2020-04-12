@@ -4,6 +4,8 @@ import com.papaya.dynamicdatamanagement.data_model.template.*;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -16,6 +18,15 @@ public class Value {
     private Long id;
     private String value;
     private String longTextValue;
+    private String boundTableName;
+    private String boundClassName;
+    private String boundColumnName;
+    private String boundPropertyName;
+    private Long boundTableRowId;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "parent_value_id")
+    private List<Value> values;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Checkbox checkbox;
     @ManyToOne(fetch = FetchType.LAZY)

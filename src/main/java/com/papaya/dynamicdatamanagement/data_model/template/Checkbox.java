@@ -22,9 +22,9 @@ public class Checkbox extends AbstractInputField{
     @JoinColumn(name = "checkbox_id")
     List<CheckboxValue> checkboxValues;
     @OneToMany(cascade=CascadeType.ALL)
-    @JoinTable(name = "value_checkbox",
-            joinColumns = @JoinColumn(name = "value_id"),
-            inverseJoinColumns = @JoinColumn(name = "checkbox_id")
+    @JoinTable(name = "checkbox_value",
+            joinColumns = @JoinColumn(name = "checkbox_id"),
+            inverseJoinColumns = @JoinColumn(name = "value_id")
     )
     List<Value> values;
 }
