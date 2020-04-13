@@ -8,6 +8,6 @@ import java.util.Optional;
 import java.util.Set;
 
 public interface FormValidator {
-    Set<ConstraintViolation<?>> validate(Form form);
+    Set<String> validate(Form form);
 
 }

@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class DynamicFormValidator implements ConstraintValidator<ValidForm, Form> {
     @Override
     public boolean isValid(Form form, ConstraintValidatorContext constraintValidatorContext) {
-        List<ConstraintViolation> violations = form.getValidators()
+        List<String> violations = form.getValidators()
                 .stream()
                 .flatMap(validator -> validator.validate(form).stream())
                 .collect(Collectors.toList());

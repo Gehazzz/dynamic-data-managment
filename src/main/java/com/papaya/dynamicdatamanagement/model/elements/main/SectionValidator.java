@@ -7,5 +7,5 @@ import java.util.Set;
  * @author Evgeny Borisov
  */
 public interface SectionValidator {
-    Set<ConstraintViolation<?>> validate(Section section);
+    Set<String> validate(Section section);
 }

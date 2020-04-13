@@ -6,5 +6,5 @@ import javax.validation.ConstraintViolation;
 import java.util.Set;
 
 public interface FieldValidator<T> {
-    Set<ConstraintViolation<AbstractInputField<T>>> validate(final AbstractInputField<T> inputField);
+    Set<String> validate(final AbstractInputField<T> inputField);
 }
