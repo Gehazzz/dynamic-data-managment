@@ -8,9 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 @Builder
 public class Form {
+
+    Long id;
+
     private Section mainSection;
 
-    private ArrayList<FormValidator> validators = new ArrayList<>();
+    private ArrayList<FormValidator> validators;
 
     private String label;
 

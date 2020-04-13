@@ -1,23 +1,30 @@
 package com.papaya.dynamicdatamanagement.model.elements.main;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
+import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-@SuperBuilder
+
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Section extends AbstractFormElement {
+
     private String label;
 
-    private List<AbstractFormElement> formElements = new ArrayList<AbstractFormElement>();
+    private List<AbstractFormElement> formElements;
 
-    private boolean hidden = false;
-    //TODO place removale to AbstractFormElement
-    private boolean showRemoveButton = false;
+    private boolean hidden;
+    //TODO place removale to AbstractFormElementTemplate
+    private boolean showRemoveButton ;
+
+    public static SectionBuilder builder() {
+        return new SectionBuilder();
+    }
 
     public Section setLabel(String label) {
         this.label = label;
@@ -96,13 +103,13 @@ public class Section extends AbstractFormElement {
         AbstractFormElement element = null;
 
         // this element is the searched one
-        if (getId().equals(id)) {
+        if (getHtmlId().equals(id)) {
             return this;
         } else {
             for (AbstractFormElement formElement : formElements) {
 
                 // the child element is the searched one
-                if (formElement.getId().equals(id)) {
+                if (formElement.getHtmlId().equals(id)) {
                     return formElement;
                 }
 
@@ -116,5 +123,43 @@ public class Section extends AbstractFormElement {
         }
         // no element found
         return null;
+    }
+
+    public static class SectionBuilder {
+        private String label;
+        private List<AbstractFormElement> formElements;
+        private boolean hidden;
+        private boolean showRemoveButton;
+
+        SectionBuilder() {
+        }
+
+        public SectionBuilder label(String label) {
+            this.label = label;
+            return this;
+        }
+
+        public SectionBuilder formElements(List<AbstractFormElement> formElements) {
+            this.formElements = formElements;
+            return this;
+        }
+
+        public SectionBuilder hidden(boolean hidden) {
+            this.hidden = hidden;
+            return this;
+        }
+
+        public SectionBuilder showRemoveButton(boolean showRemoveButton) {
+            this.showRemoveButton = showRemoveButton;
+            return this;
+        }
+
+        public Section build() {
+            return new Section(label, formElements, hidden, showRemoveButton);
+        }
+
+        public String toString() {
+            return "Section.SectionBuilder(label=" + this.label + ", formElements=" + this.formElements + ", hidden=" + this.hidden + ", showRemoveButton=" + this.showRemoveButton + ")";
+        }
     }
 }

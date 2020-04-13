@@ -1,21 +1,17 @@
 package com.papaya.dynamicdatamanagement.data_model.template;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @Setter
-@SuperBuilder
 @NoArgsConstructor
-@AllArgsConstructor
 @MappedSuperclass
-public abstract class AbstractInputField extends AbstractFormElement {
+@AllArgsConstructor
+@SuperBuilder
+public abstract class AbstractInputField extends AbstractFormElementTemplate {
     /**
      * The label of the input field. This label should be displayed
      * next to the input field itself, so that it is clear what input
@@ -43,4 +39,5 @@ public abstract class AbstractInputField extends AbstractFormElement {
      * input field although it was defined as required.
      */
     private String requiredMessage;
+
 }

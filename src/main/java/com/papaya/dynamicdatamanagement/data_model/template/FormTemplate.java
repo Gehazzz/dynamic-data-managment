@@ -18,5 +18,5 @@ public class FormTemplate {
     //private FormType formType;
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "form_id")
-    private Section mainSection;
+    private SectionTemplate mainSection;
 }

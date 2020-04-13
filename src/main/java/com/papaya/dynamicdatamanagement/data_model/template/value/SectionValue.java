@@ -16,7 +16,7 @@ public class SectionValue {
     @GeneratedValue
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
-    private Section section;
+    private SectionTemplate section;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "form_value_id")
     private FormValue formValue;

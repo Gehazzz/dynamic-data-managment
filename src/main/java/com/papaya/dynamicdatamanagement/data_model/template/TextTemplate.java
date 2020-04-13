@@ -1,6 +1,5 @@
 package com.papaya.dynamicdatamanagement.data_model.template;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +14,7 @@ import javax.persistence.Entity;
 @SuperBuilder
 @NoArgsConstructor
 //@AllArgsConstructor
-public class Text extends AbstractFormElement {
+public class TextTemplate extends AbstractFormElementTemplate {
     @Column(columnDefinition="LONGTEXT")
     private String text;
 }

@@ -3,8 +3,8 @@ package com.papaya.dynamicdatamanagement.model.elements;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;
-@SuperBuilder
-public abstract class AbstractSingleChoice<T> extends AbstractInputField<T> {
+
+public abstract class   AbstractSingleChoice<T> extends AbstractInputField<T> {
     protected List<T> choices;
 
     private String choiceLabel;

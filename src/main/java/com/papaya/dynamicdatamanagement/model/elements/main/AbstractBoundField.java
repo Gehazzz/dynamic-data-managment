@@ -1,9 +1,11 @@
 package com.papaya.dynamicdatamanagement.model.elements.main;
 
 import com.papaya.dynamicdatamanagement.model.binding.Binding;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-@SuperBuilder
+@NoArgsConstructor
 public abstract class AbstractBoundField<T> extends AbstractFormElement {
     private Binding<T> binding;
 
@@ -23,5 +25,10 @@ public abstract class AbstractBoundField<T> extends AbstractFormElement {
     public AbstractBoundField<T> setBinding(final Binding<T> binding) {
         this.binding = binding;
         return this;
+    }
+
+    public AbstractBoundField(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, Binding<T> binding) {
+        super(id, htmlId, index, parentSection, discarded, visible);
+        this.binding = binding;
     }
 }

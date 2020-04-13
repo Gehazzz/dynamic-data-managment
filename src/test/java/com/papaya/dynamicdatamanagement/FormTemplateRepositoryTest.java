@@ -15,7 +15,7 @@ public class FormTemplateRepositoryTest {
     FormRepository formRepository;
     @Test
     void formTest(){
-        Section section = Section.builder()
+        SectionTemplate section = SectionTemplate.builder()
                 .label("section label")
                 .index(0)
                 .build();

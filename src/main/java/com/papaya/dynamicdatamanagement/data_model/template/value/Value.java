@@ -31,16 +31,16 @@ public class Value {
     @JoinColumn(name = "value_id")
     private List<ValidationRule> validationRules;
     @ManyToOne(fetch = FetchType.LAZY)
-    private Checkbox checkbox;
+    private CheckboxTemplate checkbox;
     @ManyToOne(fetch = FetchType.LAZY)
-    private CheckboxGroup checkboxGroup;
+    private CheckboxGroupTemplate checkboxGroup;
     @ManyToOne(fetch = FetchType.LAZY)
-    private DropDown dropDown;
+    private DropDownTemplate dropDown;
     @ManyToOne(fetch = FetchType.LAZY)
     private InputField inputField;
     @ManyToOne(fetch = FetchType.LAZY)
-    private RadioGroup radioGroup;
+    private RadioGroupTemplate radioGroup;
     @ManyToOne(fetch = FetchType.LAZY)
-    private TextArea textArea;
+    private TextAreaTemplate textArea;
     private InputJavaType type;
 }

@@ -10,8 +10,8 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@SuperBuilder
 @NoArgsConstructor
+@SuperBuilder
 @AllArgsConstructor
 public class InputField extends AbstractInputField{
     private String placeholder;

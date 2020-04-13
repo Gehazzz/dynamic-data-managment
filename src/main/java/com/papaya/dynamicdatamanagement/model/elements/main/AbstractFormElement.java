@@ -1,14 +1,17 @@
 package com.papaya.dynamicdatamanagement.model.elements.main;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
+import net.bytebuddy.implementation.bind.annotation.Super;
 
-@SuperBuilder
+@Setter
+@Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public abstract class AbstractFormElement {
-    private String id;
+
+    private Long id;
+
+    private String htmlId;
 
     private Integer index;
 
@@ -18,12 +21,12 @@ public abstract class AbstractFormElement {
 
     private boolean visible = true;
 
-    public void setId(String id) {
-        this.id = id;
+    public void setHtmlId(String htmlId) {
+        this.htmlId = htmlId;
     }
 
-    public String getId() {
-        return id;
+    public String getHtmlId() {
+        return htmlId;
     }
 
     public void setIndex(Integer index) {
@@ -61,5 +64,14 @@ public abstract class AbstractFormElement {
 
     public boolean isVisible() {
         return visible;
+    }
+
+    public AbstractFormElement(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible) {
+        this.id = id;
+        this.htmlId = htmlId;
+        this.index = index;
+        this.parentSection = parentSection;
+        this.discarded = discarded;
+        this.visible = visible;
     }
 }

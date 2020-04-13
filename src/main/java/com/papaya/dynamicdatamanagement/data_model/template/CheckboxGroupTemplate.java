@@ -16,14 +16,16 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DropDown extends AbstractInputField{
+public class CheckboxGroupTemplate extends AbstractInputField {
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_drop_down_id")
+    @JoinColumn(name = "parent_checkbox_group_id")
     List<Choice> choices;
-
+    @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "checkbox_group_id")
+    private List<ValidationRule> validationRules;
     @OneToMany(cascade=CascadeType.ALL)
-    @JoinTable(name = "drop_down_value",
-            joinColumns = @JoinColumn(name = "drop_down_id"),
+    @JoinTable(name = "checkbox_group_value",
+            joinColumns = @JoinColumn(name = "checkbox_group_id"),
             inverseJoinColumns = @JoinColumn(name = "value_id")
     )
     List<Value> values;

@@ -16,16 +16,11 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CheckboxGroup extends AbstractInputField {
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_checkbox_group_id")
-    List<Choice> choices;
-    @OneToMany(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "checkbox_group_id")
-    private List<ValidationRule> validationRules;
+public class TextAreaTemplate extends AbstractInputField {
+    private String placeholder;
     @OneToMany(cascade=CascadeType.ALL)
-    @JoinTable(name = "checkbox_group_value",
-            joinColumns = @JoinColumn(name = "checkbox_group_id"),
+    @JoinTable(name = "text_area_value",
+            joinColumns = @JoinColumn(name = "text_area_id"),
             inverseJoinColumns = @JoinColumn(name = "value_id")
     )
     List<Value> values;

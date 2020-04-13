@@ -1,8 +1,26 @@
 package com.papaya.dynamicdatamanagement.model.elements;
 
-import lombok.experimental.SuperBuilder;
-
 import java.time.LocalDateTime;
-@SuperBuilder
+
+
 public class DateTimeInput extends AbstractInputField<LocalDateTime> {
+    DateTimeInput() {
+    }
+
+    public static DateTimeInputBuilder builder() {
+        return new DateTimeInputBuilder();
+    }
+
+    public static class DateTimeInputBuilder {
+        DateTimeInputBuilder() {
+        }
+
+        public DateTimeInput build() {
+            return new DateTimeInput();
+        }
+
+        public String toString() {
+            return "DateTimeInput.DateTimeInputBuilder()";
+        }
+    }
 }

@@ -16,7 +16,7 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RadioGroup extends AbstractInputField{
+public class RadioGroupTemplate extends AbstractInputField{
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "parent_radio_group_id")
     private List<Choice> choices;

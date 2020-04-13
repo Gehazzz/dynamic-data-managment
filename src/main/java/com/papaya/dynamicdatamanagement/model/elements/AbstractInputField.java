@@ -1,12 +1,18 @@
 package com.papaya.dynamicdatamanagement.model.elements;
 
+import com.papaya.dynamicdatamanagement.model.binding.Binding;
 import com.papaya.dynamicdatamanagement.model.elements.main.AbstractBoundField;
+import com.papaya.dynamicdatamanagement.model.elements.main.Section;
 import com.papaya.dynamicdatamanagement.validation.FieldValidator;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
-@SuperBuilder
+
+@NoArgsConstructor
 public abstract class AbstractInputField<T> extends AbstractBoundField<T> {
     private String label;
 
@@ -17,6 +23,17 @@ public abstract class AbstractInputField<T> extends AbstractBoundField<T> {
     private boolean enabled = true;
 
     private String requiredMessage;
+
+    public AbstractInputField(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, Binding<T> binding, String label, String hint, boolean required, boolean enabled, String requiredMessage, List<FieldValidator<T>> validators, T userInput) {
+        super(id, htmlId, index, parentSection, discarded, visible, binding);
+        this.label = label;
+        this.hint = hint;
+        this.required = required;
+        this.enabled = enabled;
+        this.requiredMessage = requiredMessage;
+        this.validators = validators;
+        this.userInput = userInput;
+    }
 
     private List<FieldValidator<T>> validators = new ArrayList<FieldValidator<T>>();
 
