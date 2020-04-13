@@ -1,12 +1,14 @@
 package com.papaya.dynamicdatamanagement.model.elements.main;
 
 import com.papaya.dynamicdatamanagement.validation.FormValidator;
+import com.papaya.dynamicdatamanagement.validation.ValidForm;
 import lombok.Builder;
 import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
-@Builder
+/*@Builder*/
+@ValidForm
 public class Form {
 
     Long id;

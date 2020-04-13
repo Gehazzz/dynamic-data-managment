@@ -6,6 +6,6 @@ import com.papaya.dynamicdatamanagement.model.elements.main.AbstractFormElement;
 public interface AbstractFormElementMapper {
 
     AbstractFormElement mapToServiceEntity(AbstractFormElementTemplate abstractFormElementTemplate);
-    AbstractFormElementTemplate mapToDataEntiry(AbstractFormElement abstractFormElement);
+    AbstractFormElementTemplate mapToDataEntity(AbstractFormElement abstractFormElement);
 
 }
