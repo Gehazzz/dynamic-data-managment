@@ -5,7 +5,6 @@ import com.papaya.dynamicdatamanagement.model.elements.main.Form;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import javax.validation.ConstraintViolation;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,10 +36,8 @@ public class DynamicFormValidator implements ConstraintValidator<ValidForm, Form
                     })
 
         }*/
-        constraintValidatorContext.disableDefaultConstraintViolation();
-        constraintValidatorContext.buildConstraintViolationWithTemplate("message -1").addConstraintViolation();
-        constraintValidatorContext.disableDefaultConstraintViolation();
-        constraintValidatorContext.buildConstraintViolationWithTemplate("message -2").addConstraintViolation();
-        return false;
+       constraintValidatorContext.disableDefaultConstraintViolation();
+       violations.forEach(violation -> constraintValidatorContext.buildConstraintViolationWithTemplate(violation).addConstraintViolation());
+       return false;
     }
 }
