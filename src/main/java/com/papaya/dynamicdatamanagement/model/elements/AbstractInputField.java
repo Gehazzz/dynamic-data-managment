@@ -4,13 +4,11 @@ import com.papaya.dynamicdatamanagement.model.binding.Binding;
 import com.papaya.dynamicdatamanagement.model.elements.main.AbstractBoundField;
 import com.papaya.dynamicdatamanagement.model.elements.main.Section;
 import com.papaya.dynamicdatamanagement.validation.FieldValidator;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 public abstract class AbstractInputField<T> extends AbstractBoundField<T> {
@@ -35,7 +33,7 @@ public abstract class AbstractInputField<T> extends AbstractBoundField<T> {
         this.userInput = userInput;
     }
 
-    private List<FieldValidator<T>> validators = new ArrayList<FieldValidator<T>>();
+    private List<FieldValidator<T>> validators = new ArrayList<>();
 
     private T userInput;
 
@@ -103,5 +101,11 @@ public abstract class AbstractInputField<T> extends AbstractBoundField<T> {
 
     public Class<?> getModelClass() {
         return Object.class;
+    }
+
+    public List<String> validateAndGetViolations() {
+        return validators.stream()
+                .flatMap(validator -> validator.validate(this).stream())
+                .collect(Collectors.toList());
     }
 }

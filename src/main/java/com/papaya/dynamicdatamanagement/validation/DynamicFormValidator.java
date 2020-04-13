@@ -20,22 +20,12 @@ public class DynamicFormValidator implements ConstraintValidator<ValidForm, Form
                 .stream()
                 .flatMap(validator -> validator.validate(form.getMainSection()).stream())
                 .collect(Collectors.toList()));
-        List<AbstractInputField<?>> inputFields = form.getMainSection().getInputFields();
-       /* for (AbstractInputField<?> inputField : inputFields) {
 
+        violations.addAll(form.getMainSection().getInputFields()
+                .stream()
+                .flatMap(inputField -> inputField.validateAndGetViolations().stream())
+                .collect(Collectors.toList()));
 
-            inputField.getValidators();
-
-
-            inputField.getValidators()
-                    .stream()
-                    .flatMap(validator->{
-                        Type[] types = ((ParameterizedType) inputField).getActualTypeArguments();
-
-                        validator.validate(inputField).stream()
-                    })
-
-        }*/
        constraintValidatorContext.disableDefaultConstraintViolation();
        violations.forEach(violation -> constraintValidatorContext.buildConstraintViolationWithTemplate(violation).addConstraintViolation());
        return false;
