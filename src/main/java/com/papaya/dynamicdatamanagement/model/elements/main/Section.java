@@ -1,30 +1,28 @@
 package com.papaya.dynamicdatamanagement.model.elements.main;
 
+import com.papaya.dynamicdatamanagement.model.elements.AbstractInputField;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@Getter
-@Setter
+import static java.util.stream.Collectors.toList;
+
 @NoArgsConstructor
 @AllArgsConstructor
 public class Section extends AbstractFormElement {
-
     private String label;
+    @Getter
+    private List<SectionValidator> validators;
 
-    private List<AbstractFormElement> formElements;
+    private List<AbstractFormElement> formElements = new ArrayList<AbstractFormElement>();
 
-    private boolean hidden;
-    //TODO place removale to AbstractFormElementTemplate
-    private boolean showRemoveButton ;
-
-    public static SectionBuilder builder() {
-        return new SectionBuilder();
-    }
+    private boolean hidden = false;
+    //TODO place removale to AbstractFormElement
+    private boolean showRemoveButton = false;
 
     public Section setLabel(String label) {
         this.label = label;
@@ -103,13 +101,13 @@ public class Section extends AbstractFormElement {
         AbstractFormElement element = null;
 
         // this element is the searched one
-        if (getHtmlId().equals(id)) {
+        if (getId().equals(id)) {
             return this;
         } else {
             for (AbstractFormElement formElement : formElements) {
 
                 // the child element is the searched one
-                if (formElement.getHtmlId().equals(id)) {
+                if (formElement.getId().equals(id)) {
                     return formElement;
                 }
 
@@ -127,6 +125,7 @@ public class Section extends AbstractFormElement {
 
     public static class SectionBuilder {
         private String label;
+        private List<SectionValidator> sectionValidators;
         private List<AbstractFormElement> formElements;
         private boolean hidden;
         private boolean showRemoveButton;
@@ -155,11 +154,18 @@ public class Section extends AbstractFormElement {
         }
 
         public Section build() {
-            return new Section(label, formElements, hidden, showRemoveButton);
+            return new Section(label,sectionValidators ,formElements, hidden, showRemoveButton);
         }
 
         public String toString() {
             return "Section.SectionBuilder(label=" + this.label + ", formElements=" + this.formElements + ", hidden=" + this.hidden + ", showRemoveButton=" + this.showRemoveButton + ")";
         }
+    }
+
+    public List<AbstractInputField<?>> getInputFields() {
+       return getFormElements().stream().filter(e -> e instanceof AbstractInputField)
+               .map(e->((AbstractInputField) e))
+               .collect(toList());
+
     }
 }

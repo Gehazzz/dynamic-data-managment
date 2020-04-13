@@ -2,6 +2,9 @@ package com.papaya.dynamicdatamanagement.validation;
 
 import com.papaya.dynamicdatamanagement.model.elements.AbstractInputField;
 
+import javax.validation.ConstraintViolation;
+import java.util.Set;
+
 public interface FieldValidator<T> {
-    void validate(final AbstractInputField<T> inputField, final T value, final ValidationFeedback feedback);
+    Set<ConstraintViolation<AbstractInputField<T>>> validate(final AbstractInputField<T> inputField);
 }
