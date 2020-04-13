@@ -27,7 +27,8 @@ public class CheckBoxAdapter implements AbstractFormElementMapper
     }
 
     @Override
-    public AbstractFormElementTemplate mapToDataEntiry(AbstractFormElement abstractFormElement) {
+    public AbstractFormElementTemplate mapToDataEntity(AbstractFormElement abstractFormElement) {
         return null;
     }
+
 }

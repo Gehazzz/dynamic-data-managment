@@ -1,7 +1,7 @@
 package com.papaya.dynamicdatamanagement.validation;
 
-import com.papaya.dynamicdatamanagement.model.elements.AbstractInputField;
 import com.papaya.dynamicdatamanagement.model.elements.main.Form;
+import com.papaya.dynamicdatamanagement.model.elements.main.Section;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -15,19 +15,51 @@ public class DynamicFormValidator implements ConstraintValidator<ValidForm, Form
                 .stream()
                 .flatMap(validator -> validator.validate(form).stream())
                 .collect(Collectors.toList());
+        fillSectionViolationsRecursively(form.getMainSection(), violations);
 
-        violations.addAll(form.getMainSection().getValidators()
+     /*   violations.addAll(form.getMainSection().getValidators()
                 .stream()
                 .flatMap(validator -> validator.validate(form.getMainSection()).stream())
                 .collect(Collectors.toList()));
+*/
+
+       /* violations.addAll(form.getMainSection().getInputFields()
+                .stream()
+                .flatMap(inputField -> {
+                    List<String> list = inputField.validateAndGetViolations();
+                    return list.stream();
+                })
+                .collect(Collectors.toList()));
+*/
+/*
 
         violations.addAll(form.getMainSection().getInputFields()
                 .stream()
                 .flatMap(inputField -> inputField.validateAndGetViolations().stream())
                 .collect(Collectors.toList()));
+*/
 
-       constraintValidatorContext.disableDefaultConstraintViolation();
-       violations.forEach(violation -> constraintValidatorContext.buildConstraintViolationWithTemplate(violation).addConstraintViolation());
-       return false;
+        constraintValidatorContext.disableDefaultConstraintViolation();
+        violations.forEach(violation -> constraintValidatorContext.buildConstraintViolationWithTemplate(violation).addConstraintViolation());
+        return false;
     }
+
+    private void fillSectionViolationsRecursively(Section section, List<String> violations) {
+        violations.addAll(section.getValidators()
+                .stream()
+                .flatMap(validator -> validator.validate(section).stream())
+                .collect(Collectors.toList()));
+        violations.addAll(section.getInputFields()
+                .stream()
+                .flatMap(inputField -> inputField.validateAndGetViolations().stream())
+                .collect(Collectors.toList()));
+
+        List<Section> embeddedSections = section.getEmbeddedSections();
+        if (embeddedSections != null && !embeddedSections.isEmpty()) {
+            for (Section embeddedSection : embeddedSections) {
+                fillSectionViolationsRecursively(embeddedSection, violations);
+            }
+        }
+    }
+
 }

@@ -6,8 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -74,8 +74,8 @@ public class Section extends AbstractFormElement {
         return this;
     }
 
-    public List<AbstractFormElement> getFormElements() {
-        return Collections.unmodifiableList(this.formElements);
+    public Stream<AbstractFormElement> getFormElements() {
+        return this.formElements.stream();
     }
 
     public Section setHidden(boolean hidden) {
@@ -154,7 +154,7 @@ public class Section extends AbstractFormElement {
         }
 
         public Section build() {
-            return new Section(label,sectionValidators ,formElements, hidden, showRemoveButton);
+            return new Section(label, sectionValidators, formElements, hidden, showRemoveButton);
         }
 
         public String toString() {
@@ -163,9 +163,16 @@ public class Section extends AbstractFormElement {
     }
 
     public List<AbstractInputField<?>> getInputFields() {
-       return getFormElements().stream().filter(e -> e instanceof AbstractInputField)
-               .map(e->((AbstractInputField) e))
-               .collect(toList());
+        return getFormElements().filter(e -> e instanceof AbstractInputField)
+                .map(e -> ((AbstractInputField<?>) e))
+                .collect(toList());
+
+    }
+
+    public List<Section> getEmbeddedSections() {
+        return getFormElements().filter(e -> e instanceof Section)
+                .map(e -> ((Section) e))
+                .collect(toList());
 
     }
 }
