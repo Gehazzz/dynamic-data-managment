@@ -1,7 +1,9 @@
 package com.papaya.dynamicdatamanagement.model.elements;
 
-import java.util.List;
+import lombok.experimental.SuperBuilder;
 
+import java.util.List;
+@SuperBuilder
 public abstract class AbstractMultiChoice<T> extends AbstractInputField<List<T>> {
     private List<T> choices;
 

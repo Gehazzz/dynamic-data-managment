@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
-public class FormRepositoryTest {
+public class FormTemplateRepositoryTest {
     @Autowired
     FormRepository formRepository;
     @Test
@@ -46,11 +46,11 @@ public class FormRepositoryTest {
 
         section.setInputFields(fields);
 
-        Form form = Form.builder()
+        FormTemplate formTemplate = FormTemplate.builder()
                 .label("form")
                 .mainSection(section)
                 .build();
 
-        formRepository.save(form);
+        formRepository.save(formTemplate);
     }
 }

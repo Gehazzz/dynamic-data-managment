@@ -1,5 +1,8 @@
 package com.papaya.dynamicdatamanagement.model.elements;
 
+import lombok.experimental.SuperBuilder;
+
+@SuperBuilder
 public class TextArea extends AbstractInputField<String> {
     private String placeholder;
 

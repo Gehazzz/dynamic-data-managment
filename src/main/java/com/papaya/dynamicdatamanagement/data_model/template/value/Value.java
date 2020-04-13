@@ -16,9 +16,9 @@ public class Value {
     @Id
     @GeneratedValue
     private Long id;
-    private String value;
     @Column(columnDefinition="LONGTEXT")
-    private String longTextValue;
+    private String value;
+   /// private String longTextValue;
     private String boundTableName;
     private String boundClassName;
     private String boundColumnName;
@@ -27,7 +27,9 @@ public class Value {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "parent_value_id")
     private List<Value> values;
-
+    @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "value_id")
+    private List<ValidationRule> validationRules;
     @ManyToOne(fetch = FetchType.LAZY)
     private Checkbox checkbox;
     @ManyToOne(fetch = FetchType.LAZY)

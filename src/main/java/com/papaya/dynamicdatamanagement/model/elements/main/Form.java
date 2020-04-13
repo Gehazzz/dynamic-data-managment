@@ -1,12 +1,14 @@
 package com.papaya.dynamicdatamanagement.model.elements.main;
 
 import com.papaya.dynamicdatamanagement.validation.FormValidator;
+import lombok.Builder;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Builder
 public class Form {
-    private Section mainSection = new Section();
+    private Section mainSection;
 
     private ArrayList<FormValidator> validators = new ArrayList<>();
 

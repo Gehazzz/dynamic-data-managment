@@ -1,9 +1,15 @@
 package com.papaya.dynamicdatamanagement.model.elements.main;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+@SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Section extends AbstractFormElement {
     private String label;
 

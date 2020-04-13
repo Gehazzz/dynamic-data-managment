@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Form {
+public class FormTemplate {
     @Id
     @GeneratedValue
     private Long id;

@@ -1,7 +1,9 @@
 package com.papaya.dynamicdatamanagement.model.elements;
 
-import java.util.List;
+import lombok.experimental.SuperBuilder;
 
+import java.util.List;
+@SuperBuilder
 public abstract class AbstractSingleChoice<T> extends AbstractInputField<T> {
     protected List<T> choices;
 

@@ -1,7 +1,9 @@
 package com.papaya.dynamicdatamanagement.model.elements.main;
 
 import com.papaya.dynamicdatamanagement.model.binding.Binding;
+import lombok.experimental.SuperBuilder;
 
+@SuperBuilder
 public abstract class AbstractBoundField<T> extends AbstractFormElement {
     private Binding<T> binding;
 

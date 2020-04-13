@@ -1,5 +1,12 @@
 package com.papaya.dynamicdatamanagement.model.elements.main;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+
+@SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
 public abstract class AbstractFormElement {
     private String id;
 

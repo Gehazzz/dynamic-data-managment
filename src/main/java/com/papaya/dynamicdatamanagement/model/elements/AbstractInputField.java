@@ -2,10 +2,11 @@ package com.papaya.dynamicdatamanagement.model.elements;
 
 import com.papaya.dynamicdatamanagement.model.elements.main.AbstractBoundField;
 import com.papaya.dynamicdatamanagement.validation.FieldValidator;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@SuperBuilder
 public abstract class AbstractInputField<T> extends AbstractBoundField<T> {
     private String label;
 
