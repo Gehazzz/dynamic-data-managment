@@ -39,6 +39,8 @@ import java.util.stream.Collectors;
 //          1. if exist -> getCreationTemplateForDynamicForm(DynamicFormType type)
 //             else -> createDefaultCreationTemplate(). create default will return empty template
 // 6.Dynamic form creation template
+// 7.Additional methods
+//      a. getAllInputs() - will return a list of all inputs (textInput, checkbox, checkbox group, drop down etc....)
 
 //TODO Form creation template creation:
 public class DynamicFormServiceImpl implements DynamicFormService {
