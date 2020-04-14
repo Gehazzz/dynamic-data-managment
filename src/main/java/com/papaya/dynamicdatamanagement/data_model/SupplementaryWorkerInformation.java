@@ -2,6 +2,7 @@ package com.papaya.dynamicdatamanagement.data_model;
 
 import com.papaya.dynamicdatamanagement.data_model.template.value.Value;
 import lombok.*;
+import lombok.experimental.FieldNameConstants;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@FieldNameConstants
 public class SupplementaryWorkerInformation {
     @Id
     @GeneratedValue

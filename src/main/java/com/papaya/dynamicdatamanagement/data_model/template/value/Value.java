@@ -16,6 +16,7 @@ public class Value {
     @Id
     @GeneratedValue
     private Long id;
+    private String valueName;
     @Column(columnDefinition="LONGTEXT")
     private String value;
    /// private String longTextValue;

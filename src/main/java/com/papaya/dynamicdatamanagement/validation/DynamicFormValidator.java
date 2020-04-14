@@ -51,6 +51,7 @@ public class DynamicFormValidator implements ConstraintValidator<ValidForm, Form
                 .collect(Collectors.toList()));
         violations.addAll(section.getInputFields()
                 .stream()
+                //TODO inputField validators, call validate method here and not in the inputField class
                 .flatMap(inputField -> inputField.validateAndGetViolations().stream())
                 .collect(Collectors.toList()));
 
