@@ -17,6 +17,9 @@ import java.util.stream.Collectors;
 //TODO Filling form:
 // 1. Long formId, FormType formType, Map<String, String> userInputs
 
+//TODO Get all form types:
+// 1. getAllFormTypes()
+
 //TODO Form creation:
 // 1.Form based on static object
 //      a. getBuildingBlocksForSupplementaryWorkerInformationForm()
