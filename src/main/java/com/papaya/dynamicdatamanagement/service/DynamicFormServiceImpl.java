@@ -11,7 +11,13 @@ import java.util.stream.Collectors;
 // (May be it will be required in some cases can be not required that's why it can't be mapped by annotations)?
 // 2. Form type it should be enum but it can be dynamic form creation and then we can not define it in enum
 
-//TODO Cases for form creation:
+//TODO Requesting defined form:
+// 1. Long formId, FormType formType
+
+//TODO Filling form:
+// 1. Long formId, FormType formType, Map<String, String> userInputs
+
+//TODO Form creation:
 // 1.Form based on static object
 //      a. getBuildingBlocksForSupplementaryWorkerInformationForm()
 //          1. if exist -> getCreationTemplateForSupplementaryWorkerInformationForm()
@@ -28,11 +34,13 @@ import java.util.stream.Collectors;
 //      d. deleteCreationTemplateForSupplementaryWorkerInformation()
 // 4.Form creation template based on static object + custom inputs
 //      a. The same as at point 3.
-// 5.Dynamic formK
+// 5.Dynamic form
 //      a. getBuildingBlocksForDynamicForm(DynamicFormType type)
 //          1. if exist -> getCreationTemplateForDynamicForm(DynamicFormType type)
 //             else -> createDefaultCreationTemplate(). create default will return empty template
 // 6.Dynamic form creation template
+
+//TODO Form creation template creation:
 public class DynamicFormServiceImpl implements DynamicFormService {
     /**
      * Predefined building blocks
