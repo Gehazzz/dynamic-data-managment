@@ -17,6 +17,9 @@ import java.util.stream.Collectors;
 //          1. if exist -> getCreationTemplateForSupplementaryWorkerInformationForm()
 //             else -> createDefaultCreationTemplate()
 // 2.Form based on static object + custom inputs
+//      a. getBuildingBlocksForSupplementaryWorkerInformationForm()
+//          1. if exist -> getCreationTemplateForSupplementaryWorkerInformationForm()
+//             else -> createDefaultCreationTemplate() without custom inputs
 // 3.Form creation template based on static object
 //      a. getBuildingBlocksForCreationTemplateBasedOnSupplementaryWorkerInformation()
 //          1. set form type creation template (SUPPLEMENTARY_WORKER_INFORMATION_CREATION_TEMPLATE)
@@ -24,7 +27,11 @@ import java.util.stream.Collectors;
 //      c. updateCreationTemplateForSupplementaryWorkerInformation()
 //      d. deleteCreationTemplateForSupplementaryWorkerInformation()
 // 4.Form creation template based on static object + custom inputs
-// 5.Dynamic form
+//      a. The same as at point 3.
+// 5.Dynamic formK
+//      a. getBuildingBlocksForDynamicForm(DynamicFormType type)
+//          1. if exist -> getCreationTemplateForDynamicForm(DynamicFormType type)
+//             else -> createDefaultCreationTemplate(). create default will return empty template
 // 6.Dynamic form creation template
 public class DynamicFormServiceImpl implements DynamicFormService {
     /**
