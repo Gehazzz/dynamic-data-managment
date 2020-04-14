@@ -14,7 +14,8 @@ import java.util.stream.Collectors;
 //TODO Cases for form creation:
 // 1.Form based on static object
 //      a. getBuildingBlocksForSupplementaryWorkerInformationForm()
-//          1. getCreationTemplateForSupplementaryWorkerInformationForm()
+//          1. if exist -> getCreationTemplateForSupplementaryWorkerInformationForm()
+//             else -> createDefaultCreationTemplate()
 // 2.Form based on static object + custom inputs
 // 3.Form creation template based on static object
 //      a. getBuildingBlocksForCreationTemplateBasedOnSupplementaryWorkerInformation()
