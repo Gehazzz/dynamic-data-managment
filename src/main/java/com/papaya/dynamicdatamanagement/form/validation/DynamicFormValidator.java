@@ -7,7 +7,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.List;
 import java.util.stream.Collectors;
-
+//TODO separate form, section and inputs validations
 public class DynamicFormValidator implements ConstraintValidator<ValidForm, Form> {
     @Override
     public boolean isValid(Form form, ConstraintValidatorContext constraintValidatorContext) {
@@ -51,7 +51,7 @@ public class DynamicFormValidator implements ConstraintValidator<ValidForm, Form
                 .collect(Collectors.toList()));
         violations.addAll(section.getInputFields()
                 .stream()
-                //TODO inputField validators, call validate method here and not in the inputField class
+                //TODO inputField validators, call validate method here and not in the inputField class!!!
                 .flatMap(inputField -> inputField.validateAndGetViolations().stream())
                 .collect(Collectors.toList()));
 
