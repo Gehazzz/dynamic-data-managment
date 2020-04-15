@@ -10,15 +10,28 @@ import java.util.stream.Collectors;
 // 1.Should I create predefined object meta data table to store which field is required in static object or we will define that in Form template?
 // (May be it will be required in some cases can be not required that's why it can't be mapped by annotations)?
 // 2. Form type it should be enum but it can be dynamic form creation and then we can not define it in enum
+// 3. Form type how to implement?
 
 //TODO Requesting defined form:
 // 1. Long formId, FormType formType
 
 //TODO Filling form:
-// 1. Long formId, FormType formType, Map<String, String> userInputs
+// 1. choose form to fill
+//      a. getAllFormsByOrganisationIdAndProjectIdAndUserId() or getAllFormsByOrganisationIdAndProjectIdAndUserIdAndFormTypeNotIn() - not in this list of enums with creation types;
+//      b. getAllFormsByOrganisationIdAndProjectId()
+//      c. getAllFormsByProjectIdAndUserId()
+//      d. getAllFormsByOrganisationId()
+//      e. getAllFormsByProjectId()
+//      f. getAllFormsByUserId()
+//      g. getFormById()
+//      h. getFormBy_Label_And_Type_And_OrganisationId_And_ProjectId_And_UserId()
+// 2. post filled form -> Long formId, FormType formType, Map<String, String> userInputs
 
 //TODO Get all form types:
 // 1. getAllFormTypes()
+// 2. getAllFormTypesByOwner(FormOwner formOwner)
+//      a. FormOwner -> formType(String- defined by user), orgId, project, userId, userGroupId, projectGroupId, OrgGroupId
+//      b. FormOwner data layer -> formType,
 
 //TODO Form creation:
 // 1.Form based on static object
