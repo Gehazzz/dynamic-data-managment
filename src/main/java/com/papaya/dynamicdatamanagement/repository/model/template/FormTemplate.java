@@ -1,9 +1,9 @@
-package com.papaya.dynamicdatamanagement.repository.data_model.template;
+package com.papaya.dynamicdatamanagement.repository.model.template;
 
-import com.papaya.dynamicdatamanagement.repository.data_model.owner.Country;
-import com.papaya.dynamicdatamanagement.repository.data_model.owner.Organisation;
-import com.papaya.dynamicdatamanagement.repository.data_model.owner.Project;
-import com.papaya.dynamicdatamanagement.repository.data_model.owner.User;
+import com.papaya.dynamicdatamanagement.repository.model.owner.Country;
+import com.papaya.dynamicdatamanagement.repository.model.owner.Organisation;
+import com.papaya.dynamicdatamanagement.repository.model.owner.Project;
+import com.papaya.dynamicdatamanagement.repository.model.owner.User;
 import lombok.*;
 
 import javax.persistence.*;

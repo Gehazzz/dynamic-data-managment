@@ -1,6 +1,6 @@
-package com.papaya.dynamicdatamanagement.repository.data_model.template.value;
+package com.papaya.dynamicdatamanagement.repository.model.template.value;
 
-import com.papaya.dynamicdatamanagement.repository.data_model.template.*;
+import com.papaya.dynamicdatamanagement.repository.model.template.*;
 import lombok.*;
 
 import javax.persistence.*;

@@ -1,6 +1,6 @@
-package com.papaya.dynamicdatamanagement.repository.data_model.template;
+package com.papaya.dynamicdatamanagement.repository.model.template;
 
-import com.papaya.dynamicdatamanagement.repository.data_model.template.value.Value;
+import com.papaya.dynamicdatamanagement.repository.model.template.value.Value;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

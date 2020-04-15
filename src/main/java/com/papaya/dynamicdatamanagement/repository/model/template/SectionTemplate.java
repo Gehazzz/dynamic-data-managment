@@ -1,4 +1,4 @@
-package com.papaya.dynamicdatamanagement.repository.data_model.template;
+package com.papaya.dynamicdatamanagement.repository.model.template;
 
 import lombok.*;
 

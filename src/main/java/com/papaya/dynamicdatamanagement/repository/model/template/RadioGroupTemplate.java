@@ -1,6 +1,6 @@
-package com.papaya.dynamicdatamanagement.repository.data_model.template;
+package com.papaya.dynamicdatamanagement.repository.model.template;
 
-import com.papaya.dynamicdatamanagement.repository.data_model.template.value.Value;
+import com.papaya.dynamicdatamanagement.repository.model.template.value.Value;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,14 +16,14 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DropDownTemplate extends AbstractInputField{
+public class RadioGroupTemplate extends AbstractInputField{
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_drop_down_id")
-    List<Choice> choices;
+    @JoinColumn(name = "parent_radio_group_id")
+    private List<Choice> choices;
 
     @OneToMany(cascade=CascadeType.ALL)
-    @JoinTable(name = "drop_down_value",
-            joinColumns = @JoinColumn(name = "drop_down_id"),
+    @JoinTable(name = "radio_group_value",
+            joinColumns = @JoinColumn(name = "radio_group_id"),
             inverseJoinColumns = @JoinColumn(name = "value_id")
     )
     List<Value> values;

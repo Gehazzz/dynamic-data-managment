@@ -1,6 +1,6 @@
-package com.papaya.dynamicdatamanagement.repository.data_model.owner;
+package com.papaya.dynamicdatamanagement.repository.model.owner;
 
-import com.papaya.dynamicdatamanagement.repository.data_model.template.FormTemplate;
+import com.papaya.dynamicdatamanagement.repository.model.template.FormTemplate;
 import lombok.*;
 
 import javax.persistence.Entity;
