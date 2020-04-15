@@ -1,6 +1,6 @@
 package com.papaya.dynamicdatamanagement;
 
-import com.papaya.dynamicdatamanagement.form.model.elements.main.Form;
+import com.papaya.dynamicdatamanagement.form.elements.main.Form;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

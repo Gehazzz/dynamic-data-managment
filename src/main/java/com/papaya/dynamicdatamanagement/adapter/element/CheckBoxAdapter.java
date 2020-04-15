@@ -4,8 +4,8 @@ package com.papaya.dynamicdatamanagement.adapter.element;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.papaya.dynamicdatamanagement.repository.model.template.AbstractFormElementTemplate;
 import com.papaya.dynamicdatamanagement.repository.model.template.CheckboxTemplate;
-import com.papaya.dynamicdatamanagement.form.model.elements.Checkbox;
-import com.papaya.dynamicdatamanagement.form.model.elements.main.AbstractFormElement;
+import com.papaya.dynamicdatamanagement.form.elements.Checkbox;
+import com.papaya.dynamicdatamanagement.form.elements.main.AbstractFormElement;
 
 public class CheckBoxAdapter implements AbstractFormElementMapper
 {

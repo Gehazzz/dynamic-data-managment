@@ -1,6 +1,6 @@
 package com.papaya.dynamicdatamanagement.form.service;
 
-import com.papaya.dynamicdatamanagement.form.model.elements.main.FormType;
+import com.papaya.dynamicdatamanagement.form.elements.main.FormType;
 import com.papaya.dynamicdatamanagement.repository.model.SupplementaryWorkerInformation;
 
 import java.util.Arrays;

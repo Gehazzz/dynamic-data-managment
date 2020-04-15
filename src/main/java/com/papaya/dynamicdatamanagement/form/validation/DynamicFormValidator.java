@@ -1,7 +1,7 @@
 package com.papaya.dynamicdatamanagement.form.validation;
 
-import com.papaya.dynamicdatamanagement.form.model.elements.main.Form;
-import com.papaya.dynamicdatamanagement.form.model.elements.main.Section;
+import com.papaya.dynamicdatamanagement.form.elements.main.Form;
+import com.papaya.dynamicdatamanagement.form.elements.main.Section;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

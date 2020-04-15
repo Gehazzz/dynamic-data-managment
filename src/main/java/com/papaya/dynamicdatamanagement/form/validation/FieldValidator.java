@@ -1,6 +1,6 @@
 package com.papaya.dynamicdatamanagement.form.validation;
 
-import com.papaya.dynamicdatamanagement.form.model.elements.AbstractInputField;
+import com.papaya.dynamicdatamanagement.form.elements.AbstractInputField;
 
 import java.util.Set;
 
