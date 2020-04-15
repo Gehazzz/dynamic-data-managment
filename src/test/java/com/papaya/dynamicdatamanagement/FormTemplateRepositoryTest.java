@@ -1,6 +1,6 @@
 package com.papaya.dynamicdatamanagement;
 
-import com.papaya.dynamicdatamanagement.data_model.template.*;
+import com.papaya.dynamicdatamanagement.repository.data_model.template.*;
 import com.papaya.dynamicdatamanagement.repository.FormRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

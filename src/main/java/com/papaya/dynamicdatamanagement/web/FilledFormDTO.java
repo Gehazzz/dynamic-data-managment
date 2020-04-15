@@ -1,9 +1,10 @@
 package com.papaya.dynamicdatamanagement.web;
 
-import com.papaya.dynamicdatamanagement.data_model.template.FormType;
+import com.papaya.dynamicdatamanagement.service.form.model.elements.main.FormType;
 import lombok.Builder;
 
 import java.util.Map;
+
 @Builder
 public class FilledFormDTO {
     /**

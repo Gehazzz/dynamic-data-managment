@@ -1,15 +1,7 @@
 package com.papaya.dynamicdatamanagement.adapter;
 
-import com.papaya.dynamicdatamanagement.data_model.template.*;
-import com.papaya.dynamicdatamanagement.model.elements.AbstractInputField;
-import com.papaya.dynamicdatamanagement.model.elements.main.AbstractFormElement;
-import com.papaya.dynamicdatamanagement.model.elements.main.Form;
-import com.papaya.dynamicdatamanagement.model.elements.main.Section;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.papaya.dynamicdatamanagement.repository.data_model.template.*;
+import com.papaya.dynamicdatamanagement.service.form.model.elements.main.Form;
 
 public class FormMapper {
     public FormTemplate map(Form form){
