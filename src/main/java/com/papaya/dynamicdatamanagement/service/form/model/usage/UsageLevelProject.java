@@ -12,5 +12,4 @@ import java.util.List;
 public class UsageLevelProject {
     private long projectId;
     private String projectName;
-    List<UsageLevelUser> usageLevelUsers;
 }

@@ -1,5 +1,6 @@
 package com.papaya.dynamicdatamanagement.service.form.model.elements.main;
 
+import com.papaya.dynamicdatamanagement.service.form.model.usage.UsageLevel;
 import com.papaya.dynamicdatamanagement.service.form.validation.FormValidator;
 import com.papaya.dynamicdatamanagement.service.form.validation.ValidForm;
 
@@ -16,6 +17,8 @@ public class Form {
     private ArrayList<FormValidator> validators;
 
     private String label;
+
+    private UsageLevel usageLevel;
 
     public String getLabel() {
         return label;

@@ -12,5 +12,4 @@ import java.util.List;
 public class UsageLevelOrganisation {
     private long organisationId;
     private String organisationName;
-    List<UsageLevelCountry> usageLevelCountries;
 }

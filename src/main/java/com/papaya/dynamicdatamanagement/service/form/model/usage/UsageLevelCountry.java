@@ -12,5 +12,4 @@ import java.util.List;
 public class UsageLevelCountry {
     private long countryId;
     private String countryName;
-    List<UsageLevelProject> usageLevelProjects;
 }

@@ -3,7 +3,6 @@ package com.papaya.dynamicdatamanagement.service.form.model;
 import lombok.*;
 import lombok.experimental.FieldNameConstants;
 
-import java.util.List;
 import java.util.Map;
 
 
