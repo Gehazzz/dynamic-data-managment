@@ -46,7 +46,8 @@ public class FormManagerServiceImpl implements FormManagerService {
     @Override
     public Template getFormCreationTemplate(FormType formType) {
         FormService formService = formServices.entrySet().stream()
-                .filter(entry -> entry.getKey().contains(formType)).map(Map.Entry::getValue).findFirst()
+                .filter(entry -> entry.getKey().contains(formType) && formType.isInGroup(FormType.Group.FORM_CREATION_TEMPLATE))
+                .map(Map.Entry::getValue).findFirst()
                 .orElseThrow(() -> new RuntimeException("Provided formType doesn't exist"));
         return formService.getFormCreationTemplate(formType);
     }
