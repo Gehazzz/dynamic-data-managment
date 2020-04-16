@@ -166,6 +166,16 @@ public class DynamicFormServiceImpl implements DynamicFormService {
      *  3. custom optional building blocks
      *
      */
+    private FormCreationTemplate getDynamicFormCreationTemplate(){
+        List<AbstractFormElement> availableElements = getAvailableElements();
+        Section section = Section.builder().visible(true).build();
+        Form form = Form.builder().mainSection(section).formType(FormType.DYNAMIC_CREATION_TEMPLATE).build();
+        return  FormCreationTemplate.builder()
+                .form(form)
+                .formType(FormType.SUPPLEMENTARY_WORKER_INFORMATION_CREATION_TEMPLATE)
+                .availableElements(availableElements)
+                .build();
+    }
 
     private FormCreationTemplate getSupplementaryWorkerDefaultFormCreationTemplate() {
         List<AbstractFormElement> availableElements = getAvailableElements();
