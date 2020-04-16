@@ -1,4 +1,4 @@
-package com.papaya.dynamicdatamanagement.form.service;
+package com.papaya.dynamicdatamanagement.form.service.port.in;
 
 public interface SupplementaryWorkerInformationFormService {
 }
