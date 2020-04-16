@@ -8,8 +8,7 @@ import lombok.Builder;
 import java.util.List;
 
 public class IntegerTextField extends TextField<Integer> {
-
-    @Builder
+    @Builder(builderMethodName = "innerBuilder")
     public IntegerTextField(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, boolean showRemoveButton, Binding<Integer> binding, String label, String hint, boolean required, boolean enabled, String requiredMessage, List<FieldValidator<Integer>> fieldValidators, Integer userInput, String placeholder, Class<Integer> modelClass) {
         super(id, htmlId, index, parentSection, discarded, visible, showRemoveButton, binding, label, hint, required, enabled, requiredMessage, fieldValidators, userInput, placeholder, modelClass);
     }

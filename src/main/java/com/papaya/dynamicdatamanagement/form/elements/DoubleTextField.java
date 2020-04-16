@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DoubleTextField extends TextField<Double>{
 
-    @Builder
+    @Builder(builderMethodName = "innerBuilder")
     public DoubleTextField(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, boolean showRemoveButton, Binding<Double> binding, String label, String hint, boolean required, boolean enabled, String requiredMessage, List<FieldValidator<Double>> fieldValidators, Double userInput, String placeholder, Class<Double> modelClass) {
         super(id, htmlId, index, parentSection, discarded, visible, showRemoveButton, binding, label, hint, required, enabled, requiredMessage, fieldValidators, userInput, placeholder, modelClass);
     }

@@ -1,7 +1,7 @@
 package com.papaya.dynamicdatamanagement;
 
 import com.papaya.dynamicdatamanagement.repository.model.template.*;
-import com.papaya.dynamicdatamanagement.repository.FormRepository;
+import com.papaya.dynamicdatamanagement.repository.FormTemplateRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +12,7 @@ import java.util.List;
 @SpringBootTest
 public class FormTemplateRepositoryTest {
     @Autowired
-    FormRepository formRepository;
+    FormTemplateRepository formTemplateRepository;
     @Test
     void formTest(){
         SectionTemplate section = SectionTemplate.builder()
@@ -51,6 +51,6 @@ public class FormTemplateRepositoryTest {
                 .mainSection(section)
                 .build();
 
-        formRepository.save(formTemplate);
+        formTemplateRepository.save(formTemplate);
     }
 }

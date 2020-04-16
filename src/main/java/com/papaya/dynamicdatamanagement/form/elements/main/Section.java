@@ -14,7 +14,6 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 
 @NoArgsConstructor
-@AllArgsConstructor
 public class Section extends AbstractFormElement {
     private String label;
     @Getter
@@ -89,10 +88,6 @@ public class Section extends AbstractFormElement {
         return this.hidden;
     }
 
-    public Section setShowRemoveButton(boolean showRemoveButton) {
-        this.showRemoveButton = showRemoveButton;
-        return this;
-    }
 
     public boolean isShowRemoveButton() {
         return this.showRemoveButton;
@@ -125,15 +120,7 @@ public class Section extends AbstractFormElement {
         return null;
     }
 
-    @Builder
-    public Section(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, String label, List<SectionValidator> validators, List<AbstractFormElement> formElements, boolean hidden, boolean showRemoveButton) {
-        super(id, htmlId, index, parentSection, discarded, visible);
-        this.label = label;
-        this.validators = validators;
-        this.formElements = formElements;
-        this.hidden = hidden;
-        this.showRemoveButton = showRemoveButton;
-    }
+
 
     public List<AbstractInputField<?>> getInputFields() {
         return getFormElements().filter(e -> e instanceof AbstractInputField)
@@ -147,5 +134,15 @@ public class Section extends AbstractFormElement {
                 .map(e -> ((Section) e))
                 .collect(toList());
 
+    }
+
+    @Builder
+    public Section(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, boolean showRemoveButton, String label, List<SectionValidator> validators, List<AbstractFormElement> formElements, boolean hidden, boolean showRemoveButton1) {
+        super(id, htmlId, index, parentSection, discarded, visible, showRemoveButton);
+        this.label = label;
+        this.validators = validators;
+        this.formElements = formElements;
+        this.hidden = hidden;
+        this.showRemoveButton = showRemoveButton1;
     }
 }

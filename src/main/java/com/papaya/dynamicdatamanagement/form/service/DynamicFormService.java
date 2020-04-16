@@ -169,7 +169,7 @@ public class DynamicFormService implements FormService {
         Form form = Form.builder().mainSection(section).formType(FormType.SUPPLEMENTARY_WORKER_INFORMATION_CREATION_TEMPLATE).build();
 
         String firstNameLabel = getLabelFromFieldName(SupplementaryWorker.Fields.firstName);
-        StringTextField firstNameInputField = StringTextField.builder()
+        StringTextField firstNameInputField = StringTextField.innerBuilder()
                 .index(0)
                 .parentSection(section)
                 .visible(true)
@@ -185,7 +185,7 @@ public class DynamicFormService implements FormService {
         elements.add(firstNameInputField);
 
         String lastNameLabel = getLabelFromFieldName(SupplementaryWorker.Fields.lastName);
-        StringTextField lastNameInputField = StringTextField.builder()
+        StringTextField lastNameInputField = StringTextField.innerBuilder()
                 .index(1)
                 .parentSection(section)
                 .visible(true)
@@ -205,7 +205,7 @@ public class DynamicFormService implements FormService {
                 .pattern(Pattern.compile("^(.+)@(.+)$"))
                 .message("Invalid email address")
                 .build();
-        StringTextField primaryEmailInputField = StringTextField.builder()
+        StringTextField primaryEmailInputField = StringTextField.innerBuilder()
                 .index(2)
                 .parentSection(section)
                 .visible(true)
@@ -222,7 +222,7 @@ public class DynamicFormService implements FormService {
         elements.add(primaryEmailInputField);
 
         String companyNameLabel = getLabelFromFieldName(SupplementaryWorker.Fields.companyName);
-        StringTextField companyNameInputField = StringTextField.builder()
+        StringTextField companyNameInputField = StringTextField.innerBuilder()
                 .index(3)
                 .parentSection(section)
                 .visible(true)
@@ -238,7 +238,7 @@ public class DynamicFormService implements FormService {
         elements.add(companyNameInputField);
 
         String homeAddressLabel = getLabelFromFieldName(SupplementaryWorker.Fields.homeAddress);
-        StringTextField homeAddressInputField = StringTextField.builder()
+        StringTextField homeAddressInputField = StringTextField.innerBuilder()
                 .index(4)
                 .parentSection(section)
                 .visible(true)
@@ -254,7 +254,7 @@ public class DynamicFormService implements FormService {
         elements.add(homeAddressInputField);
 
         String bankNameLabel = getLabelFromFieldName(SupplementaryWorker.Fields.bankName);
-        StringTextField bankNameInputField = StringTextField.builder()
+        StringTextField bankNameInputField = StringTextField.innerBuilder()
                 .index(5)
                 .parentSection(section)
                 .visible(true)
@@ -270,7 +270,7 @@ public class DynamicFormService implements FormService {
         elements.add(bankNameInputField);
 
         String ibanLabel = getLabelFromFieldName(SupplementaryWorker.Fields.iban);
-        StringTextField ibanInputField = StringTextField.builder()
+        StringTextField ibanInputField = StringTextField.innerBuilder()
                 .index(6)
                 .parentSection(section)
                 .visible(true)
@@ -286,7 +286,7 @@ public class DynamicFormService implements FormService {
         elements.add(ibanInputField);
 
         String swiftLabel = getLabelFromFieldName(SupplementaryWorker.Fields.swift);
-        StringTextField swiftInputField = StringTextField.builder()
+        StringTextField swiftInputField = StringTextField.innerBuilder()
                 .index(7)
                 .parentSection(section)
                 .visible(true)
@@ -302,7 +302,7 @@ public class DynamicFormService implements FormService {
         elements.add(swiftInputField);
 
         String bankAccountNumberLabel = getLabelFromFieldName(SupplementaryWorker.Fields.bankAccountNumber);
-        StringTextField bankAccountInputField = StringTextField.builder()
+        StringTextField bankAccountInputField = StringTextField.innerBuilder()
                 .index(8)
                 .parentSection(section)
                 .visible(true)
@@ -318,7 +318,7 @@ public class DynamicFormService implements FormService {
         elements.add(bankAccountInputField);
 
         String bankCodeLabel = getLabelFromFieldName(SupplementaryWorker.Fields.bankCode);
-        StringTextField bankCodeInputField = StringTextField.builder()
+        StringTextField bankCodeInputField = StringTextField.innerBuilder()
                 .index(9)
                 .parentSection(section)
                 .visible(true)
@@ -334,7 +334,7 @@ public class DynamicFormService implements FormService {
         elements.add(bankCodeInputField);
 
         String branchNameLabel = getLabelFromFieldName(SupplementaryWorker.Fields.branchName);
-        StringTextField branchNameInputField = StringTextField.builder()
+        StringTextField branchNameInputField = StringTextField.innerBuilder()
                 .index(10)
                 .parentSection(section)
                 .visible(true)
@@ -350,7 +350,7 @@ public class DynamicFormService implements FormService {
         elements.add(branchNameInputField);
 
         String branchCodeLabel = getLabelFromFieldName(SupplementaryWorker.Fields.branchCode);
-        StringTextField branchCodeInputField = StringTextField.builder()
+        StringTextField branchCodeInputField = StringTextField.innerBuilder()
                 .index(11)
                 .parentSection(section)
                 .visible(true)

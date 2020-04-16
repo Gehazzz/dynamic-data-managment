@@ -3,7 +3,9 @@ package com.papaya.dynamicdatamanagement.form.elements;
 import com.papaya.dynamicdatamanagement.form.binding.Binding;
 import com.papaya.dynamicdatamanagement.form.elements.main.Section;
 import com.papaya.dynamicdatamanagement.form.validation.FieldValidator;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -11,6 +13,8 @@ import java.util.List;
  * A text field that may contain a string, any type that can
  * be represented as a string;
  */
+@AllArgsConstructor
+@NoArgsConstructor
 public class TextField<T> extends AbstractInputField<T> {
     private String placeholder;
 

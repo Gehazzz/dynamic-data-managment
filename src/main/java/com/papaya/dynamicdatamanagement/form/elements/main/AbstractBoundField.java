@@ -1,9 +1,11 @@
 package com.papaya.dynamicdatamanagement.form.elements.main;
 
 import com.papaya.dynamicdatamanagement.form.binding.Binding;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
+@AllArgsConstructor
 public abstract class AbstractBoundField<T> extends AbstractFormElement {
     private Binding<T> binding;
 
