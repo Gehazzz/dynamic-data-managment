@@ -402,6 +402,11 @@ public class DynamicFormService implements FormService {
     }
 
     @Override
+    public Template getFormCreationTemplate(FormType formType) {
+        return null;
+    }
+
+    @Override
     public EnumSet<FormType> getFormType() {
         return EnumSet.of(FormType.DYNAMIC, FormType.DYNAMIC_TEMPLATE, FormType.DYNAMIC_CREATION_TEMPLATE);
     }
