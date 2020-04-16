@@ -8,10 +8,7 @@ import com.papaya.dynamicdatamanagement.form.usage.UsageLevel;
 import com.papaya.dynamicdatamanagement.form.validation.PatternValidator;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 //TODO form type can be dynamic!!!
@@ -404,9 +401,8 @@ public class DynamicFormService implements FormService {
         return label.substring(0, 1).toUpperCase() + label.substring(1);
     }
 
-
     @Override
-    public FormType getFormType() {
-        return FormType.DYNAMIC;
+    public EnumSet<FormType> getFormType() {
+        return EnumSet.of(FormType.DYNAMIC, FormType.DYNAMIC_TEMPLATE, FormType.DYNAMIC_CREATION_TEMPLATE);
     }
 }

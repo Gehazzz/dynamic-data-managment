@@ -2,6 +2,7 @@ package com.papaya.dynamicdatamanagement.form.service.port.in;
 
 import com.papaya.dynamicdatamanagement.form.elements.main.Form;
 import com.papaya.dynamicdatamanagement.form.elements.main.FormType;
+import com.papaya.dynamicdatamanagement.form.elements.main.Template;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -18,11 +19,13 @@ public interface FormManagerService {
 
     List<Form> getForms(FormQuery formQuery);
 
+    Template getFormCreationTemplate(FormType formType);
+
+    Form getFormTemplate(FormType formType);
+
     Form getForm(long id);
 
     Form saveFilledForm(FilledForm filledForm);
-
-    FormType getType();
 
     @Getter
     @Builder
