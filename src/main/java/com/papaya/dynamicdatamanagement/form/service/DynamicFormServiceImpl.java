@@ -178,6 +178,7 @@ public class DynamicFormServiceImpl implements DynamicFormService {
                 .parentSection(section)
                 .enabled(true)
                 .discarded(false)
+                .showRemoveButton(true)
                 .label(firstNameLabel)
                 .hint(firstNameLabel)
                 .required(true)
