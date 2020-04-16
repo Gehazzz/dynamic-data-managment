@@ -3,9 +3,10 @@ package com.papaya.dynamicdatamanagement.form.service;
 import com.papaya.dynamicdatamanagement.form.elements.*;
 import com.papaya.dynamicdatamanagement.form.elements.main.*;
 import com.papaya.dynamicdatamanagement.form.model.SupplementaryWorker;
-import com.papaya.dynamicdatamanagement.form.service.port.in.DynamicFormService;
+import com.papaya.dynamicdatamanagement.form.service.port.in.FormService;
 import com.papaya.dynamicdatamanagement.form.usage.UsageLevel;
 import com.papaya.dynamicdatamanagement.form.validation.PatternValidator;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -143,21 +144,8 @@ import java.util.stream.Collectors;
 // 3. save form template
 // 4. update form template
 // 5. delete form template
-public class DynamicFormServiceImpl implements DynamicFormService {
-    @Override
-    public List<FormType> getAllFormTypes() {
-        return null;
-    }
-
-    @Override
-    public List<FormType> getAllFormTypesByUsageLevel(UsageLevel usageLevel) {
-        return null;
-    }
-
-    @Override
-    public void saveForm() {
-
-    }
+@Service
+public class DynamicFormService implements FormService {
 
     /**
      * Predefined building blocks
@@ -403,16 +391,6 @@ public class DynamicFormServiceImpl implements DynamicFormService {
                 );
     }
 
-
-    public void saveSupplementaryWorkerForm() {
-
-    }
-
-    @Override
-    public void updateForm() {
-
-    }
-
     /**
      *
      * @param formType - form type which user has filled
@@ -427,4 +405,8 @@ public class DynamicFormServiceImpl implements DynamicFormService {
     }
 
 
+    @Override
+    public FormType getFormType() {
+        return FormType.DYNAMIC;
+    }
 }
