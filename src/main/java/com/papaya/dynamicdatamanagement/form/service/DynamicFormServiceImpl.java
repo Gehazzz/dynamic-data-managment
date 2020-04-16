@@ -1,11 +1,15 @@
 package com.papaya.dynamicdatamanagement.form.service;
 
+import com.papaya.dynamicdatamanagement.form.elements.StringTextField;
+import com.papaya.dynamicdatamanagement.form.elements.main.AbstractFormElement;
 import com.papaya.dynamicdatamanagement.form.elements.main.Form;
 import com.papaya.dynamicdatamanagement.form.elements.main.FormType;
+import com.papaya.dynamicdatamanagement.form.elements.main.Section;
 import com.papaya.dynamicdatamanagement.form.model.SupplementaryWorker;
 import com.papaya.dynamicdatamanagement.form.service.port.in.DynamicFormService;
 import com.papaya.dynamicdatamanagement.form.usage.UsageLevel;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -164,9 +168,23 @@ public class DynamicFormServiceImpl implements DynamicFormService {
     }
 
     private void getSupplementaryWorkerDefaultFormCreationTemplate() {
-        Form.builder().build();
+        List<AbstractFormElement> elements = new ArrayList<>();
+        Section section = Section.builder().formElements(elements).visible(true).build();
+        Form form = Form.builder().mainSection(section).formType(FormType.SUPPLEMENTARY_WORKER_INFORMATION_CREATION_TEMPLATE).build();
 
         String firstNameLabel = getLabelFromFieldName(SupplementaryWorker.Fields.firstName);
+        StringTextField firstNameInputField = StringTextField.builder()
+                .index(0)
+                .parentSection(section)
+                .label(firstNameLabel)
+                .hint(firstNameLabel)
+                .required(true)
+                .requiredMessage(firstNameLabel + "is required")
+                .enabled(true)
+                .discarded(false)
+                .build();
+
+
         String lastNameLabel = getLabelFromFieldName(SupplementaryWorker.Fields.lastName);
         String primaryEmailLabel = getLabelFromFieldName(SupplementaryWorker.Fields.primaryEmail);
         String companyNameLabel = getLabelFromFieldName(SupplementaryWorker.Fields.companyName);

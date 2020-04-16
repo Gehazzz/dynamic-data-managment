@@ -19,6 +19,8 @@ public abstract class AbstractFormElement {
 
     private boolean visible = true;
 
+    private boolean showRemoveButton = false;
+
     public void setHtmlId(String htmlId) {
         this.htmlId = htmlId;
     }
@@ -64,12 +66,13 @@ public abstract class AbstractFormElement {
         return visible;
     }
 
-    public AbstractFormElement(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible) {
+    public AbstractFormElement(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, boolean showRemoveButton) {
         this.id = id;
         this.htmlId = htmlId;
         this.index = index;
         this.parentSection = parentSection;
         this.discarded = discarded;
         this.visible = visible;
+        this.showRemoveButton = showRemoveButton;
     }
 }
