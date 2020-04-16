@@ -164,7 +164,7 @@ public class DynamicFormServiceImpl implements DynamicFormService {
     }
 
     private void getSupplementaryWorkerDefaultFormCreationTemplate() {
-        Form.builder().
+        Form.builder().build();
 
         String firstNameLabel = getLabelFromFieldName(SupplementaryWorker.Fields.firstName);
         String lastNameLabel = getLabelFromFieldName(SupplementaryWorker.Fields.lastName);
