@@ -8,7 +8,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class FormCreationTemplate {
+public class Template {
     Form form;
     FormType formType;
     List<AbstractFormElement> availableElements;

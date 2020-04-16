@@ -166,18 +166,18 @@ public class DynamicFormServiceImpl implements DynamicFormService {
      *  3. custom optional building blocks
      *
      */
-    private FormCreationTemplate getDefaultDynamicFormCreationTemplate(){
+    private Template getDefaultDynamicFormCreationTemplate(){
         List<AbstractFormElement> availableElements = getAvailableElements();
         Section section = Section.builder().visible(true).build();
         Form form = Form.builder().mainSection(section).formType(FormType.DYNAMIC_CREATION_TEMPLATE).build();
-        return  FormCreationTemplate.builder()
+        return  Template.builder()
                 .form(form)
                 .formType(FormType.DYNAMIC_CREATION_TEMPLATE)
                 .availableElements(availableElements)
                 .build();
     }
 
-    private FormCreationTemplate getDefaultSupplementaryWorkerFormCreationTemplate() {
+    private Template getDefaultSupplementaryWorkerFormCreationTemplate() {
         List<AbstractFormElement> availableElements = getAvailableElements();
         List<AbstractFormElement> elements = new ArrayList<>();
         Section section = Section.builder().formElements(elements).visible(true).build();
@@ -380,7 +380,7 @@ public class DynamicFormServiceImpl implements DynamicFormService {
                 .build();
         elements.add(branchCodeInputField);
 
-        return FormCreationTemplate.builder()
+        return Template.builder()
                 .form(form)
                 .formType(FormType.SUPPLEMENTARY_WORKER_INFORMATION_CREATION_TEMPLATE)
                 .availableElements(availableElements)
