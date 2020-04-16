@@ -172,7 +172,7 @@ public class DynamicFormServiceImpl implements DynamicFormService {
         Form form = Form.builder().mainSection(section).formType(FormType.DYNAMIC_CREATION_TEMPLATE).build();
         return  FormCreationTemplate.builder()
                 .form(form)
-                .formType(FormType.SUPPLEMENTARY_WORKER_INFORMATION_CREATION_TEMPLATE)
+                .formType(FormType.DYNAMIC_CREATION_TEMPLATE)
                 .availableElements(availableElements)
                 .build();
     }
