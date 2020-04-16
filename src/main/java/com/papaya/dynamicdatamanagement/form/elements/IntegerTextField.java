@@ -1,6 +1,19 @@
 package com.papaya.dynamicdatamanagement.form.elements;
 
+import com.papaya.dynamicdatamanagement.form.binding.Binding;
+import com.papaya.dynamicdatamanagement.form.elements.main.Section;
+import com.papaya.dynamicdatamanagement.form.validation.FieldValidator;
+import lombok.Builder;
+
+import java.util.List;
+
 public class IntegerTextField extends TextField<Integer> {
+
+    @Builder
+    public IntegerTextField(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, Binding<Integer> binding, String label, String hint, boolean required, boolean enabled, String requiredMessage, List<FieldValidator<Integer>> fieldValidators, Integer userInput, String placeholder, Class<Integer> modelClass) {
+        super(id, htmlId, index, parentSection, discarded, visible, binding, label, hint, required, enabled, requiredMessage, fieldValidators, userInput, placeholder, modelClass);
+    }
+
     @Override
     public Class<Integer> getModelClass() {
         return Integer.class;

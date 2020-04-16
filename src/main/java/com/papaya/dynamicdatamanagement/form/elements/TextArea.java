@@ -1,15 +1,18 @@
 package com.papaya.dynamicdatamanagement.form.elements;
 
+import com.papaya.dynamicdatamanagement.form.binding.Binding;
+import com.papaya.dynamicdatamanagement.form.elements.main.Section;
+import com.papaya.dynamicdatamanagement.form.validation.FieldValidator;
+import lombok.Builder;
+
+import java.util.List;
+
 public class TextArea extends AbstractInputField<String> {
     private String placeholder;
 
     @java.beans.ConstructorProperties({"placeholder"})
     TextArea(String placeholder) {
         this.placeholder = placeholder;
-    }
-
-    public static TextAreaBuilder builder() {
-        return new TextAreaBuilder();
     }
 
     public String getPlaceholder() {
@@ -25,23 +28,9 @@ public class TextArea extends AbstractInputField<String> {
         return String.class;
     }
 
-    public static class TextAreaBuilder {
-        private String placeholder;
-
-        TextAreaBuilder() {
-        }
-
-        public TextAreaBuilder placeholder(String placeholder) {
-            this.placeholder = placeholder;
-            return this;
-        }
-
-        public TextArea build() {
-            return new TextArea(placeholder);
-        }
-
-        public String toString() {
-            return "TextArea.TextAreaBuilder(placeholder=" + this.placeholder + ")";
-        }
+    @Builder
+    public TextArea(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, Binding<String> binding, String label, String hint, boolean required, boolean enabled, String requiredMessage, List<FieldValidator<String>> fieldValidators, String userInput, String placeholder) {
+        super(id, htmlId, index, parentSection, discarded, visible, binding, label, hint, required, enabled, requiredMessage, fieldValidators, userInput);
+        this.placeholder = placeholder;
     }
 }

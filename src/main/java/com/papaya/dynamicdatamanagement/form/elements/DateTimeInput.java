@@ -1,26 +1,20 @@
 package com.papaya.dynamicdatamanagement.form.elements;
 
+import com.papaya.dynamicdatamanagement.form.binding.Binding;
+import com.papaya.dynamicdatamanagement.form.elements.main.Section;
+import com.papaya.dynamicdatamanagement.form.validation.FieldValidator;
+import lombok.Builder;
+
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 public class DateTimeInput extends AbstractInputField<LocalDateTime> {
     DateTimeInput() {
     }
 
-    public static DateTimeInputBuilder builder() {
-        return new DateTimeInputBuilder();
-    }
-
-    public static class DateTimeInputBuilder {
-        DateTimeInputBuilder() {
-        }
-
-        public DateTimeInput build() {
-            return new DateTimeInput();
-        }
-
-        public String toString() {
-            return "DateTimeInput.DateTimeInputBuilder()";
-        }
+    @Builder
+    public DateTimeInput(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, Binding<LocalDateTime> binding, String label, String hint, boolean required, boolean enabled, String requiredMessage, List<FieldValidator<LocalDateTime>> fieldValidators, LocalDateTime userInput) {
+        super(id, htmlId, index, parentSection, discarded, visible, binding, label, hint, required, enabled, requiredMessage, fieldValidators, userInput);
     }
 }

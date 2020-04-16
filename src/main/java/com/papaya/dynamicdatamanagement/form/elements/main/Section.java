@@ -3,6 +3,7 @@ package com.papaya.dynamicdatamanagement.form.elements.main;
 import com.papaya.dynamicdatamanagement.form.elements.AbstractInputField;
 import com.papaya.dynamicdatamanagement.form.validation.SectionValidator;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -124,43 +125,14 @@ public class Section extends AbstractFormElement {
         return null;
     }
 
-    public static class SectionBuilder {
-        private String label;
-        private List<SectionValidator> sectionValidators;
-        private List<AbstractFormElement> formElements;
-        private boolean hidden;
-        private boolean showRemoveButton;
-
-        SectionBuilder() {
-        }
-
-        public SectionBuilder label(String label) {
-            this.label = label;
-            return this;
-        }
-
-        public SectionBuilder formElements(List<AbstractFormElement> formElements) {
-            this.formElements = formElements;
-            return this;
-        }
-
-        public SectionBuilder hidden(boolean hidden) {
-            this.hidden = hidden;
-            return this;
-        }
-
-        public SectionBuilder showRemoveButton(boolean showRemoveButton) {
-            this.showRemoveButton = showRemoveButton;
-            return this;
-        }
-
-        public Section build() {
-            return new Section(label, sectionValidators, formElements, hidden, showRemoveButton);
-        }
-
-        public String toString() {
-            return "Section.SectionBuilder(label=" + this.label + ", formElements=" + this.formElements + ", hidden=" + this.hidden + ", showRemoveButton=" + this.showRemoveButton + ")";
-        }
+    @Builder
+    public Section(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, String label, List<SectionValidator> validators, List<AbstractFormElement> formElements, boolean hidden, boolean showRemoveButton) {
+        super(id, htmlId, index, parentSection, discarded, visible);
+        this.label = label;
+        this.validators = validators;
+        this.formElements = formElements;
+        this.hidden = hidden;
+        this.showRemoveButton = showRemoveButton;
     }
 
     public List<AbstractInputField<?>> getInputFields() {
