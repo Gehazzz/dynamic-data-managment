@@ -308,7 +308,7 @@ public class DynamicFormServiceImpl implements DynamicFormService {
 
         String bankAccountNumberLabel = getLabelFromFieldName(SupplementaryWorker.Fields.bankAccountNumber);
         StringTextField bankAccountInputField = StringTextField.builder()
-                .index(7)
+                .index(8)
                 .parentSection(section)
                 .visible(true)
                 .discarded(false)
@@ -324,7 +324,7 @@ public class DynamicFormServiceImpl implements DynamicFormService {
 
         String bankCodeLabel = getLabelFromFieldName(SupplementaryWorker.Fields.bankCode);
         StringTextField bankCodeInputField = StringTextField.builder()
-                .index(8)
+                .index(9)
                 .parentSection(section)
                 .visible(true)
                 .discarded(false)
@@ -340,7 +340,7 @@ public class DynamicFormServiceImpl implements DynamicFormService {
 
         String branchNameLabel = getLabelFromFieldName(SupplementaryWorker.Fields.branchName);
         StringTextField branchNameInputField = StringTextField.builder()
-                .index(9)
+                .index(10)
                 .parentSection(section)
                 .visible(true)
                 .discarded(false)
@@ -356,7 +356,7 @@ public class DynamicFormServiceImpl implements DynamicFormService {
 
         String branchCodeLabel = getLabelFromFieldName(SupplementaryWorker.Fields.branchCode);
         StringTextField branchCodeInputField = StringTextField.builder()
-                .index(10)
+                .index(11)
                 .parentSection(section)
                 .visible(true)
                 .discarded(false)
