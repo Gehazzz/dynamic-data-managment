@@ -1,8 +1,9 @@
 package com.papaya.dynamicdatamanagement.form.elements;
 
-import com.papaya.dynamicdatamanagement.form.binding.Binding;
+
 import com.papaya.dynamicdatamanagement.form.elements.main.Section;
 import com.papaya.dynamicdatamanagement.form.validation.FieldValidator;
+import org.hibernate.boot.jaxb.spi.Binding;
 
 import java.util.List;
 

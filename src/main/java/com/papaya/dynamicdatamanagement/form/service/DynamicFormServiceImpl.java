@@ -1,9 +1,12 @@
 package com.papaya.dynamicdatamanagement.form.service;
 
 import com.papaya.dynamicdatamanagement.form.elements.main.FormType;
-import com.papaya.dynamicdatamanagement.repository.model.SupplementaryWorkerInformation;
+import com.papaya.dynamicdatamanagement.form.model.SupplementaryWorker;
+import com.papaya.dynamicdatamanagement.form.service.port.in.DynamicFormService;
+import com.papaya.dynamicdatamanagement.form.usage.UsageLevel;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 //TODO form type can be dynamic!!!
@@ -41,19 +44,19 @@ import java.util.stream.Collectors;
 // 1. choose form creation template to create form
 // 2. create form creation template
 //      a.Form based on static object
-//          1. getBuildingBlocksForSupplementaryWorkerInformationForm()
-//              a. if exist -> getCreationTemplateForSupplementaryWorkerInformationForm()
+//          1. getBuildingBlocksForSupplementaryWorkerForm()
+//              a. if exist -> getCreationTemplateForSupplementaryWorkerForm()
 //                  else -> createDefaultCreationTemplate()
 //      b.Form based on static object + custom inputs
-//          1. getBuildingBlocksForSupplementaryWorkerInformationForm()
-//              a. if exist -> getCreationTemplateForSupplementaryWorkerInformationForm()
+//          1. getBuildingBlocksForSupplementaryWorkerForm()
+//              a. if exist -> getCreationTemplateForSupplementaryWorkerForm()
 //                  else -> createDefaultCreationTemplate() without custom inputs
 //      c.Form creation template based on static object
-//          1. getBuildingBlocksForCreationTemplateBasedOnSupplementaryWorkerInformation()
+//          1. getBuildingBlocksForCreationTemplateBasedOnSupplementaryWorker()
 //              a. set form type creation template (SUPPLEMENTARY_WORKER_INFORMATION_CREATION_TEMPLATE)
-//          2. saveCreationTemplateForSupplementaryWorkerInformation()
-//          3. updateCreationTemplateForSupplementaryWorkerInformation()
-//          4. deleteCreationTemplateForSupplementaryWorkerInformation()
+//          2. saveCreationTemplateForSupplementaryWorker()
+//          3. updateCreationTemplateForSupplementaryWorker()
+//          4. deleteCreationTemplateForSupplementaryWorker()
 //      d.Form creation template based on static object + custom inputs
 //          1. The same as at point c.
 //      e.Dynamic form
@@ -137,6 +140,16 @@ import java.util.stream.Collectors;
 // 4. update form template
 // 5. delete form template
 public class DynamicFormServiceImpl implements DynamicFormService {
+    @Override
+    public List<FormType> getAllFormTypes() {
+        return null;
+    }
+
+    @Override
+    public List<FormType> getAllFormTypesByUsageLevel(UsageLevel usageLevel) {
+        return null;
+    }
+
     /**
      * Predefined building blocks
      *  1. predefined required building blocks
@@ -146,22 +159,24 @@ public class DynamicFormServiceImpl implements DynamicFormService {
      */
     @Override
     public void getFormBuildingBlocks(FormType formType) {
-        getSupplementaryWorkerInformationFormBuildingBlocks();
+        getSupplementaryWorkerFormBuildingBlocks();
     }
 
-    private void getSupplementaryWorkerInformationFormBuildingBlocks() {
-        String firstNameLabel = getLabelFromFieldName(SupplementaryWorkerInformation.Fields.firstName);
-        String lastNameLabel = getLabelFromFieldName(SupplementaryWorkerInformation.Fields.lastName);
-        String primaryEmailLabel = getLabelFromFieldName(SupplementaryWorkerInformation.Fields.primaryEmail);
-        String companyNameLabel = getLabelFromFieldName(SupplementaryWorkerInformation.Fields.companyName);
-        String homeAddressLabel = getLabelFromFieldName(SupplementaryWorkerInformation.Fields.homeAddress);
-        String bankNameLabel = getLabelFromFieldName(SupplementaryWorkerInformation.Fields.bankName);
-        String ibanLabel = getLabelFromFieldName(SupplementaryWorkerInformation.Fields.iban);
-        String swiftLabel = getLabelFromFieldName(SupplementaryWorkerInformation.Fields.swift);
-        String bankAccountNumberLabel = getLabelFromFieldName(SupplementaryWorkerInformation.Fields.bankAccountNumber);
-        String bankCodeLabel = getLabelFromFieldName(SupplementaryWorkerInformation.Fields.bankCode);
-        String branchNameLabel = getLabelFromFieldName(SupplementaryWorkerInformation.Fields.branchName);
-        String branchCodeLabel = getLabelFromFieldName(SupplementaryWorkerInformation.Fields.branchCode);
+    private void getSupplementaryWorkerFormBuildingBlocks() {
+
+
+        String firstNameLabel = getLabelFromFieldName(SupplementaryWorker.Fields.firstName);
+        String lastNameLabel = getLabelFromFieldName(SupplementaryWorker.Fields.lastName);
+        String primaryEmailLabel = getLabelFromFieldName(SupplementaryWorker.Fields.primaryEmail);
+        String companyNameLabel = getLabelFromFieldName(SupplementaryWorker.Fields.companyName);
+        String homeAddressLabel = getLabelFromFieldName(SupplementaryWorker.Fields.homeAddress);
+        String bankNameLabel = getLabelFromFieldName(SupplementaryWorker.Fields.bankName);
+        String ibanLabel = getLabelFromFieldName(SupplementaryWorker.Fields.iban);
+        String swiftLabel = getLabelFromFieldName(SupplementaryWorker.Fields.swift);
+        String bankAccountNumberLabel = getLabelFromFieldName(SupplementaryWorker.Fields.bankAccountNumber);
+        String bankCodeLabel = getLabelFromFieldName(SupplementaryWorker.Fields.bankCode);
+        String branchNameLabel = getLabelFromFieldName(SupplementaryWorker.Fields.branchName);
+        String branchCodeLabel = getLabelFromFieldName(SupplementaryWorker.Fields.branchCode);
         //StringTextField.builder()
     }
 
@@ -170,13 +185,18 @@ public class DynamicFormServiceImpl implements DynamicFormService {
 
     }
 
-    @Override
-    public void saveSupplementaryWorkerInformationForm() {
+
+    public void saveSupplementaryWorkerForm() {
 
     }
 
     @Override
     public void saveDynamicForm() {
+
+    }
+
+    @Override
+    public void saveSupplementaryWorkerInformationForm() {
 
     }
 
