@@ -1,18 +1,17 @@
 package com.papaya.dynamicdatamanagement.form.service;
 
-import com.papaya.dynamicdatamanagement.form.elements.StringTextField;
-import com.papaya.dynamicdatamanagement.form.elements.main.AbstractFormElement;
-import com.papaya.dynamicdatamanagement.form.elements.main.Form;
-import com.papaya.dynamicdatamanagement.form.elements.main.FormType;
-import com.papaya.dynamicdatamanagement.form.elements.main.Section;
+import com.papaya.dynamicdatamanagement.form.elements.*;
+import com.papaya.dynamicdatamanagement.form.elements.main.*;
 import com.papaya.dynamicdatamanagement.form.model.SupplementaryWorker;
 import com.papaya.dynamicdatamanagement.form.service.port.in.DynamicFormService;
 import com.papaya.dynamicdatamanagement.form.usage.UsageLevel;
+import com.papaya.dynamicdatamanagement.form.validation.PatternValidator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 //TODO form type can be dynamic!!!
 // 1.Should I create predefined object meta data table to store which field is required in static object or we will define that in Form template?
@@ -155,19 +154,21 @@ public class DynamicFormServiceImpl implements DynamicFormService {
         return null;
     }
 
+    @Override
+    public void saveForm() {
+
+    }
+
     /**
      * Predefined building blocks
      *  1. predefined required building blocks
      *  2. predefined optional building blocks
      *  3. custom optional building blocks
-     * @param formType form type for which building blocks are requested
+     *
      */
-    @Override
-    public void getFormBuildingBlocks(FormType formType) {
 
-    }
-
-    private void getSupplementaryWorkerDefaultFormCreationTemplate() {
+    private FormCreationTemplate getSupplementaryWorkerDefaultFormCreationTemplate() {
+        List<AbstractFormElement> availableElements = getAvailableElements();
         List<AbstractFormElement> elements = new ArrayList<>();
         Section section = Section.builder().formElements(elements).visible(true).build();
         Form form = Form.builder().mainSection(section).formType(FormType.SUPPLEMENTARY_WORKER_INFORMATION_CREATION_TEMPLATE).build();
@@ -176,48 +177,224 @@ public class DynamicFormServiceImpl implements DynamicFormService {
         StringTextField firstNameInputField = StringTextField.builder()
                 .index(0)
                 .parentSection(section)
-                .enabled(true)
+                .visible(true)
                 .discarded(false)
                 .showRemoveButton(true)
                 .label(firstNameLabel)
                 .hint(firstNameLabel)
                 .required(true)
                 .requiredMessage(firstNameLabel + "is required")
-
+                .enabled(true)
+                .placeholder("Type here your " + firstNameLabel)
                 .build();
-
+        elements.add(firstNameInputField);
 
         String lastNameLabel = getLabelFromFieldName(SupplementaryWorker.Fields.lastName);
+        StringTextField lastNameInputField = StringTextField.builder()
+                .index(1)
+                .parentSection(section)
+                .visible(true)
+                .discarded(false)
+                .showRemoveButton(true)
+                .label(lastNameLabel)
+                .hint(lastNameLabel)
+                .required(true)
+                .requiredMessage(lastNameLabel + "is required")
+                .enabled(true)
+                .placeholder("Type here your " + lastNameLabel)
+                .build();
+        elements.add(lastNameInputField);
+
         String primaryEmailLabel = getLabelFromFieldName(SupplementaryWorker.Fields.primaryEmail);
+        PatternValidator patternValidator = PatternValidator.builder()
+                .pattern(Pattern.compile("^(.+)@(.+)$"))
+                .message("Invalid email address")
+                .build();
+        StringTextField primaryEmailInputField = StringTextField.builder()
+                .index(2)
+                .parentSection(section)
+                .visible(true)
+                .discarded(false)
+                .showRemoveButton(true)
+                .label(primaryEmailLabel)
+                .hint(primaryEmailLabel)
+                .required(true)
+                .requiredMessage(primaryEmailLabel + "is required")
+                .enabled(true)
+                .placeholder("Type here your " + primaryEmailLabel)
+                .fieldValidators(List.of(patternValidator))
+                .build();
+        elements.add(primaryEmailInputField);
+
         String companyNameLabel = getLabelFromFieldName(SupplementaryWorker.Fields.companyName);
+        StringTextField companyNameInputField = StringTextField.builder()
+                .index(3)
+                .parentSection(section)
+                .visible(true)
+                .discarded(false)
+                .showRemoveButton(true)
+                .label(companyNameLabel)
+                .hint(companyNameLabel)
+                .required(true)
+                .requiredMessage(companyNameLabel + "is required")
+                .enabled(true)
+                .placeholder("Type here your " + companyNameLabel)
+                .build();
+        elements.add(companyNameInputField);
+
         String homeAddressLabel = getLabelFromFieldName(SupplementaryWorker.Fields.homeAddress);
+        StringTextField homeAddressInputField = StringTextField.builder()
+                .index(4)
+                .parentSection(section)
+                .visible(true)
+                .discarded(false)
+                .showRemoveButton(true)
+                .label(homeAddressLabel)
+                .hint(homeAddressLabel)
+                .required(true)
+                .requiredMessage(homeAddressLabel + "is required")
+                .enabled(true)
+                .placeholder("Type here your " + homeAddressLabel)
+                .build();
+        elements.add(homeAddressInputField);
+
         String bankNameLabel = getLabelFromFieldName(SupplementaryWorker.Fields.bankName);
+        StringTextField bankNameInputField = StringTextField.builder()
+                .index(5)
+                .parentSection(section)
+                .visible(true)
+                .discarded(false)
+                .showRemoveButton(true)
+                .label(bankNameLabel)
+                .hint(bankNameLabel)
+                .required(true)
+                .requiredMessage(bankNameLabel + "is required")
+                .enabled(true)
+                .placeholder("Type here your " + bankNameLabel)
+                .build();
+        elements.add(bankNameInputField);
+
         String ibanLabel = getLabelFromFieldName(SupplementaryWorker.Fields.iban);
+        StringTextField ibanInputField = StringTextField.builder()
+                .index(6)
+                .parentSection(section)
+                .visible(true)
+                .discarded(false)
+                .showRemoveButton(true)
+                .label(ibanLabel)
+                .hint(ibanLabel)
+                .required(true)
+                .requiredMessage(ibanLabel + "is required")
+                .enabled(true)
+                .placeholder("Type here your " + ibanLabel)
+                .build();
+        elements.add(ibanInputField);
+
         String swiftLabel = getLabelFromFieldName(SupplementaryWorker.Fields.swift);
+        StringTextField swiftInputField = StringTextField.builder()
+                .index(7)
+                .parentSection(section)
+                .visible(true)
+                .discarded(false)
+                .showRemoveButton(true)
+                .label(swiftLabel)
+                .hint(swiftLabel)
+                .required(true)
+                .requiredMessage(swiftLabel + "is required")
+                .enabled(true)
+                .placeholder("Type here your " + swiftLabel)
+                .build();
+        elements.add(swiftInputField);
+
         String bankAccountNumberLabel = getLabelFromFieldName(SupplementaryWorker.Fields.bankAccountNumber);
+        StringTextField bankAccountInputField = StringTextField.builder()
+                .index(7)
+                .parentSection(section)
+                .visible(true)
+                .discarded(false)
+                .showRemoveButton(true)
+                .label(bankAccountNumberLabel)
+                .hint(bankAccountNumberLabel)
+                .required(true)
+                .requiredMessage(bankAccountNumberLabel + "is required")
+                .enabled(true)
+                .placeholder("Type here your " + bankAccountNumberLabel)
+                .build();
+        elements.add(bankAccountInputField);
+
         String bankCodeLabel = getLabelFromFieldName(SupplementaryWorker.Fields.bankCode);
+        StringTextField bankCodeInputField = StringTextField.builder()
+                .index(8)
+                .parentSection(section)
+                .visible(true)
+                .discarded(false)
+                .showRemoveButton(true)
+                .label(bankCodeLabel)
+                .hint(bankCodeLabel)
+                .required(true)
+                .requiredMessage(bankCodeLabel + "is required")
+                .enabled(true)
+                .placeholder("Type here your " + bankCodeLabel)
+                .build();
+        elements.add(bankCodeInputField);
+
         String branchNameLabel = getLabelFromFieldName(SupplementaryWorker.Fields.branchName);
+        StringTextField branchNameInputField = StringTextField.builder()
+                .index(9)
+                .parentSection(section)
+                .visible(true)
+                .discarded(false)
+                .showRemoveButton(true)
+                .label(branchNameLabel)
+                .hint(branchNameLabel)
+                .required(true)
+                .requiredMessage(branchNameLabel + "is required")
+                .enabled(true)
+                .placeholder("Type here your " + branchNameLabel)
+                .build();
+        elements.add(branchNameInputField);
+
         String branchCodeLabel = getLabelFromFieldName(SupplementaryWorker.Fields.branchCode);
-        //StringTextField.builder()
+        StringTextField branchCodeInputField = StringTextField.builder()
+                .index(10)
+                .parentSection(section)
+                .visible(true)
+                .discarded(false)
+                .showRemoveButton(true)
+                .label(branchCodeLabel)
+                .hint(branchCodeLabel)
+                .required(true)
+                .requiredMessage(branchCodeLabel + "is required")
+                .enabled(true)
+                .placeholder("Type here your " + branchCodeLabel)
+                .build();
+        elements.add(branchCodeInputField);
+
+        return FormCreationTemplate.builder()
+                .form(form)
+                .formType(FormType.SUPPLEMENTARY_WORKER_INFORMATION_CREATION_TEMPLATE)
+                .availableElements(availableElements)
+                .build();
     }
 
-    @Override
-    public void getDynamicFormBuildingBlocks() {
-
+    private List<AbstractFormElement> getAvailableElements() {
+        return List.of(Section.builder().build(),
+                Text.builder().build(),
+                StringTextField.builder().build(),
+                IntegerTextField.builder().build(),
+                DoubleTextField.builder().build(),
+                TextArea.builder().build(),
+                DateTimeInput.builder().build(),
+                Checkbox.builder().build(),
+                CheckboxGroup.builder().build(),
+                RadioGroup.builder().build(),
+                DropDown.builder().build(),
+                FileInput.builder().build()
+                );
     }
 
 
     public void saveSupplementaryWorkerForm() {
-
-    }
-
-    @Override
-    public void saveDynamicForm() {
-
-    }
-
-    @Override
-    public void saveSupplementaryWorkerInformationForm() {
 
     }
 
