@@ -176,12 +176,13 @@ public class DynamicFormServiceImpl implements DynamicFormService {
         StringTextField firstNameInputField = StringTextField.builder()
                 .index(0)
                 .parentSection(section)
+                .enabled(true)
+                .discarded(false)
                 .label(firstNameLabel)
                 .hint(firstNameLabel)
                 .required(true)
                 .requiredMessage(firstNameLabel + "is required")
-                .enabled(true)
-                .discarded(false)
+
                 .build();
 
 

@@ -13,7 +13,7 @@ import java.util.List;
 public class FileInput extends  AbstractInputField<Byte[]>{
 
     @Builder
-    public FileInput(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, Binding<Byte[]> binding, String label, String hint, boolean required, boolean enabled, String requiredMessage, List<FieldValidator<Byte[]>> fieldValidators, Byte[] userInput) {
-        super(id, htmlId, index, parentSection, discarded, visible, binding, label, hint, required, enabled, requiredMessage, fieldValidators, userInput);
+    public FileInput(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, boolean showRemoveButton, Binding<Byte[]> binding, String label, String hint, boolean required, boolean enabled, String requiredMessage, List<FieldValidator<Byte[]>> fieldValidators, Byte[] userInput) {
+        super(id, htmlId, index, parentSection, discarded, visible, showRemoveButton, binding, label, hint, required, enabled, requiredMessage, fieldValidators, userInput);
     }
 }

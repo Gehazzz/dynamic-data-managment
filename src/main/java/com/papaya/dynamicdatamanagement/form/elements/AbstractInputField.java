@@ -22,8 +22,8 @@ public abstract class AbstractInputField<T> extends AbstractBoundField<T> {
 
     private String requiredMessage;
 
-    public AbstractInputField(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, Binding<T> binding, String label, String hint, boolean required, boolean enabled, String requiredMessage, List<FieldValidator<T>> validators, T userInput) {
-        super(id, htmlId, index, parentSection, discarded, visible, binding);
+    public AbstractInputField(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, boolean showRemoveButton, Binding<T> binding, String label, String hint, boolean required, boolean enabled, String requiredMessage, List<FieldValidator<T>> validators, T userInput) {
+        super(id, htmlId, index, parentSection, discarded, visible, showRemoveButton, binding);
         this.label = label;
         this.hint = hint;
         this.required = required;

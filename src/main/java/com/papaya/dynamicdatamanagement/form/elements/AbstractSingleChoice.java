@@ -38,8 +38,8 @@ public abstract class   AbstractSingleChoice<T> extends AbstractInputField<T> {
         this.modelClass = modelClass;
     }
 
-    public AbstractSingleChoice(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, Binding<T> binding, String label, String hint, boolean required, boolean enabled, String requiredMessage, List<FieldValidator<T>> fieldValidators, T userInput, List<T> choices, String choiceLabel, Class<T> modelClass) {
-        super(id, htmlId, index, parentSection, discarded, visible, binding, label, hint, required, enabled, requiredMessage, fieldValidators, userInput);
+    public AbstractSingleChoice(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, boolean showRemoveButton, Binding<T> binding, String label, String hint, boolean required, boolean enabled, String requiredMessage, List<FieldValidator<T>> fieldValidators, T userInput, List<T> choices, String choiceLabel, Class<T> modelClass) {
+        super(id, htmlId, index, parentSection, discarded, visible, showRemoveButton, binding, label, hint, required, enabled, requiredMessage, fieldValidators, userInput);
         this.choices = choices;
         this.choiceLabel = choiceLabel;
         this.modelClass = modelClass;

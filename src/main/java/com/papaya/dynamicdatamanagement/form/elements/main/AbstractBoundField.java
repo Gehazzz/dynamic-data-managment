@@ -25,8 +25,8 @@ public abstract class AbstractBoundField<T> extends AbstractFormElement {
         return this;
     }
 
-    public AbstractBoundField(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, Binding<T> binding) {
-        super(id, htmlId, index, parentSection, discarded, visible);
+    public AbstractBoundField(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, boolean showRemoveButton, Binding<T> binding) {
+        super(id, htmlId, index, parentSection, discarded, visible, showRemoveButton);
         this.binding = binding;
     }
 }

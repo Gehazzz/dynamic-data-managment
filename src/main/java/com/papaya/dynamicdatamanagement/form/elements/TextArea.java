@@ -29,8 +29,8 @@ public class TextArea extends AbstractInputField<String> {
     }
 
     @Builder
-    public TextArea(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, Binding<String> binding, String label, String hint, boolean required, boolean enabled, String requiredMessage, List<FieldValidator<String>> fieldValidators, String userInput, String placeholder) {
-        super(id, htmlId, index, parentSection, discarded, visible, binding, label, hint, required, enabled, requiredMessage, fieldValidators, userInput);
+    public TextArea(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, boolean showRemoveButton, Binding<String> binding, String label, String hint, boolean required, boolean enabled, String requiredMessage, List<FieldValidator<String>> fieldValidators, String userInput, String placeholder) {
+        super(id, htmlId, index, parentSection, discarded, visible, showRemoveButton, binding, label, hint, required, enabled, requiredMessage, fieldValidators, userInput);
         this.placeholder = placeholder;
     }
 }
