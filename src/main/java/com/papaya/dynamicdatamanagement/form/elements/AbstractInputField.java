@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @NoArgsConstructor
 public abstract class AbstractInputField<T> extends AbstractBoundField<T> {
@@ -103,9 +103,7 @@ public abstract class AbstractInputField<T> extends AbstractBoundField<T> {
         return Object.class;
     }
 
-    public List<String> validateAndGetViolations() {
-        return validators.stream()
-                .flatMap(validator -> validator.validate(this).stream())
-                .collect(Collectors.toList());
+    public Stream<String> validateAndGetViolations() {
+        return validators.stream().flatMap(validator -> validator.validate(this).stream());
     }
 }

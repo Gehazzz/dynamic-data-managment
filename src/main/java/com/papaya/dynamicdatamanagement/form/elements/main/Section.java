@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
@@ -134,6 +135,11 @@ public class Section extends AbstractFormElement {
                 .map(e -> ((Section) e))
                 .collect(toList());
 
+    }
+
+    public List<String> validateAndGetViolations() {
+        return validators.stream().flatMap(validator -> validator.validate(this).stream())
+                .collect(Collectors.toList());
     }
 
     @Builder

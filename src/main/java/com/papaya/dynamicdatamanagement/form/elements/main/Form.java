@@ -7,6 +7,9 @@ import lombok.Builder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 @ValidForm
 public class Form {
 
@@ -39,6 +42,11 @@ public class Form {
 
     public List<FormValidator> getValidators() {
         return validators;
+    }
+
+    public List<String> validateAndGetViolations() {
+        return validators.stream().flatMap(validator -> validator.validate(this).stream())
+                .collect(Collectors.toList());
     }
 
     public Section getMainSection() {

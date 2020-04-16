@@ -1,5 +1,6 @@
 package com.papaya.dynamicdatamanagement.form.validation;
 
+import com.papaya.dynamicdatamanagement.form.elements.AbstractInputField;
 import com.papaya.dynamicdatamanagement.form.elements.main.Form;
 import com.papaya.dynamicdatamanagement.form.elements.main.Section;
 
@@ -7,14 +8,13 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 //TODO separate form, section and inputs validations
 public class DynamicFormValidator implements ConstraintValidator<ValidForm, Form> {
     @Override
     public boolean isValid(Form form, ConstraintValidatorContext constraintValidatorContext) {
-        List<String> violations = form.getValidators()
-                .stream()
-                .flatMap(validator -> validator.validate(form).stream())
-                .collect(Collectors.toList());
+        List<String> violations = form.validateAndGetViolations();
         fillSectionViolationsRecursively(form.getMainSection(), violations);
 
      /*   violations.addAll(form.getMainSection().getValidators()
@@ -45,14 +45,11 @@ public class DynamicFormValidator implements ConstraintValidator<ValidForm, Form
     }
 
     private void fillSectionViolationsRecursively(Section section, List<String> violations) {
-        violations.addAll(section.getValidators()
-                .stream()
-                .flatMap(validator -> validator.validate(section).stream())
-                .collect(Collectors.toList()));
+        violations.addAll(section.validateAndGetViolations());
         violations.addAll(section.getInputFields()
                 .stream()
                 //TODO inputField validators, call validate method here and not in the inputField class!!!
-                .flatMap(inputField -> inputField.validateAndGetViolations().stream())
+                .flatMap(AbstractInputField::validateAndGetViolations)
                 .collect(Collectors.toList()));
 
         List<Section> embeddedSections = section.getEmbeddedSections();
