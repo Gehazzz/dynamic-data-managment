@@ -15,12 +15,12 @@ import java.util.stream.Collectors;
 @Service
 public class FormManagerServiceImpl implements FormManagerService {
 
-    Map<EnumSet<FormType>, FormService> formServices;
+    Map<FormType.Service, FormService> formServices;
 
     @Autowired
     public FormManagerServiceImpl(Set<FormService> formServices) {
         this.formServices = formServices.stream()
-                .collect(Collectors.toMap(FormService::getFormType, Function.identity()));
+                .collect(Collectors.toMap(FormService::getType, Function.identity()));
     }
 
     @Override
@@ -45,11 +45,12 @@ public class FormManagerServiceImpl implements FormManagerService {
 
     @Override
     public Template getFormCreationTemplate(FormType formType) {
-        FormService formService = formServices.entrySet().stream()
-                .filter(entry -> entry.getKey().contains(formType) && formType.isInGroup(FormType.Group.FORM_CREATION_TEMPLATE))
+        /*FormService formService = formServices.entrySet().stream()
+                .filter(entry -> entry.getKey().getFormCreationTemplate().equals(formType))
                 .map(Map.Entry::getValue).findFirst()
                 .orElseThrow(() -> new RuntimeException("Provided formType doesn't exist"));
-        return formService.getFormCreationTemplate(formType);
+        return formService.getFormCreationTemplate(formType);*/
+        return formServices.get(formType.getService()).getFormCreationTemplate(formType);
     }
 
     @Override

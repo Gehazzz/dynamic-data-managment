@@ -4,7 +4,6 @@ import com.papaya.dynamicdatamanagement.form.elements.*;
 import com.papaya.dynamicdatamanagement.form.elements.main.*;
 import com.papaya.dynamicdatamanagement.form.model.SupplementaryWorker;
 import com.papaya.dynamicdatamanagement.form.service.port.in.FormService;
-import com.papaya.dynamicdatamanagement.form.usage.UsageLevel;
 import com.papaya.dynamicdatamanagement.form.validation.PatternValidator;
 import org.springframework.stereotype.Service;
 
@@ -407,7 +406,7 @@ public class DynamicFormService implements FormService {
     }
 
     @Override
-    public EnumSet<FormType> getFormType() {
-        return EnumSet.of(FormType.DYNAMIC, FormType.DYNAMIC_TEMPLATE, FormType.DYNAMIC_CREATION_TEMPLATE);
+    public FormType.Service getType() {
+        return FormType.Service.DYNAMIC;
     }
 }
