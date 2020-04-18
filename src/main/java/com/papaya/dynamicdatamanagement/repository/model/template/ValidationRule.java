@@ -22,6 +22,7 @@ public class ValidationRule {
     private String pattern;
     private int min;
     private int max;
+    private String data;
     private LocalDateTime minDateTime;
     private LocalDateTime maxDateTime;
 }
