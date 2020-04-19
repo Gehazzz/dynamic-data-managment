@@ -1,6 +1,8 @@
 package com.papaya.dynamicdatamanagement.adapter;
 
 import com.papaya.dynamicdatamanagement.form.elements.main.FormType;
+import com.papaya.dynamicdatamanagement.form.elements.main.Template;
+import com.papaya.dynamicdatamanagement.form.service.port.in.FormManagerService;
 import com.papaya.dynamicdatamanagement.form.service.port.out.QueryFormCreationTemplatePort;
 import com.papaya.dynamicdatamanagement.form.usage.*;
 import com.papaya.dynamicdatamanagement.form.validation.FormValidator;
@@ -68,6 +70,10 @@ public class FormMapper implements QueryFormCreationTemplatePort {
     }
 
     @Override
+    public List<Template> getAvailableFormCreationTemplateTypes(FormManagerService.FormQuery formQuery) {
+        return null;
+    }
+
     public List<FormType> getAvailableFormCreationTemplateTypes(UsageLevel usageLevel) {
         return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
                 .users(getUsersFromUsageLevelUsers(usageLevel.getUsageLevelUsers()))
@@ -78,14 +84,8 @@ public class FormMapper implements QueryFormCreationTemplatePort {
     }
 
     FormTemplateType getFormTemplateType(FormType formType){
-        if(FormType.DYNAMIC_CREATION_TEMPLATE.equals(formType)){
-            return FormTemplateType.DYNAMIC_CREATION_TEMPLATE;
-        }
         if(FormType.DYNAMIC.equals(formType)){
             return FormTemplateType.DYNAMIC;
-        }
-        if(FormType.SUPPLEMENTARY_WORKER_INFORMATION_CREATION_TEMPLATE.equals(formType)){
-            return FormTemplateType.SUPPLEMENTARY_WORKER_INFORMATION_CREATION_TEMPLATE;
         }
         if(FormType.SUPPLEMENTARY_WORKER_INFORMATION.equals(formType)){
             return FormTemplateType.SUPPLEMENTARY_WORKER_INFORMATION;
@@ -96,14 +96,8 @@ public class FormMapper implements QueryFormCreationTemplatePort {
 
 
     FormType getFormType(FormTemplateType formTemplateType){
-        if(FormTemplateType.DYNAMIC_CREATION_TEMPLATE.equals(formTemplateType)){
-            return FormType.DYNAMIC_CREATION_TEMPLATE;
-        }
         if(FormTemplateType.DYNAMIC.equals(formTemplateType)){
             return FormType.DYNAMIC;
-        }
-        if(FormTemplateType.SUPPLEMENTARY_WORKER_INFORMATION_CREATION_TEMPLATE.equals(formTemplateType)){
-            return FormType.SUPPLEMENTARY_WORKER_INFORMATION_CREATION_TEMPLATE;
         }
         if(FormTemplateType.SUPPLEMENTARY_WORKER_INFORMATION.equals(formTemplateType)){
             return FormType.SUPPLEMENTARY_WORKER_INFORMATION;
