@@ -2,18 +2,10 @@ package com.papaya.dynamicdatamanagement.adapter.element;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.papaya.dynamicdatamanagement.form.elements.main.Form;
-import com.papaya.dynamicdatamanagement.form.elements.main.FormType;
-import com.papaya.dynamicdatamanagement.form.service.port.out.QueryFormCreationTemplatePort;
-import com.papaya.dynamicdatamanagement.form.usage.UsageLevel;
 import com.papaya.dynamicdatamanagement.form.validation.BooleanValidator;
 import com.papaya.dynamicdatamanagement.form.validation.FieldValidator;
-import com.papaya.dynamicdatamanagement.repository.FormTemplateRepository;
 import com.papaya.dynamicdatamanagement.repository.model.template.*;
 import com.papaya.dynamicdatamanagement.form.elements.Checkbox;
-import com.papaya.dynamicdatamanagement.form.elements.main.AbstractFormElement;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

@@ -2,16 +2,12 @@ package com.papaya.dynamicdatamanagement.form.service;
 
 import com.papaya.dynamicdatamanagement.form.elements.*;
 import com.papaya.dynamicdatamanagement.form.elements.main.*;
-import com.papaya.dynamicdatamanagement.form.model.SupplementaryWorker;
-import com.papaya.dynamicdatamanagement.form.service.port.in.FormManagerService;
 import com.papaya.dynamicdatamanagement.form.service.port.in.FormService;
-import com.papaya.dynamicdatamanagement.form.service.port.out.QueryFormCreationTemplatePort;
-import com.papaya.dynamicdatamanagement.form.validation.PatternValidator;
+import com.papaya.dynamicdatamanagement.form.service.port.out.QueryFormPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static com.papaya.dynamicdatamanagement.form.service.port.in.FormManagerService.*;
@@ -148,7 +144,21 @@ import static com.papaya.dynamicdatamanagement.form.service.port.in.FormManagerS
 @Service
 public class DynamicFormService implements FormService {
     @Autowired
-    private QueryFormCreationTemplatePort queryFormCreationTemplatePort;
+    private QueryFormPort queryFormPort;
+
+    @Override
+    public List<Template> getFormCreationTemplates(FormQuery formQuery) {
+        List<Form> creationTemplates = queryFormPort.getAllForms(this.getType(), FormSubType.CREATION_TEMPLATE, formQuery.getUsageLevel(), formQuery.getLabel());
+        return creationTemplates.isEmpty() ? List.of(getDefaultDynamicFormCreationTemplate()) : creationTemplates.stream().map(form -> Template.builder()
+                .form(form)
+                .availableElements(getAvailableElements())
+                .build()).collect(Collectors.toList());
+    }
+
+    @Override
+    public FormType getType() {
+        return FormType.DYNAMIC;
+    }
 
     private Template getDefaultDynamicFormCreationTemplate() {
         List<AbstractFormElement> availableElements = getAvailableElements();
@@ -159,8 +169,6 @@ public class DynamicFormService implements FormService {
                 .availableElements(availableElements)
                 .build();
     }
-
-
 
     private List<AbstractFormElement> getAvailableElements() {
         return List.of(Section.builder().build(),
@@ -184,20 +192,5 @@ public class DynamicFormService implements FormService {
      */
 
     public void saveFilledForm(FormType formType, Map<String, String> userInputs) {
-    }
-
-    private String getLabelFromFieldName(String fieldName) {
-        String label = Arrays.stream(fieldName.split("(?=[A-Z])")).map(String::toLowerCase).collect(Collectors.joining(" "));
-        return label.substring(0, 1).toUpperCase() + label.substring(1);
-    }
-
-    @Override
-    public Template getFormCreationTemplate(FormQuery formQuery) {
-        return null;
-    }
-
-    @Override
-    public FormType getType() {
-        return FormType.DYNAMIC;
     }
 }

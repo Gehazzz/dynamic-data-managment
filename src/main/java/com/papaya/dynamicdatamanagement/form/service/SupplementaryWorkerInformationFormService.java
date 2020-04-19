@@ -4,7 +4,7 @@ import com.papaya.dynamicdatamanagement.form.elements.*;
 import com.papaya.dynamicdatamanagement.form.elements.main.*;
 import com.papaya.dynamicdatamanagement.form.model.SupplementaryWorker;
 import com.papaya.dynamicdatamanagement.form.service.port.in.FormService;
-import com.papaya.dynamicdatamanagement.form.service.port.out.QueryFormCreationTemplatePort;
+import com.papaya.dynamicdatamanagement.form.service.port.out.QueryFormPort;
 import com.papaya.dynamicdatamanagement.form.validation.PatternValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,12 +20,15 @@ import static com.papaya.dynamicdatamanagement.form.service.port.in.FormManagerS
 @Service
 public class SupplementaryWorkerInformationFormService implements FormService {
     @Autowired
-    private QueryFormCreationTemplatePort queryFormCreationTemplatePort;
+    private QueryFormPort queryFormPort;
 
     @Override
-    public Template getFormCreationTemplate(FormQuery formQuery) {
-        List<Template> creationTemplates = queryFormCreationTemplatePort.getAvailableFormCreationTemplateTypes(formQuery);
-        return null; /*creationTemplates.isEmpty() ? getDefaultSupplementaryWorkerFormCreationTemplate() : creationTemplates;*/
+    public List<Template> getFormCreationTemplates(FormQuery formQuery) {
+        List<Form> creationTemplates = queryFormPort.getAllForms(this.getType(), FormSubType.CREATION_TEMPLATE, formQuery.getUsageLevel());
+        return creationTemplates.isEmpty() ? List.of(getDefaultSupplementaryWorkerFormCreationTemplate()) : creationTemplates.stream().map(form -> Template.builder()
+                .form(form)
+                .availableElements(getAvailableElements())
+                .build()).collect(Collectors.toList());
     }
 
     @Override
