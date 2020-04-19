@@ -1,6 +1,8 @@
 package com.papaya.dynamicdatamanagement.form.elements.main;
 
 public enum FormType {
+    PAYMENT_TEMPLATE,
+    WORKER_ON_BOARDING,
     SUPPLEMENTARY_WORKER_INFORMATION,
     DYNAMIC;
 

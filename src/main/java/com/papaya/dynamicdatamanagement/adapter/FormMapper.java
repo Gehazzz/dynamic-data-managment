@@ -87,8 +87,14 @@ public class FormMapper implements QueryFormCreationTemplatePort {
         if(FormType.DYNAMIC.equals(formType)){
             return FormTemplateType.DYNAMIC;
         }
-        if(FormType.SUPPLEMENTARY_WORKER_INFORMATION.equals(formType)){
+        else if(FormType.SUPPLEMENTARY_WORKER_INFORMATION.equals(formType)){
             return FormTemplateType.SUPPLEMENTARY_WORKER_INFORMATION;
+        }
+        else if(FormType.WORKER_ON_BOARDING.equals(formType)){
+            return FormTemplateType.WORKER_ON_BOARDING;
+        }
+        else if(FormType.PAYMENT_TEMPLATE.equals(formType)){
+            return FormTemplateType.PAYMENT_TEMPLATE;
         }
         return null;
     }
@@ -101,6 +107,12 @@ public class FormMapper implements QueryFormCreationTemplatePort {
         }
         if(FormTemplateType.SUPPLEMENTARY_WORKER_INFORMATION.equals(formTemplateType)){
             return FormType.SUPPLEMENTARY_WORKER_INFORMATION;
+        }
+        else if(FormTemplateType.WORKER_ON_BOARDING.equals(formTemplateType)){
+            return FormType.WORKER_ON_BOARDING;
+        }
+        else if(FormTemplateType.PAYMENT_TEMPLATE.equals(formTemplateType)){
+            return FormType.PAYMENT_TEMPLATE;
         }
         return null;
     }
