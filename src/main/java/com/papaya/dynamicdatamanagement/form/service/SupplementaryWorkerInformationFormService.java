@@ -29,15 +29,15 @@ public class SupplementaryWorkerInformationFormService implements FormService {
     }
 
     @Override
-    public FormType.Service getType() {
-        return FormType.Service.SUPPLEMENTARY_WORKER_INFORMATION;
+    public FormType getType() {
+        return FormType.SUPPLEMENTARY_WORKER_INFORMATION;
     }
 
     private Template getDefaultSupplementaryWorkerFormCreationTemplate() {
         List<AbstractFormElement> availableElements = getAvailableElements();
         List<AbstractFormElement> elements = new ArrayList<>();
         Section section = Section.builder().formElements(elements).visible(true).build();
-        Form form = Form.builder().mainSection(section).formType(FormType.SUPPLEMENTARY_WORKER_INFORMATION_CREATION_TEMPLATE).build();
+        Form form = Form.builder().mainSection(section).formType(FormType.SUPPLEMENTARY_WORKER_INFORMATION).formSubType(FormSubType.CREATION_TEMPLATE).build();
 
         String firstNameLabel = getLabelFromFieldName(SupplementaryWorker.Fields.firstName);
         StringTextField firstNameInputField = StringTextField.innerBuilder()
@@ -238,7 +238,6 @@ public class SupplementaryWorkerInformationFormService implements FormService {
 
         return Template.builder()
                 .form(form)
-                .formType(FormType.SUPPLEMENTARY_WORKER_INFORMATION_CREATION_TEMPLATE)
                 .availableElements(availableElements)
                 .build();
     }

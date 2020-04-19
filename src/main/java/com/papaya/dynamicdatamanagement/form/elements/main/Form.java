@@ -23,6 +23,8 @@ public class Form {
 
     FormType formType;
 
+    FormSubType formSubType;
+
     private UsageLevel usageLevel;
 
 
@@ -56,12 +58,13 @@ public class Form {
     public Form() {
     }
     @Builder
-    public Form(Long id, Section mainSection, ArrayList<FormValidator> validators, String label, FormType formType, UsageLevel usageLevel) {
+    public Form(Long id, Section mainSection, ArrayList<FormValidator> validators, String label, FormType formType, FormSubType formSubType, UsageLevel usageLevel) {
         this.id = id;
         this.mainSection = mainSection;
         this.validators = validators;
         this.label = label;
         this.formType = formType;
+        this.formSubType = formSubType;
         this.usageLevel = usageLevel;
     }
 }

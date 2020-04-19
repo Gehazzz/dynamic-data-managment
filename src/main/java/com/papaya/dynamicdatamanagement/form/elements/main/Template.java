@@ -10,6 +10,5 @@ import java.util.List;
 @Builder
 public class Template {
     Form form;
-    FormType formType;
     List<AbstractFormElement> availableElements;
 }

@@ -13,5 +13,5 @@ public interface FormService {
     void updateForm();*/
     //Template getDefault();
     Template getFormCreationTemplate(FormQuery formQuery);
-    FormType.Service getType();
+    FormType getType();
 }

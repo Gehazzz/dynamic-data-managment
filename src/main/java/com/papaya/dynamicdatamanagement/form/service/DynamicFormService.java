@@ -153,10 +153,9 @@ public class DynamicFormService implements FormService {
     private Template getDefaultDynamicFormCreationTemplate() {
         List<AbstractFormElement> availableElements = getAvailableElements();
         Section section = Section.builder().visible(true).build();
-        Form form = Form.builder().mainSection(section).formType(FormType.DYNAMIC_CREATION_TEMPLATE).build();
+        Form form = Form.builder().mainSection(section).formType(FormType.DYNAMIC).formSubType(FormSubType.CREATION_TEMPLATE).build();
         return Template.builder()
                 .form(form)
-                .formType(FormType.DYNAMIC_CREATION_TEMPLATE)
                 .availableElements(availableElements)
                 .build();
     }
@@ -198,7 +197,7 @@ public class DynamicFormService implements FormService {
     }
 
     @Override
-    public FormType.Service getType() {
-        return FormType.Service.DYNAMIC;
+    public FormType getType() {
+        return FormType.DYNAMIC;
     }
 }

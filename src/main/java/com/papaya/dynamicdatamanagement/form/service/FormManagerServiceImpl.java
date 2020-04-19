@@ -13,9 +13,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
-public class FormManagerServiceImpl implements FormManagerService {
+public class FormManagerServiceImpl /*implements FormManagerService*/ {
 
-    Map<FormType.Service, FormService> formServices;
+    Map<FormType, FormService> formServices;
 
     @Autowired
     public FormManagerServiceImpl(Set<FormService> formServices) {
@@ -23,34 +23,34 @@ public class FormManagerServiceImpl implements FormManagerService {
                 .collect(Collectors.toMap(FormService::getType, Function.identity()));
     }
 
-    @Override
+    //@Override
     public List<FormType> getFormCreationTypes() {
         return null;
     }
 
-    @Override
+    //@Override
     public List<FormType> getFormTemplatesTypes() {
         return null;
     }
 
-    @Override
+    //@Override
     public List<Form> getAllForms() {
         return null;
     }
 
-    @Override
-    public List<Form> getForms(FormQuery formQuery) {
+    //@Override
+    public List<Form> getForms(FormManagerService.FormQuery formQuery) {
         return null;
     }
 
-    @Override
+  /*  @Override
     public Template getFormCreationTemplate(FormQuery formQuery) {
-        /*FormService formService = formServices.entrySet().stream()
+        *//*FormService formService = formServices.entrySet().stream()
                 .filter(entry -> entry.getKey().getFormCreationTemplate().equals(formType))
                 .map(Map.Entry::getValue).findFirst()
                 .orElseThrow(() -> new RuntimeException("Provided formType doesn't exist"));
-        return formService.getFormCreationTemplate(formType);*/
-        return formServices.get(formQuery.getFormType().getService()).getFormCreationTemplate(formQuery);
+        return formService.getFormCreationTemplate(formType);*//*
+        return formServices.get(formQuery.getFormType()).getFormCreationTemplate(formQuery);
     }
 
     @Override
@@ -61,10 +61,10 @@ public class FormManagerServiceImpl implements FormManagerService {
     @Override
     public Form getForm(long id) {
         return null;
-    }
+    }*/
 
-    @Override
-    public Form saveFilledForm(FilledForm filledForm) {
+    //@Override
+    public Form saveFilledForm(FormManagerService.FilledForm filledForm) {
         return null;
     }
 }
