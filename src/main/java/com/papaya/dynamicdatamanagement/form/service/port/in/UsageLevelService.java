@@ -1,4 +1,4 @@
-package com.papaya.dynamicdatamanagement.form.service.port.out;
+package com.papaya.dynamicdatamanagement.form.service.port.in;
 
 import com.papaya.dynamicdatamanagement.form.usage.UsageLevelCountry;
 import com.papaya.dynamicdatamanagement.form.usage.UsageLevelOrganisation;
@@ -7,7 +7,7 @@ import com.papaya.dynamicdatamanagement.form.usage.UsageLevelUser;
 
 import java.util.List;
 
-public interface QueryUsageLevelInformationPort {
+public interface UsageLevelService {
     List<UsageLevelOrganisation> getAllOrganisations();
 
     List<UsageLevelOrganisation> getAllOrganisationsByCountry(Long countryId);
@@ -24,5 +24,5 @@ public interface QueryUsageLevelInformationPort {
 
     List<UsageLevelCountry> getAllCountries();
 
-    List<UsageLevelCountry> getAllCountriesByOrganisation(Long orgId);
+    List<UsageLevelCountry> getAllCountriesByOrganization(Long orgId);
 }

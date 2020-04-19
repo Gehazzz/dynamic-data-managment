@@ -1,5 +1,6 @@
 package com.papaya.dynamicdatamanagement.form.service.port.in;
 
+import com.papaya.dynamicdatamanagement.form.elements.main.Form;
 import com.papaya.dynamicdatamanagement.form.elements.main.FormType;
 import com.papaya.dynamicdatamanagement.form.elements.main.Template;
 
@@ -14,6 +15,9 @@ public interface FormService {
     void saveForm();
     void updateForm();*/
     //Template getDefault();
+    List<Template> getFormTemplates(FormQuery formQuery);
     List<Template> getFormCreationTemplates(FormQuery formQuery);
+    Form saveTemplate(Form template);
+    Form saveFilledForm(FilledForm filledForm);
     FormType getType();
 }

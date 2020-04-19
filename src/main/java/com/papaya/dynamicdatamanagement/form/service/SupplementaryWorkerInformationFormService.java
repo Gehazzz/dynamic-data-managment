@@ -3,8 +3,11 @@ package com.papaya.dynamicdatamanagement.form.service;
 import com.papaya.dynamicdatamanagement.form.elements.*;
 import com.papaya.dynamicdatamanagement.form.elements.main.*;
 import com.papaya.dynamicdatamanagement.form.model.SupplementaryWorker;
+import com.papaya.dynamicdatamanagement.form.service.port.in.FormManagerService;
 import com.papaya.dynamicdatamanagement.form.service.port.in.FormService;
 import com.papaya.dynamicdatamanagement.form.service.port.out.QueryFormPort;
+import com.papaya.dynamicdatamanagement.form.service.port.out.SaveFilledFormPort;
+import com.papaya.dynamicdatamanagement.form.service.port.out.SaveFormPort;
 import com.papaya.dynamicdatamanagement.form.validation.PatternValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,12 +18,27 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static com.papaya.dynamicdatamanagement.form.service.port.in.FormManagerService.*;
 import static com.papaya.dynamicdatamanagement.form.service.port.in.FormManagerService.FormQuery;
 
 @Service
+//TODO it shouldn't be a service
 public class SupplementaryWorkerInformationFormService implements FormService {
     @Autowired
     private QueryFormPort queryFormPort;
+    @Autowired
+    private SaveFormPort saveFormPort;
+    @Autowired
+    private SaveFilledFormPort saveFilledFormPort;
+
+    @Override
+    public List<Template> getFormTemplates(FormQuery formQuery) {
+        List<Form> formTemplates = queryFormPort.getAllForms(this.getType(), FormSubType.TEMPLATE, formQuery.getUsageLevel());
+        return formTemplates.isEmpty() ? List.of(getDefaultSupplementaryWorkerFormCreationTemplate()) : formTemplates.stream().map(form -> Template.builder()
+                .form(form)
+                .availableElements(getAvailableElements())
+                .build()).collect(Collectors.toList());
+    }
 
     @Override
     public List<Template> getFormCreationTemplates(FormQuery formQuery) {
@@ -29,6 +47,18 @@ public class SupplementaryWorkerInformationFormService implements FormService {
                 .form(form)
                 .availableElements(getAvailableElements())
                 .build()).collect(Collectors.toList());
+    }
+
+    @Override
+    public Form saveTemplate(Form template) {
+        return saveFormPort.saveForm(template);
+    }
+
+    @Override
+    public Form saveFilledForm(FilledForm filledForm) {
+        //TODO bind values
+        Form form = Form.builder().build();
+        return saveFilledFormPort.saveForm(form);
     }
 
     @Override

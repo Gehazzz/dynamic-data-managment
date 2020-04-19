@@ -1,38 +1,53 @@
 package com.papaya.dynamicdatamanagement.form.service.port.in;
 
 import com.papaya.dynamicdatamanagement.form.elements.main.Form;
+import com.papaya.dynamicdatamanagement.form.elements.main.FormSubType;
 import com.papaya.dynamicdatamanagement.form.elements.main.FormType;
 import com.papaya.dynamicdatamanagement.form.elements.main.Template;
 import com.papaya.dynamicdatamanagement.form.usage.UsageLevel;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 
 public interface FormManagerService {
-    List<FormType> getFormCreationTypes();
-
-    List<FormType> getFormTemplatesTypes();
+    EnumSet<FormType> getFormTypes();
 
     Form getForm(Long id);
 
-    List<Form> getForms(FormQuery formQuery);
+    List<Form> getForms(UsageLevel usageLevel);
 
-    //will return all forms available to current user
+    List<Form> getForms(FormType formType, UsageLevel usageLevel);
+
     List<Form> getAllForms();
 
-    Template getFormTemplate(Long id);
+    Template getFormTemplateById(Long id);
 
-    Template getFormCreationTemplate(Long id);
+    Template getFormTemplateByFormId(Long id);
 
-    List<Template> getFormTemplates(FormQuery formQuery);
+    Template getFormCreationTemplateById(Long id);
 
-    List<Template> getAllFormCreationTemplates();
+    Template getFormCreationTemplateByFormId(Long id);
 
-    List<Template> getFormCreationTemplates(FormType formType);
+    Template getFormCreationTemplateByFormTemplateId(Long id);
 
-    List<Template> getFormCreationTemplates(FormQuery formQuery);
+    List<Template> getFormsTemplates(UsageLevel usageLevel);
+
+    List<Template> getFormsTemplates(FormType formType);
+
+    List<Template> getFormsTemplates(FormType formType, UsageLevel usageLevel);
+
+    List<Template> getAllFormsTemplates();
+
+    List<Template> getFormsCreationTemplates(UsageLevel usageLevel);
+
+    List<Template> getFormsCreationTemplates(FormType formType);
+
+    List<Template> getFormsCreationTemplates(FormType formType, UsageLevel usageLevel);
+
+    List<Template> getAllFormsCreationTemplates();
 
     Form saveTemplate(Form template);
 
@@ -46,7 +61,7 @@ public interface FormManagerService {
         private UsageLevel usageLevel;
     }
 
-    class createFormCommand{
+    class createFormCommand {
         private FormType formType;
         private Form form;
         private long organizationId;
