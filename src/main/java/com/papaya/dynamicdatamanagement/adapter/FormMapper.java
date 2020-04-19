@@ -1,8 +1,10 @@
 package com.papaya.dynamicdatamanagement.adapter;
 
+import com.papaya.dynamicdatamanagement.form.elements.main.FormSubType;
 import com.papaya.dynamicdatamanagement.form.elements.main.FormType;
 import com.papaya.dynamicdatamanagement.form.elements.main.Template;
 import com.papaya.dynamicdatamanagement.form.service.port.in.FormManagerService;
+import com.papaya.dynamicdatamanagement.form.service.port.out.QueryFormPort;
 import com.papaya.dynamicdatamanagement.form.usage.*;
 import com.papaya.dynamicdatamanagement.repository.FormTemplateRepository;
 import com.papaya.dynamicdatamanagement.repository.model.owner.Country;
@@ -20,7 +22,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class FormMapper implements QueryFormCreationTemplatePort {
+public class FormMapper implements QueryFormPort {
 
 
     @Autowired
@@ -31,11 +33,119 @@ public class FormMapper implements QueryFormCreationTemplatePort {
 
 
     @Override
-    public Form getFormCreationTemplate(Long id) {
+    public Form getForm(Long id) {
+        return convertTemplateToForm(formTemplateRepository.findById(id).get());
+    }
+
+    @Override
+    public Form getForm(Long id, FormSubType subType) {
         FormTemplate formTemplate = formTemplateRepository.findAll(Example.of(FormTemplate.builder()
-                .id(id)
+                .formTemplateSubType(getFormTemplateSubTypeFromFormSubType(subType))
                 .build())).get(0);
         return convertTemplateToForm(formTemplate);
+    }
+
+    @Override
+    public Form getForm(Long id, String label, FormSubType subType) {
+        FormTemplate formTemplate = formTemplateRepository.findAll(Example.of(FormTemplate.builder()
+                .formTemplateSubType(getFormTemplateSubTypeFromFormSubType(subType))
+                .label(label)
+                .build())).get(0);
+        return convertTemplateToForm(formTemplate);
+    }
+
+    @Override
+    public List<Form> getAllForms() {
+        return formTemplateRepository.findAll().stream().map(this::convertTemplateToForm).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Form> getAllForms(FormSubType subType) {
+      return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
+                .formTemplateSubType(getFormTemplateSubTypeFromFormSubType(subType))
+                .build())).stream().map(this::convertTemplateToForm).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Form> getAllForms(FormType formType, FormSubType subType) {
+        return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
+                .formTemplateSubType(getFormTemplateSubTypeFromFormSubType(subType))
+                .build()))
+                .stream()
+                .map(this::convertTemplateToForm)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Form> getAllForms(FormSubType formSubType, UsageLevel usageLevel) {
+        return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
+                .users(getUsersFromUsageLevelUsers(usageLevel.getUsageLevelUsers()))
+                .projects(getProjectsFromUsageLevelProjects(usageLevel.getUsageLevelProjects()))
+                .countries(getCountriesFromUsageLevelCountries(usageLevel.getUsageLevelCountries()))
+                .organisations(getOrganizationsDataFromUsageLevelOrganizations(usageLevel.getUsageLevelOrganisations()))
+                .formTemplateSubType(getFormTemplateSubTypeFromFormSubType(formSubType))
+                .build()))
+                .stream()
+                .map(this::convertTemplateToForm)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Form> getAllForms(UsageLevel usageLevel) {
+        return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
+                .users(getUsersFromUsageLevelUsers(usageLevel.getUsageLevelUsers()))
+                .projects(getProjectsFromUsageLevelProjects(usageLevel.getUsageLevelProjects()))
+                .countries(getCountriesFromUsageLevelCountries(usageLevel.getUsageLevelCountries()))
+                .organisations(getOrganizationsDataFromUsageLevelOrganizations(usageLevel.getUsageLevelOrganisations()))
+                .build()))
+                .stream()
+                .map(this::convertTemplateToForm)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Form> getAllForms(FormType formType, UsageLevel usageLevel) {
+        return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
+                .users(getUsersFromUsageLevelUsers(usageLevel.getUsageLevelUsers()))
+                .projects(getProjectsFromUsageLevelProjects(usageLevel.getUsageLevelProjects()))
+                .countries(getCountriesFromUsageLevelCountries(usageLevel.getUsageLevelCountries()))
+                .organisations(getOrganizationsDataFromUsageLevelOrganizations(usageLevel.getUsageLevelOrganisations()))
+                .formType(getFormTemplateType(formType))
+                .build()))
+                .stream()
+                .map(this::convertTemplateToForm)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Form> getAllForms(FormType formType, FormSubType subType, UsageLevel usageLevel) {
+        return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
+                .users(getUsersFromUsageLevelUsers(usageLevel.getUsageLevelUsers()))
+                .projects(getProjectsFromUsageLevelProjects(usageLevel.getUsageLevelProjects()))
+                .countries(getCountriesFromUsageLevelCountries(usageLevel.getUsageLevelCountries()))
+                .organisations(getOrganizationsDataFromUsageLevelOrganizations(usageLevel.getUsageLevelOrganisations()))
+                .formType(getFormTemplateType(formType))
+                .formTemplateSubType(getFormTemplateSubTypeFromFormSubType(subType))
+                .build()))
+                .stream()
+                .map(this::convertTemplateToForm)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Form> getAllForms(FormType formType, FormSubType subType, UsageLevel usageLevel, String label) {
+        return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
+                .users(getUsersFromUsageLevelUsers(usageLevel.getUsageLevelUsers()))
+                .projects(getProjectsFromUsageLevelProjects(usageLevel.getUsageLevelProjects()))
+                .countries(getCountriesFromUsageLevelCountries(usageLevel.getUsageLevelCountries()))
+                .organisations(getOrganizationsDataFromUsageLevelOrganizations(usageLevel.getUsageLevelOrganisations()))
+                .formType(getFormTemplateType(formType))
+                .label(label)
+                .formTemplateSubType(getFormTemplateSubTypeFromFormSubType(subType))
+                .build()))
+                .stream()
+                .map(this::convertTemplateToForm)
+                .collect(Collectors.toList());
     }
 
     private Form convertTemplateToForm(FormTemplate formTemplate){
@@ -46,31 +156,6 @@ public class FormMapper implements QueryFormCreationTemplatePort {
                 .mainSection(sectionMapper.getSectionFromTemplate(formTemplate.getMainSection())).build();
     }
 
-    @Override
-    public Form getFormCreationTemplate(String label, UsageLevel usageLevel) {
-        FormTemplate formTemplate = formTemplateRepository.findAll(Example.of(FormTemplate.builder()
-                .label(label)
-                .users(getUsersFromUsageLevelUsers(usageLevel.getUsageLevelUsers()))
-                .projects(getProjectsFromUsageLevelProjects(usageLevel.getUsageLevelProjects()))
-                .organisations(getOrganizationsDataFromUsageLevelOrganizations(usageLevel.getUsageLevelOrganisations()))
-                .countries(getCountriesFromUsageLevelCountries(usageLevel.getUsageLevelCountries()))
-                .build())).get(0);
-        return convertTemplateToForm(formTemplate);
-    }
-
-    @Override
-    public List<Form> getAllFormCreationTemplates() {
-        return formTemplateRepository
-                .findAll()
-                .stream()
-                .map(this::convertTemplateToForm)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<Template> getAvailableFormCreationTemplateTypes(FormManagerService.FormQuery formQuery) {
-        return null;
-    }
 
     public List<FormType> getAvailableFormCreationTemplateTypes(UsageLevel usageLevel) {
         return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
@@ -238,5 +323,30 @@ public class FormMapper implements QueryFormCreationTemplatePort {
         return countries;
     }
 
+    FormSubType getFormSubTypeFromFormTemplateSubType(FormTemplateSubType formTemplateSubType){
+        if(FormTemplateSubType.CREATION_TEMPLATE.equals(formTemplateSubType)){
+            return FormSubType.CREATION_TEMPLATE;
+        }
+        if(FormTemplateSubType.FORM.equals(formTemplateSubType)){
+            return FormSubType.FORM;
+        }
+        if(FormTemplateSubType.TEMPLATE.equals(formTemplateSubType)){
+            return FormSubType.TEMPLATE;
+        }
+        return null;
+    }
+
+    FormTemplateSubType getFormTemplateSubTypeFromFormSubType(FormSubType formSubType){
+        if(FormSubType.CREATION_TEMPLATE.equals(formSubType)){
+            return FormTemplateSubType.CREATION_TEMPLATE;
+        }
+        if(FormSubType.FORM.equals(formSubType)){
+            return FormTemplateSubType.FORM;
+        }
+        if(FormSubType.TEMPLATE.equals(formSubType)){
+            return FormTemplateSubType.TEMPLATE;
+        }
+        return null;
+    }
 
 }

@@ -7,6 +7,6 @@ import org.junit.jupiter.api.Test;
 public class EnumTest {
     @Test
     void enumTest(){
-        System.out.println(FormType.SUPPLEMENTARY_WORKER_INFORMATION_TEMPLATE.name());
+        System.out.println(FormType.DYNAMIC.name());
     }
 }

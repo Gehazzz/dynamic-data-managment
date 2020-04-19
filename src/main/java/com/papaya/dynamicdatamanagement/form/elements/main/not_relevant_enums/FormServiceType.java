@@ -3,8 +3,8 @@ package com.papaya.dynamicdatamanagement.form.elements.main.not_relevant_enums;
 import com.papaya.dynamicdatamanagement.form.elements.main.FormType;
 
 public enum FormServiceType {
-    SUPPLEMENTARY_WORKER_INFORMATION(FormType.SUPPLEMENTARY_WORKER_INFORMATION, FormType.SUPPLEMENTARY_WORKER_INFORMATION_TEMPLATE, FormType.SUPPLEMENTARY_WORKER_INFORMATION_CREATION_TEMPLATE),
-    DYNAMIC(FormType.DYNAMIC, FormType.DYNAMIC_TEMPLATE,FormType.DYNAMIC_CREATION_TEMPLATE);
+    SUPPLEMENTARY_WORKER_INFORMATION(FormType.SUPPLEMENTARY_WORKER_INFORMATION, null, null),
+    DYNAMIC(FormType.DYNAMIC, null,null);
 
     private FormType form;
     private FormType formTemplate;
