@@ -20,7 +20,19 @@ public class FormTemplate {
     @GeneratedValue
     private Long id;
     private String label;
+    @Enumerated(EnumType.STRING)
     private FormTemplateType formType;
+    @Enumerated(EnumType.STRING)
+    private FormTemplateSubType formTemplateSubType;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private FormTemplate template;
+    @OneToMany(mappedBy = "template",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    @JoinColumn(name = "template_id")
+    private List<FormTemplate> createdByThisTemplate;
+
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "form_id")
     private SectionTemplate mainSection;

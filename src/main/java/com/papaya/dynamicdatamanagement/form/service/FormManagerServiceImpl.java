@@ -44,13 +44,13 @@ public class FormManagerServiceImpl implements FormManagerService {
     }
 
     @Override
-    public Template getFormCreationTemplate(FormType formType) {
+    public Template getFormCreationTemplate(FormQuery formQuery) {
         /*FormService formService = formServices.entrySet().stream()
                 .filter(entry -> entry.getKey().getFormCreationTemplate().equals(formType))
                 .map(Map.Entry::getValue).findFirst()
                 .orElseThrow(() -> new RuntimeException("Provided formType doesn't exist"));
         return formService.getFormCreationTemplate(formType);*/
-        return formServices.get(formType.getService()).getFormCreationTemplate(formType);
+        return formServices.get(formQuery.getFormType().getService()).getFormCreationTemplate(formQuery);
     }
 
     @Override

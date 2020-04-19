@@ -3,6 +3,8 @@ package com.papaya.dynamicdatamanagement.form.service.port.in;
 import com.papaya.dynamicdatamanagement.form.elements.main.FormType;
 import com.papaya.dynamicdatamanagement.form.elements.main.Template;
 
+import static com.papaya.dynamicdatamanagement.form.service.port.in.FormManagerService.*;
+
 public interface FormService {
     /*List<FormType> getAllFormTypes();
     List<FormType> getAllFormTypesByUsageLevel(UsageLevel usageLevel);
@@ -10,6 +12,6 @@ public interface FormService {
     void saveForm();
     void updateForm();*/
     //Template getDefault();
-    Template getFormCreationTemplate(FormType formType);
+    Template getFormCreationTemplate(FormQuery formQuery);
     FormType.Service getType();
 }

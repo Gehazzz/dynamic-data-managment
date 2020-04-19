@@ -14,23 +14,26 @@ public interface FormManagerService {
 
     List<FormType> getFormTemplatesTypes();
 
-    //will return all forms available to current user
-    List<Form> getAllForms();
+    Form getForm(Long id);
 
     List<Form> getForms(FormQuery formQuery);
 
-    Template getFormCreationTemplate(FormType formType);
+    //will return all forms available to current user
+    List<Form> getAllForms();
 
-    Form getFormTemplate(FormType formType);
+    Template getFormTemplate(Long id);
 
-    Form getForm(long id);
+    Template getFormCreationTemplate(Long id);
+
+    List<Template> getFormTemplates(FormQuery formQuery);
+
+    List<Template> getFormCreationTemplates(FormQuery formQuery);
 
     Form saveFilledForm(FilledForm filledForm);
 
     @Getter
     @Builder
     class FormQuery {
-        private long id;
         private String label;
         private FormType formType;
         private long organizationId;
