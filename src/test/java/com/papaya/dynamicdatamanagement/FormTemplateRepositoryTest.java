@@ -1,5 +1,6 @@
 package com.papaya.dynamicdatamanagement;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.papaya.dynamicdatamanagement.repository.model.template.*;
 import com.papaya.dynamicdatamanagement.repository.FormTemplateRepository;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,8 @@ import java.util.List;
 public class FormTemplateRepositoryTest {
     @Autowired
     FormTemplateRepository formTemplateRepository;
+    @Autowired
+    ObjectMapper objectMapper;
     @Test
     void formTest(){
         SectionTemplate section = SectionTemplate.builder()

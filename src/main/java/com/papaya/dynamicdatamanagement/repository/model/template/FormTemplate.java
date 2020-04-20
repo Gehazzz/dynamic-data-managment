@@ -26,11 +26,11 @@ public class FormTemplate {
     private FormTemplateSubType formTemplateSubType;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "template_id")
     private FormTemplate template;
     @OneToMany(mappedBy = "template",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-    @JoinColumn(name = "template_id")
     private List<FormTemplate> createdByThisTemplate;
 
     @OneToOne(cascade = {CascadeType.ALL})

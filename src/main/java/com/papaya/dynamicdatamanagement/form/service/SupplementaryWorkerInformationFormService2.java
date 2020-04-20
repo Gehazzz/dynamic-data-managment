@@ -3,26 +3,23 @@ package com.papaya.dynamicdatamanagement.form.service;
 import com.papaya.dynamicdatamanagement.form.elements.*;
 import com.papaya.dynamicdatamanagement.form.elements.main.*;
 import com.papaya.dynamicdatamanagement.form.model.SupplementaryWorker;
-import com.papaya.dynamicdatamanagement.form.service.port.in.FormService;
+import com.papaya.dynamicdatamanagement.form.service.port.in.FormManagerService;
+import com.papaya.dynamicdatamanagement.form.service.port.in.FormService2;
 import com.papaya.dynamicdatamanagement.form.service.port.out.QueryFormPort;
 import com.papaya.dynamicdatamanagement.form.service.port.out.SaveFilledFormPort;
 import com.papaya.dynamicdatamanagement.form.service.port.out.SaveFormPort;
 import com.papaya.dynamicdatamanagement.form.validation.PatternValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static com.papaya.dynamicdatamanagement.form.service.port.in.FormManagerService.FilledForm;
-import static com.papaya.dynamicdatamanagement.form.service.port.in.FormManagerService.FormQuery;
+public class SupplementaryWorkerInformationFormService2 implements FormService2 {
 
-@Service
-//TODO it shouldn't be a service
-public class SupplementaryWorkerInformationFormService implements FormService {
     @Autowired
     private QueryFormPort queryFormPort;
     @Autowired
@@ -31,42 +28,7 @@ public class SupplementaryWorkerInformationFormService implements FormService {
     private SaveFilledFormPort saveFilledFormPort;
 
     @Override
-    public List<Template> getFormTemplates(FormQuery formQuery) {
-        List<Form> formTemplates = queryFormPort.getAllForms(this.getType(), FormSubType.TEMPLATE, formQuery.getUsageLevel());
-        return formTemplates.isEmpty() ? List.of(getDefaultSupplementaryWorkerFormCreationTemplate()) : formTemplates.stream().map(form -> Template.builder()
-                .form(form)
-                .availableElements(getAvailableElements())
-                .build()).collect(Collectors.toList());
-    }
-
-    @Override
-    public List<Template> getFormCreationTemplates(FormQuery formQuery) {
-        List<Form> creationTemplates = queryFormPort.getAllForms(this.getType(), FormSubType.CREATION_TEMPLATE, formQuery.getUsageLevel());
-        return creationTemplates.isEmpty() ? List.of(getDefaultSupplementaryWorkerFormCreationTemplate()) : creationTemplates.stream().map(form -> Template.builder()
-                .form(form)
-                .availableElements(getAvailableElements())
-                .build()).collect(Collectors.toList());
-    }
-
-    @Override
-    public Form saveTemplate(Form template) {
-        return saveFormPort.saveForm(template);
-    }
-
-    @Override
-    public Form saveFilledForm(FilledForm filledForm) {
-        //TODO bind values
-        Form form = Form.builder().build();
-        return saveFilledFormPort.saveForm(form);
-    }
-
-    @Override
-    public FormType getType() {
-        return FormType.SUPPLEMENTARY_WORKER_INFORMATION;
-    }
-
-    private Template getDefaultSupplementaryWorkerFormCreationTemplate() {
-        List<AbstractFormElement> availableElements = getAvailableElements();
+    public Form getDefaultTemplate() {
         List<AbstractFormElement> elements = new ArrayList<>();
         Section section = Section.builder().formElements(elements).visible(true).build();
         Form form = Form.builder().mainSection(section).formType(FormType.SUPPLEMENTARY_WORKER_INFORMATION).formSubType(FormSubType.CREATION_TEMPLATE).build();
@@ -268,13 +230,27 @@ public class SupplementaryWorkerInformationFormService implements FormService {
                 .build();
         elements.add(branchCodeInputField);
 
-        return Template.builder()
-                .form(form)
-                .availableElements(availableElements)
-                .build();
+        return form;
     }
 
-    public List<AbstractFormElement> getAvailableElements() {
+    private String getLabelFromFieldName(String fieldName) {
+        String label = Arrays.stream(fieldName.split("(?=[A-Z])")).map(String::toLowerCase).collect(Collectors.joining(" "));
+        return label.substring(0, 1).toUpperCase() + label.substring(1);
+    }
+
+    @Override
+    public Form saveTemplate(Form form) {
+        return saveFormPort.saveForm(form);
+    }
+
+    @Override
+    public Form saveFilledForm(Form form, Map<String, String> userInputs) {
+        //Bind values
+        return saveFilledFormPort.saveForm(form);
+    }
+
+    @Override
+    public List<AbstractFormElement> getAvailableElements(Form form) {
         return List.of(Section.builder().build(),
                 Text.builder().build(),
                 StringTextField.builder().build(),
@@ -290,8 +266,8 @@ public class SupplementaryWorkerInformationFormService implements FormService {
         );
     }
 
-    private String getLabelFromFieldName(String fieldName) {
-        String label = Arrays.stream(fieldName.split("(?=[A-Z])")).map(String::toLowerCase).collect(Collectors.joining(" "));
-        return label.substring(0, 1).toUpperCase() + label.substring(1);
+    @Override
+    public FormType getType() {
+        return FormType.SUPPLEMENTARY_WORKER_INFORMATION;
     }
 }

@@ -15,17 +15,17 @@ public class Form {
 
     Long id;
 
+    Form template;
+
     private Section mainSection;
 
     private ArrayList<FormValidator> validators;
 
     private String label;
 
-    Form template;
+    private FormType formType;
 
-    FormType formType;
-
-    FormSubType formSubType;
+    private FormSubType formSubType;
 
     private UsageLevel usageLevel;
 

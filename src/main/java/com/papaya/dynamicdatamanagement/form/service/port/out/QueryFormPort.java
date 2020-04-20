@@ -10,6 +10,7 @@ import java.util.List;
 public interface QueryFormPort {
     Form getForm(Long id);
     Form getForm(Long id, FormSubType subType);
+    Form getForm(Long id, FormType formType, FormSubType subType);
     Form getForm(Long id, String label, FormSubType subType);
     List<Form> getAllForms();
     List<Form> getAllForms(FormSubType subType);
