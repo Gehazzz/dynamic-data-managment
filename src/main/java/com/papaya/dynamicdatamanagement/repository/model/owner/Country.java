@@ -25,5 +25,4 @@ public class Country {
     private List<FormTemplate> formTemplates;
 
 
-
 }
