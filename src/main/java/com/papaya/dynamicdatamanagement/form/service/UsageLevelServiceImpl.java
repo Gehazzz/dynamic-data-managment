@@ -20,7 +20,7 @@ public class UsageLevelServiceImpl implements UsageLevelService {
     }
 
     @Override
-    public List<UsageLevelOrganisation> getAllOrganisationsByCountry(Long countryId) {
+    public List<UsageLevelOrganisation> getAllOrganisationsByCountry(String countryId) {
         return queryUsageLevelInformationPort.getAllOrganisationsByCountry(countryId);
     }
 

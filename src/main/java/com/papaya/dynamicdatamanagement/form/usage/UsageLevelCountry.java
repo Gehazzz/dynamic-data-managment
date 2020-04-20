@@ -10,6 +10,6 @@ import java.util.List;
 @Setter
 @Builder
 public class UsageLevelCountry {
-    private long countryId;
+    private String countryId;
     private String countryName;
 }

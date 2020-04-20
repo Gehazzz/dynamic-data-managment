@@ -10,7 +10,7 @@ import java.util.List;
 public interface QueryUsageLevelInformationPort {
     List<UsageLevelOrganisation> getAllOrganisations();
 
-    List<UsageLevelOrganisation> getAllOrganisationsByCountry(Long countryId);
+    List<UsageLevelOrganisation> getAllOrganisationsByCountry(String countryId);
 
     List<UsageLevelProject> getAllProjects();
 
