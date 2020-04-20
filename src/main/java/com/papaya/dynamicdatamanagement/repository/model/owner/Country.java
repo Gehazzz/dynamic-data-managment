@@ -24,20 +24,6 @@ public class Country {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<FormTemplate> formTemplates;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @JoinTable(name = "user_project",
-    joinColumns = @JoinColumn(name = "userId"),
-    inverseJoinColumns = @JoinColumn(name = "projectId"))
-    List<Project> projects;
-
-
-    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @JoinTable(name = "user_org",
-            joinColumns = @JoinColumn(name = "userId"),
-            inverseJoinColumns = @JoinColumn(name = "orgId"))
-    List<Organisation> organisations;
 
 
 }
