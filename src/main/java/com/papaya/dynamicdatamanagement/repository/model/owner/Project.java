@@ -21,7 +21,6 @@ public class Project {
     private Long id;
     private String name;
 
-
     @ManyToMany(mappedBy = "projects")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<FormTemplate> formTemplates;

@@ -49,7 +49,7 @@ public class QueryUsageLevelInformationPortImpl implements QueryUsageLevelInform
 
     @Override
     public List<UsageLevelOrganisation> getAllOrganisationsByCountry(String countryId) {
-        List<Organisation> allByCountryId = organizationsRepository.findAll(countryId);
+        List<Organisation> allByCountryId = organizationsRepository.findAll();
         return null;
     }
 

@@ -3,6 +3,7 @@ package com.papaya.dynamicdatamanagement;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.papaya.dynamicdatamanagement.repository.model.template.*;
 import com.papaya.dynamicdatamanagement.repository.FormTemplateRepository;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,6 +18,7 @@ public class FormTemplateRepositoryTest {
     @Autowired
     ObjectMapper objectMapper;
     @Test
+    @SneakyThrows
     void formTest(){
         SectionTemplate section = SectionTemplate.builder()
                 .label("section label")
@@ -54,6 +56,8 @@ public class FormTemplateRepositoryTest {
                 .mainSection(section)
                 .build();
 
-        formTemplateRepository.save(formTemplate);
+        FormTemplate saved = formTemplateRepository.save(formTemplate);
+        String s = objectMapper.writeValueAsString(saved);
+        System.out.println(s);
     }
 }

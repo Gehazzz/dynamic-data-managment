@@ -1,5 +1,6 @@
 package com.papaya.dynamicdatamanagement.repository.model.template;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -20,6 +21,7 @@ public abstract class AbstractFormElementTemplate {
 
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "parent_section_id")
+    @JsonIgnore
     private SectionTemplate parentSection;
     /**
      * Marks this form element as "discarded", meaning that the user did

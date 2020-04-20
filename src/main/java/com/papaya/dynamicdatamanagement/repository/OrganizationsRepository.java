@@ -8,6 +8,4 @@ import java.util.List;
 
 public interface OrganizationsRepository extends JpaRepository<Organisation,Long>, JpaSpecificationExecutor<Organisation> {
 
-
-    List<Organisation> findAll(String countryId);
 }
