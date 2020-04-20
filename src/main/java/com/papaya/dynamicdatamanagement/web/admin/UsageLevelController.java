@@ -24,7 +24,7 @@ public class UsageLevelController {
      * @param organisationsId
      * @return
      */
-    @GetMapping("/countries")
+    @GetMapping(value = "/countries", params = "organisationsId")
     public List<UsageLevelCountryDTO> getCountriesByOrganizations(@RequestParam List<Long> organisationsId) {
         return null;
     }
@@ -38,7 +38,7 @@ public class UsageLevelController {
      * @param countriesIso
      * @return
      */
-    @GetMapping("/organisations")
+    @GetMapping(value = "/organisations", params = "countriesIso")
     public List<UsageLevelOrganisationDTO> getOrganizationsByCountry(@RequestParam List<String> countriesIso) {
         return null;
     }
@@ -48,7 +48,7 @@ public class UsageLevelController {
         return null;
     }
 
-    @GetMapping("/projects")
+    @GetMapping(value = "/projects", params = {"countriesIso", "organisationsId"})
     //Request parameters will be mapped to object: http://localhost:8080/forms/projects?countriesIso=ISR,RUS,US&organisationsId=1,2,3
     public List<UsageLevelProjectDTO> getProjects(@RequestParam List<String> countriesIso, @RequestParam List<Long> organisationsId) {
         return null;
@@ -60,7 +60,7 @@ public class UsageLevelController {
         return null;
     }*/
 
-    @GetMapping("/users")
+    @GetMapping(value = "/users", params = {"countriesIso", "organisationsId", "projectsId"})
     public List<UsageLevelUserDTO> getAllUsers() {
         return null;
     }
@@ -73,10 +73,10 @@ public class UsageLevelController {
         return null;
     }
 
-    @GetMapping("/users")
+   /* @GetMapping("/users")
     //http://localhost:8080/forms/users?countriesIso=ISR,RUS,US&organisationsId=1,2,3&projectsId=1,2,3
     public List<UsageLevelUserDTO> getUsers(SearchUserDto searchUserDto) {
         return null;
-    }
+    }*/
 
 }
