@@ -8,10 +8,11 @@ import com.papaya.dynamicdatamanagement.form.service.port.out.QueryFormPort;
 import com.papaya.dynamicdatamanagement.form.service.port.out.SaveFilledFormPort;
 import com.papaya.dynamicdatamanagement.form.service.port.out.SaveFormPort;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
-
+@Component
 public class DynamicFormService2 implements FormService2 {
     @Autowired
     private QueryFormPort queryFormPort;

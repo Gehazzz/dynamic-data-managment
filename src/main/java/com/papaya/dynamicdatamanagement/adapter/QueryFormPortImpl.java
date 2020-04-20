@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class FormMapper implements QueryFormPort {
+        public class QueryFormPortImpl implements QueryFormPort {
 
 
     @Autowired
@@ -41,6 +41,16 @@ public class FormMapper implements QueryFormPort {
     public Form getForm(Long id, FormSubType subType) {
         FormTemplate formTemplate = formTemplateRepository.findAll(Example.of(FormTemplate.builder()
                 .formTemplateSubType(getFormTemplateSubTypeFromFormSubType(subType))
+                .build())).get(0);
+        return convertTemplateToForm(formTemplate);
+    }
+
+    @Override
+    public Form getForm(Long id, FormType formType, FormSubType subType) {
+        FormTemplate formTemplate = formTemplateRepository.findAll(Example.of(FormTemplate.builder()
+                .formTemplateSubType(getFormTemplateSubTypeFromFormSubType(subType))
+                .formType(getFormTemplateType(formType))
+                .id(id)
                 .build())).get(0);
         return convertTemplateToForm(formTemplate);
     }

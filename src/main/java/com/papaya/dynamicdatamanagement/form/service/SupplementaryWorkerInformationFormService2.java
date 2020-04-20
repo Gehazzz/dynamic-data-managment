@@ -10,6 +10,7 @@ import com.papaya.dynamicdatamanagement.form.service.port.out.SaveFilledFormPort
 import com.papaya.dynamicdatamanagement.form.service.port.out.SaveFormPort;
 import com.papaya.dynamicdatamanagement.form.validation.PatternValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +19,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+@Component
 public class SupplementaryWorkerInformationFormService2 implements FormService2 {
 
     @Autowired

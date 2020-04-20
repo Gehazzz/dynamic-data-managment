@@ -11,6 +11,7 @@ import com.papaya.dynamicdatamanagement.form.service.port.in.FormService2;
 import com.papaya.dynamicdatamanagement.form.service.port.out.QueryFormPort;
 import com.papaya.dynamicdatamanagement.form.usage.UsageLevel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.EnumSet;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+@Service
 public class FormManagerService2Impl implements FormManagerService2 {
 
     private Map<FormType, FormService2> formServices;
@@ -26,9 +28,10 @@ public class FormManagerService2Impl implements FormManagerService2 {
     private QueryFormPort queryFormPort;
 
     @Autowired
-    public FormManagerService2Impl(Set<FormService2> formServices) {
+    public FormManagerService2Impl(Set<FormService2> formServices,QueryFormPort queryFormPort) {
         this.formServices = formServices.stream()
                 .collect(Collectors.toMap(FormService2::getType, Function.identity()));
+        this.queryFormPort=queryFormPort;
     }
 
     @Override
