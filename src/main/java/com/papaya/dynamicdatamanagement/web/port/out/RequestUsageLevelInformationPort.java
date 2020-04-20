@@ -2,7 +2,6 @@ package com.papaya.dynamicdatamanagement.web.port.out;
 
 import com.papaya.dynamicdatamanagement.web.dto.UsageLevelCountryDTO;
 import com.papaya.dynamicdatamanagement.web.dto.UsageLevelOrganisationDTO;
-import com.papaya.dynamicdatamanagement.web.dto.UsageLevelProjectDTO;
 import com.papaya.dynamicdatamanagement.web.dto.UsageLevelUserDTO;
 
 import java.util.List;
