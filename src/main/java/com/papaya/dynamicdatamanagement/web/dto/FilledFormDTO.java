@@ -1,4 +1,4 @@
-package com.papaya.dynamicdatamanagement.web;
+package com.papaya.dynamicdatamanagement.web.dto;
 
 import com.papaya.dynamicdatamanagement.form.elements.main.FormType;
 import lombok.Builder;
