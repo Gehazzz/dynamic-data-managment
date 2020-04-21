@@ -1,4 +1,4 @@
-package com.papaya.dynamicdatamanagement.web.admin;
+package com.papaya.dynamicdatamanagement.web.controller;
 
 import com.papaya.dynamicdatamanagement.web.dto.*;
 import lombok.extern.slf4j.Slf4j;
