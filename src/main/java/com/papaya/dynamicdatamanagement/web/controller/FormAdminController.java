@@ -63,28 +63,28 @@ public class FormAdminController {
      * @return all forms of provided sub type
      */
     @GetMapping(params = "formSubType")
-    List<FormDTO> getForms(FormSubTypeDTO formSubType){return null;}
+    List<FormDTO> getForms(@RequestParam FormSubTypeDTO formSubType){return null;}
 
     @GetMapping(params = {"label", "formSubType"})
-    List<FormDTO> getForms(String label, FormSubTypeDTO formSubType){return null;}
+    List<FormDTO> getForms(@RequestParam String label, @RequestParam FormSubTypeDTO formSubType){return null;}
 
     @GetMapping(params = {"formSubType", "usageLevel"})
-    List<FormDTO> getForms(FormSubTypeDTO formSubType, UsageLevelDTO usageLevel){return null;}
+    List<FormDTO> getForms(@RequestParam FormSubTypeDTO formSubType, @RequestParam UsageLevelDTO usageLevel){return null;}
 
     @GetMapping(params = {"label", "formSubType", "usageLevel"})
-    List<FormDTO> getForms(String label, FormSubTypeDTO formSubType, UsageLevelDTO usageLevel){return null;}
+    List<FormDTO> getForms(@RequestParam String label, @RequestParam FormSubTypeDTO formSubType, @RequestParam UsageLevelDTO usageLevel){return null;}
 
     @GetMapping(params = {"formSubType", "usageLevels"})
-    List<FormDTO> getForms(FormSubTypeDTO formSubType, List<UsageLevelDTO> usageLevels){return null;}
+    List<FormDTO> getForms(@RequestParam FormSubTypeDTO formSubType, @RequestParam List<UsageLevelDTO> usageLevels){return null;}
 
     @GetMapping(params = {"formType", "formSubType"})
-    List<FormDTO> getForms(FormTypeDTO formType, FormSubTypeDTO formSubType){return null;}
+    List<FormDTO> getForms(@RequestParam FormTypeDTO formType, @RequestParam FormSubTypeDTO formSubType){return null;}
 
     @GetMapping(params = {"formType", "formSubType", "usageLevel"})
-    List<FormDTO> getForms(FormTypeDTO formType, FormSubTypeDTO formSubType, UsageLevelDTO usageLevel){return null;}
+    List<FormDTO> getForms(@RequestParam FormTypeDTO formType, @RequestParam FormSubTypeDTO formSubType, @RequestParam UsageLevelDTO usageLevel){return null;}
 
     @GetMapping(params = {"formType", "formSubType", "usageLevels"})
-    List<FormDTO> getForms(FormTypeDTO formType, FormSubTypeDTO formSubType, List<UsageLevelDTO> usageLevels){return null;}
+    List<FormDTO> getForms(@RequestParam FormTypeDTO formType, @RequestParam FormSubTypeDTO formSubType, @RequestParam List<UsageLevelDTO> usageLevels){return null;}
 
     @GetMapping("/{id}/available-elements")
     List<FormElementDTO> getFormAvailableElements(@PathVariable("id") Long id){return null;}
