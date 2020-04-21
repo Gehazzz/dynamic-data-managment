@@ -57,7 +57,7 @@ public class FormTemplateRepositoryTest {
                 .build();
 
         FormTemplate saved = formTemplateRepository.save(formTemplate);
-        String s = objectMapper.writeValueAsString(saved);
+        String s = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(saved);
         System.out.println(s);
     }
 }

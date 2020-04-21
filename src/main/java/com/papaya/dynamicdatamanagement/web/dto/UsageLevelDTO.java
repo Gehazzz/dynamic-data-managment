@@ -9,10 +9,9 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-//TODO Redesign and refactor
 public class UsageLevelDTO {
-    List<UsageLevelCountryDTO> usageLevelCountries;
-    List<UsageLevelOrganisationDTO> usageLevelOrganisations;
-    List<UsageLevelProjectDTO> usageLevelProjects;
-    List<UsageLevelUserDTO> usageLevelUsers;
+    private String countryIso;
+    private Long orgId;
+    private Long projectId;
+    private List<RoleDTO> usageLevelUsers;
 }

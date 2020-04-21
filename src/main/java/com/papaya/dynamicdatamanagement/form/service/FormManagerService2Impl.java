@@ -4,9 +4,7 @@ import com.papaya.dynamicdatamanagement.form.elements.main.AbstractFormElement;
 import com.papaya.dynamicdatamanagement.form.elements.main.Form;
 import com.papaya.dynamicdatamanagement.form.elements.main.FormSubType;
 import com.papaya.dynamicdatamanagement.form.elements.main.FormType;
-import com.papaya.dynamicdatamanagement.form.service.port.in.FormManagerService;
 import com.papaya.dynamicdatamanagement.form.service.port.in.FormManagerService2;
-import com.papaya.dynamicdatamanagement.form.service.port.in.FormService;
 import com.papaya.dynamicdatamanagement.form.service.port.in.FormService2;
 import com.papaya.dynamicdatamanagement.form.service.port.out.QueryFormPort;
 import com.papaya.dynamicdatamanagement.form.usage.UsageLevel;
@@ -83,7 +81,6 @@ public class FormManagerService2Impl implements FormManagerService2 {
         return formServices.get(form.getFormType()).getAvailableElements(form);
     }
 
-
     @Override
     public Form saveTemplate(Form form) {
         return formServices.get(form.getFormType()).saveTemplate(form);
@@ -92,5 +89,10 @@ public class FormManagerService2Impl implements FormManagerService2 {
     @Override
     public Form saveFilledForm(Form form, Map<String, String> userInputs) {
         return formServices.get(form.getFormType()).saveFilledForm(form, userInputs);
+    }
+
+    @Override
+    public Form assignUsageLevel(Form form, UsageLevel usageLevel) {
+        return null;
     }
 }

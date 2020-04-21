@@ -29,4 +29,6 @@ public interface FormManagerService2 {
     Form saveTemplate(Form form);
 
     Form saveFilledForm(Form form, Map<String, String> userInputs);
+
+    Form assignUsageLevel(Form form, UsageLevel usageLevel);
 }

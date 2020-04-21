@@ -5,12 +5,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
-
 @Getter
 @Setter
 @Builder
-public class UsageLevelCountryDTO {
-    private long countryId;
-    private String countryName;
-    List<UsageLevelProjectDTO> usageLevelProjects;
+public class SearchRoleDto {
+    private String countryIso;
+    private Long organisationId;
+    private Long projectId;
 }

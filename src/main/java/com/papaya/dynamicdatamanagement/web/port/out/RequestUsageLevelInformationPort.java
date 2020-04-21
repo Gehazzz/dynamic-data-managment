@@ -1,28 +1,29 @@
 package com.papaya.dynamicdatamanagement.web.port.out;
 
-import com.papaya.dynamicdatamanagement.web.dto.UsageLevelCountryDTO;
-import com.papaya.dynamicdatamanagement.web.dto.UsageLevelOrganisationDTO;
-import com.papaya.dynamicdatamanagement.web.dto.UsageLevelProjectDTO;
-import com.papaya.dynamicdatamanagement.web.dto.UsageLevelUserDTO;
+import com.papaya.dynamicdatamanagement.web.dto.*;
 
 import java.util.List;
 
 public interface RequestUsageLevelInformationPort {
-    List<UsageLevelOrganisationDTO> getAllOrganisations();
+    List<OrganisationDTO> getAllOrganisations();
 
-    List<UsageLevelOrganisationDTO> getAllOrganisationsByCountry(Long countryId);
+    List<OrganisationDTO> getAllOrganisationsByCountry(Long countryId);
 
-    List<UsageLevelProjectDTO> getAllProjects();
+    List<ProjectDTO> getAllProjects();
 
-    List<UsageLevelProjectDTO> getAllProjectsByOrganisation(Long orgId);
+    List<ProjectDTO> getProjects(SearchProjectDTO searchProjectDTO);
 
-    List<UsageLevelUserDTO> getAllUsers();
+    List<ProjectDTO> getAllProjectsByOrganisation(Long orgId);
 
-    List<UsageLevelUserDTO> getAllUsersByOrganisation(Long orgId);
+    List<RoleDTO> getAllRoles();
 
-    List<UsageLevelUserDTO> getAllUsersByProject(Long projectId);
+    List<RoleDTO> getRoles(SearchRoleDto searchRoleDto);
 
-    List<UsageLevelCountryDTO> getAllCountries();
+    List<RoleDTO> getAllRolesByOrganisation(Long orgId);
 
-    List<UsageLevelCountryDTO> getAllCountriesByOrganisation(Long orgId);
+    List<RoleDTO> getAllRolesByProject(Long projectId);
+
+    List<CountryDTO> getAllCountries();
+
+    List<CountryDTO> getAllCountriesByOrganisation(Long orgId);
 }

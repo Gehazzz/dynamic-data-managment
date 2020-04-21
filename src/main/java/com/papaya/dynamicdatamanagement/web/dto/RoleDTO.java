@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class UsageLevelUserDTO {
+public class RoleDTO {
     private long userId;
     private String userName;
 }
