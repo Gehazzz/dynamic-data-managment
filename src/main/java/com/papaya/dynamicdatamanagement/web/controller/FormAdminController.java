@@ -18,8 +18,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/admin/forms")
 public class FormAdminController {
+    /**
+     *
+     * @return all forms, form templates, form creation templates
+     */
     @GetMapping
     List<FormDTO> getAllForms(){return null;}
+
+    /**
+     *
+     * @param id form id
+     * @return form by id, it can be form, form template or form creation template
+     */
     @GetMapping("/{id}")
     FormDTO getForm(@PathVariable("id") Long id){return null;}
 
@@ -27,12 +37,31 @@ public class FormAdminController {
     //Can replace all search methods
     List<FormDTO> searchForms(SearchFormDTO searchFormDTO){return null;}
 
+    /**
+     *
+     * @param formType DYNAMIC, SUPPLEMENTARY_WORKER_INFORMATION
+     * @return all forms, form templates, form creation templates of provided type
+     */
     @GetMapping(params = "formType")
     List<FormDTO> getForms(FormTypeDTO formType){return null;}
+
+    /**
+     *
+     * @param label specific form label
+     * @param formType DYNAMIC, SUPPLEMENTARY_WORKER_INFORMATION
+     * @return all forms, form templates, form creation templates of provided type and has provided label
+     *
+     * Can be useful once we want request specific form of dynamic type
+     */
 
     @GetMapping(params = {"label", "formType"})
     List<FormDTO> getForms(String label, FormTypeDTO formType){return null;}
 
+    /**
+     *
+     * @param formSubType FORM, FORM_TEMPLATE, FORM_CREATION_TEMPLATE
+     * @return all forms of provided sub type
+     */
     @GetMapping(params = "formSubType")
     List<FormDTO> getForms(FormSubTypeDTO formSubType){return null;}
 
