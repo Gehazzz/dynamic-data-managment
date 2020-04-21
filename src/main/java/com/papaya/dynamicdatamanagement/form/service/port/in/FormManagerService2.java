@@ -18,9 +18,13 @@ public interface FormManagerService2 {
 
     List<Form> getForms(FormSubType formSubType, UsageLevel usageLevel);
 
+    List<Form> getForms(FormSubType formSubType, List<UsageLevel> usageLevels);
+
     List<Form> getForms(FormType formType, FormSubType formSubType);
 
     List<Form> getForms(FormType formType, FormSubType formSubType, UsageLevel usageLevel);
+
+    List<Form> getForms(FormType formType, FormSubType formSubType, List<UsageLevel> usageLevels);
 
     List<Form> getAllForms();
 

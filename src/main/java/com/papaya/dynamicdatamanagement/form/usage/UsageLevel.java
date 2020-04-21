@@ -10,8 +10,8 @@ import java.util.List;
 @AllArgsConstructor
 //TODO Redesign and refactor
 public class UsageLevel {
-    List<UsageLevelCountry> usageLevelCountries;
-    List<UsageLevelOrganisation> usageLevelOrganisations;
-    List<UsageLevelProject> usageLevelProjects;
-    List<UsageLevelUser> usageLevelUsers;
+    private String countryIso;
+    private Long organisationId;
+    private Long projectId;
+    private List<UsageLevelRole> usageLevelRoles;
 }

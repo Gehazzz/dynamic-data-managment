@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UsageLevelDTO {
     private String countryIso;
-    private Long orgId;
+    private Long organisationId;
     private Long projectId;
     private List<RoleDTO> usageLevelUsers;
 }

@@ -62,6 +62,11 @@ public class FormManagerService2Impl implements FormManagerService2 {
     }
 
     @Override
+    public List<Form> getForms(FormSubType formSubType, List<UsageLevel> usageLevels) {
+        return queryFormPort.getAllForms(formSubType, usageLevels);
+    }
+
+    @Override
     public List<Form> getForms(FormType formType, FormSubType formSubType) {
         return queryFormPort.getAllForms(formType, formSubType);
     }
@@ -69,6 +74,11 @@ public class FormManagerService2Impl implements FormManagerService2 {
     @Override
     public List<Form> getForms(FormType formType, FormSubType formSubType, UsageLevel usageLevel) {
         return queryFormPort.getAllForms(formType, formSubType, usageLevel);
+    }
+
+    @Override
+    public List<Form> getForms(FormType formType, FormSubType formSubType, List<UsageLevel> usageLevels) {
+        return queryFormPort.getAllForms(formType, formSubType, usageLevels);
     }
 
     @Override

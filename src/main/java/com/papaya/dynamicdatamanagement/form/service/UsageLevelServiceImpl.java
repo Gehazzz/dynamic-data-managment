@@ -5,7 +5,7 @@ import com.papaya.dynamicdatamanagement.form.service.port.out.QueryUsageLevelInf
 import com.papaya.dynamicdatamanagement.form.usage.UsageLevelCountry;
 import com.papaya.dynamicdatamanagement.form.usage.UsageLevelOrganisation;
 import com.papaya.dynamicdatamanagement.form.usage.UsageLevelProject;
-import com.papaya.dynamicdatamanagement.form.usage.UsageLevelUser;
+import com.papaya.dynamicdatamanagement.form.usage.UsageLevelRole;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -35,17 +35,17 @@ public class UsageLevelServiceImpl implements UsageLevelService {
     }
 
     @Override
-    public List<UsageLevelUser> getAllUsers() {
+    public List<UsageLevelRole> getAllUsers() {
         return queryUsageLevelInformationPort.getAllUsers();
     }
 
     @Override
-    public List<UsageLevelUser> getAllUsersByOrganisation(Long orgId) {
+    public List<UsageLevelRole> getAllUsersByOrganisation(Long orgId) {
         return queryUsageLevelInformationPort.getAllUsersByOrganisation(orgId);
     }
 
     @Override
-    public List<UsageLevelUser> getAllUsersByProject(Long projectId) {
+    public List<UsageLevelRole> getAllUsersByProject(Long projectId) {
         return queryUsageLevelInformationPort.getAllUsersByProject(projectId);
     }
 

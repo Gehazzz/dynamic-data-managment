@@ -29,31 +29,31 @@ public class UsageLevelAdapter {
         List<UsageLevelProject> usageLevelProjects = getUsageLevelProjects(projects);
         usageLevel.setUsageLevelProjects(usageLevelProjects);
         List<User> users = formTemplate.getUsers();
-        List<UsageLevelUser> usageLevelUsers = getUsageLevelUsers(users);
-        usageLevel.setUsageLevelUsers(usageLevelUsers);
+        List<UsageLevelRole> usageLevelRoles = getUsageLevelUsers(users);
+        usageLevel.setUsageLevelRoles(usageLevelRoles);
         return usageLevel;
     }
 
-    public List<UsageLevelUser> getUsageLevelUsers(List<User> users) {
-        List<UsageLevelUser> usageLevelUsers = new ArrayList<>();
+    public List<UsageLevelRole> getUsageLevelUsers(List<User> users) {
+        List<UsageLevelRole> usageLevelRoles = new ArrayList<>();
         if(users!=null && !users.isEmpty()){
             for (User user : users) {
-                usageLevelUsers.add(UsageLevelUser.builder()
+                usageLevelRoles.add(UsageLevelRole.builder()
                         .userId(user.getId())
                         .userName(user.getName())
                         .build());
             }
         }
-        return usageLevelUsers;
+        return usageLevelRoles;
     }
 
-    public List<User> getUsersFromUsageLevelUsers(List<UsageLevelUser> usageLevelUsers){
+    public List<User> getUsersFromUsageLevelUsers(List<UsageLevelRole> usageLevelRoles){
         List<User> users = new ArrayList<>();
-        if(usageLevelUsers!=null && !usageLevelUsers.isEmpty()){
-            for (UsageLevelUser usageLevelUser : usageLevelUsers) {
+        if(usageLevelRoles !=null && !usageLevelRoles.isEmpty()){
+            for (UsageLevelRole usageLevelRole : usageLevelRoles) {
                 users.add(User.builder()
-                        .id(usageLevelUser.getUserId())
-                        .name(usageLevelUser.getUserName())
+                        .id(usageLevelRole.getUserId())
+                        .name(usageLevelRole.getUserName())
                         .build());
             }
         }

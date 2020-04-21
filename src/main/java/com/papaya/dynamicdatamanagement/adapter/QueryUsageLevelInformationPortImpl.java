@@ -7,11 +7,8 @@ import com.papaya.dynamicdatamanagement.repository.CountryRepository;
 import com.papaya.dynamicdatamanagement.repository.OrganizationsRepository;
 import com.papaya.dynamicdatamanagement.repository.ProjectsRepository;
 import com.papaya.dynamicdatamanagement.repository.UsersRepository;
-import com.papaya.dynamicdatamanagement.repository.model.owner.Country;
 import com.papaya.dynamicdatamanagement.repository.model.owner.Organisation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -64,17 +61,17 @@ public class QueryUsageLevelInformationPortImpl implements QueryUsageLevelInform
     }
 
     @Override
-    public List<UsageLevelUser> getAllUsers() {
+    public List<UsageLevelRole> getAllUsers() {
         return null;
     }
 
     @Override
-    public List<UsageLevelUser> getAllUsersByOrganisation(Long orgId) {
+    public List<UsageLevelRole> getAllUsersByOrganisation(Long orgId) {
         return null;
     }
 
     @Override
-    public List<UsageLevelUser> getAllUsersByProject(Long projectId) {
+    public List<UsageLevelRole> getAllUsersByProject(Long projectId) {
         return null;
     }
 

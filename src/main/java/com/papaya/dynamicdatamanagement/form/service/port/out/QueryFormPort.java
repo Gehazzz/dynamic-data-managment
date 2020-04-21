@@ -16,8 +16,13 @@ public interface QueryFormPort {
     List<Form> getAllForms(FormSubType subType);
     List<Form> getAllForms(FormType formType, FormSubType subType);
     List<Form> getAllForms(FormSubType formSubType, UsageLevel usageLevel);
+    List<Form> getAllForms(FormSubType formSubType, List<UsageLevel> usageLevels);
     List<Form> getAllForms(UsageLevel usageLevel);
     List<Form> getAllForms(FormType formType, UsageLevel usageLevel);
     List<Form> getAllForms(FormType formType, FormSubType subType, UsageLevel usageLevel);
+    List<Form> getAllForms(FormType formType, FormSubType formSubType, List<UsageLevel> usageLevels);
     List<Form> getAllForms(FormType formType, FormSubType subType, UsageLevel usageLevel, String label);
+    List<Form> getAllForms(FormType formType, FormSubType subType, List<UsageLevel> usageLevels, String label);
+
+
 }

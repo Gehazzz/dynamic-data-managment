@@ -3,22 +3,15 @@ package com.papaya.dynamicdatamanagement.adapter;
 import com.papaya.dynamicdatamanagement.adapter.element.UsageLevelAdapter;
 import com.papaya.dynamicdatamanagement.form.elements.main.FormSubType;
 import com.papaya.dynamicdatamanagement.form.elements.main.FormType;
-import com.papaya.dynamicdatamanagement.form.elements.main.Template;
-import com.papaya.dynamicdatamanagement.form.service.port.in.FormManagerService;
 import com.papaya.dynamicdatamanagement.form.service.port.out.QueryFormPort;
 import com.papaya.dynamicdatamanagement.form.usage.*;
 import com.papaya.dynamicdatamanagement.repository.FormTemplateRepository;
-import com.papaya.dynamicdatamanagement.repository.model.owner.Country;
-import com.papaya.dynamicdatamanagement.repository.model.owner.Organisation;
-import com.papaya.dynamicdatamanagement.repository.model.owner.Project;
-import com.papaya.dynamicdatamanagement.repository.model.owner.User;
 import com.papaya.dynamicdatamanagement.repository.model.template.*;
 import com.papaya.dynamicdatamanagement.form.elements.main.Form;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -93,7 +86,7 @@ public class QueryFormPortImpl implements QueryFormPort {
     @Override
     public List<Form> getAllForms(FormSubType formSubType, UsageLevel usageLevel) {
         return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
-                .users(usageLevelAdapter.getUsersFromUsageLevelUsers(usageLevel.getUsageLevelUsers()))
+                .users(usageLevelAdapter.getUsersFromUsageLevelUsers(usageLevel.getUsageLevelRoles()))
                 .projects(usageLevelAdapter.getProjectsFromUsageLevelProjects(usageLevel.getUsageLevelProjects()))
                 .countries(usageLevelAdapter.getCountriesFromUsageLevelCountries(usageLevel.getUsageLevelCountries()))
                 .organisations(usageLevelAdapter.getOrganizationsDataFromUsageLevelOrganizations(usageLevel.getUsageLevelOrganisations()))
@@ -107,7 +100,7 @@ public class QueryFormPortImpl implements QueryFormPort {
     @Override
     public List<Form> getAllForms(UsageLevel usageLevel) {
         return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
-                .users(usageLevelAdapter.getUsersFromUsageLevelUsers(usageLevel.getUsageLevelUsers()))
+                .users(usageLevelAdapter.getUsersFromUsageLevelUsers(usageLevel.getUsageLevelRoles()))
                 .projects(usageLevelAdapter.getProjectsFromUsageLevelProjects(usageLevel.getUsageLevelProjects()))
                 .countries(usageLevelAdapter.getCountriesFromUsageLevelCountries(usageLevel.getUsageLevelCountries()))
                 .organisations(usageLevelAdapter.getOrganizationsDataFromUsageLevelOrganizations(usageLevel.getUsageLevelOrganisations()))
@@ -120,7 +113,7 @@ public class QueryFormPortImpl implements QueryFormPort {
     @Override
     public List<Form> getAllForms(FormType formType, UsageLevel usageLevel) {
         return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
-                .users(usageLevelAdapter.getUsersFromUsageLevelUsers(usageLevel.getUsageLevelUsers()))
+                .users(usageLevelAdapter.getUsersFromUsageLevelUsers(usageLevel.getUsageLevelRoles()))
                 .projects(usageLevelAdapter.getProjectsFromUsageLevelProjects(usageLevel.getUsageLevelProjects()))
                 .countries(usageLevelAdapter.getCountriesFromUsageLevelCountries(usageLevel.getUsageLevelCountries()))
                 .organisations(usageLevelAdapter.getOrganizationsDataFromUsageLevelOrganizations(usageLevel.getUsageLevelOrganisations()))
@@ -134,7 +127,7 @@ public class QueryFormPortImpl implements QueryFormPort {
     @Override
     public List<Form> getAllForms(FormType formType, FormSubType subType, UsageLevel usageLevel) {
         return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
-                .users(usageLevelAdapter.getUsersFromUsageLevelUsers(usageLevel.getUsageLevelUsers()))
+                .users(usageLevelAdapter.getUsersFromUsageLevelUsers(usageLevel.getUsageLevelRoles()))
                 .projects(usageLevelAdapter.getProjectsFromUsageLevelProjects(usageLevel.getUsageLevelProjects()))
                 .countries(usageLevelAdapter.getCountriesFromUsageLevelCountries(usageLevel.getUsageLevelCountries()))
                 .organisations(usageLevelAdapter.getOrganizationsDataFromUsageLevelOrganizations(usageLevel.getUsageLevelOrganisations()))
@@ -149,7 +142,7 @@ public class QueryFormPortImpl implements QueryFormPort {
     @Override
     public List<Form> getAllForms(FormType formType, FormSubType subType, UsageLevel usageLevel, String label) {
         return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
-                .users(usageLevelAdapter.getUsersFromUsageLevelUsers(usageLevel.getUsageLevelUsers()))
+                .users(usageLevelAdapter.getUsersFromUsageLevelUsers(usageLevel.getUsageLevelRoles()))
                 .projects(usageLevelAdapter.getProjectsFromUsageLevelProjects(usageLevel.getUsageLevelProjects()))
                 .countries(usageLevelAdapter.getCountriesFromUsageLevelCountries(usageLevel.getUsageLevelCountries()))
                 .organisations(usageLevelAdapter.getOrganizationsDataFromUsageLevelOrganizations(usageLevel.getUsageLevelOrganisations()))
@@ -173,7 +166,7 @@ public class QueryFormPortImpl implements QueryFormPort {
 
     public List<FormType> getAvailableFormCreationTemplateTypes(UsageLevel usageLevel) {
         return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
-                .users(usageLevelAdapter.getUsersFromUsageLevelUsers(usageLevel.getUsageLevelUsers()))
+                .users(usageLevelAdapter.getUsersFromUsageLevelUsers(usageLevel.getUsageLevelRoles()))
                 .projects(usageLevelAdapter.getProjectsFromUsageLevelProjects(usageLevel.getUsageLevelProjects()))
                 .organisations(usageLevelAdapter.getOrganizationsDataFromUsageLevelOrganizations(usageLevel.getUsageLevelOrganisations()))
                 .countries(usageLevelAdapter.getCountriesFromUsageLevelCountries(usageLevel.getUsageLevelCountries()))

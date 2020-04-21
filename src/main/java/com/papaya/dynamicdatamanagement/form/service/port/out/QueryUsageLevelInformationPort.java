@@ -3,7 +3,7 @@ package com.papaya.dynamicdatamanagement.form.service.port.out;
 import com.papaya.dynamicdatamanagement.form.usage.UsageLevelCountry;
 import com.papaya.dynamicdatamanagement.form.usage.UsageLevelOrganisation;
 import com.papaya.dynamicdatamanagement.form.usage.UsageLevelProject;
-import com.papaya.dynamicdatamanagement.form.usage.UsageLevelUser;
+import com.papaya.dynamicdatamanagement.form.usage.UsageLevelRole;
 
 import java.util.List;
 
@@ -16,11 +16,11 @@ public interface QueryUsageLevelInformationPort {
 
     List<UsageLevelProject> getAllProjectsByOrganisation(Long orgId);
 
-    List<UsageLevelUser> getAllUsers();
+    List<UsageLevelRole> getAllUsers();
 
-    List<UsageLevelUser> getAllUsersByOrganisation(Long orgId);
+    List<UsageLevelRole> getAllUsersByOrganisation(Long orgId);
 
-    List<UsageLevelUser> getAllUsersByProject(Long projectId);
+    List<UsageLevelRole> getAllUsersByProject(Long projectId);
 
     List<UsageLevelCountry> getAllCountries();
 
