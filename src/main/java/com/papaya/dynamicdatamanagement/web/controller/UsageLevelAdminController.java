@@ -62,13 +62,13 @@ public class UsageLevelAdminController {
 
     @GetMapping(value = "/roles", params = "searchRoles")
     //http://localhost:8080/forms/usage-level/users?searchRoles={countryIso: 'ISR', organisationId: 1,  projectId: 1},{countryIso: 'FR', organisationId: 2,  projectId: 4}
-    public List<RoleDTO> getRoles(List<SearchRoleDto> searchRoles) {
+    public List<RoleDTO> getRoles(@RequestParam List<SearchRoleDto> searchRoles) {
         return null;
     }
 
     @GetMapping(value = "/roles", params = "searchRole")
     //http://localhost:8080/forms/usage-level/users?searchRole={countryIso: 'ISR', organisationId: 1,  projectId: 1}
-    public List<RoleDTO> getRole(SearchRoleDto searchRole) {
+    public List<RoleDTO> getRole(@RequestParam SearchRoleDto searchRole) {
         return null;
     }
 
