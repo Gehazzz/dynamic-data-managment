@@ -1,9 +1,6 @@
 package com.papaya.dynamicdatamanagement.repository.model.template;
 
-import com.papaya.dynamicdatamanagement.repository.model.owner.Country;
-import com.papaya.dynamicdatamanagement.repository.model.owner.Organisation;
-import com.papaya.dynamicdatamanagement.repository.model.owner.Project;
-import com.papaya.dynamicdatamanagement.repository.model.owner.User;
+import com.papaya.dynamicdatamanagement.repository.model.owner.FormUsage;
 import lombok.*;
 
 import javax.persistence.*;
@@ -41,39 +38,9 @@ public class FormTemplate {
             CascadeType.PERSIST,
             CascadeType.MERGE
     })
-    @JoinTable(name = "form_template_organisation",
+    @JoinTable(name = "form_template_form_usage",
             joinColumns = @JoinColumn(name = "form_template_id"),
-            inverseJoinColumns = @JoinColumn(name = "organisation_id")
+            inverseJoinColumns = @JoinColumn(name = "form_usage_id")
     )
-    private List<Organisation> organisations;
-
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
-    @JoinTable(name = "form_template_project",
-            joinColumns = @JoinColumn(name = "form_template_id"),
-            inverseJoinColumns = @JoinColumn(name = "project_id")
-    )
-    private List<Project> projects;
-
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
-    @JoinTable(name = "form_template_user",
-            joinColumns = @JoinColumn(name = "form_template_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    private List<User> users;
-
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
-    @JoinTable(name = "form_template_country",
-            joinColumns = @JoinColumn(name = "form_template_id"),
-            inverseJoinColumns = @JoinColumn(name = "country_id")
-    )
-    private List<Country> countries;
+    private List<FormUsage> formUsages;
 }

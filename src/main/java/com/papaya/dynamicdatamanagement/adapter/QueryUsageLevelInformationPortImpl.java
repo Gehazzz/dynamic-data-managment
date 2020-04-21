@@ -7,7 +7,6 @@ import com.papaya.dynamicdatamanagement.repository.CountryRepository;
 import com.papaya.dynamicdatamanagement.repository.OrganizationsRepository;
 import com.papaya.dynamicdatamanagement.repository.ProjectsRepository;
 import com.papaya.dynamicdatamanagement.repository.UsersRepository;
-import com.papaya.dynamicdatamanagement.repository.model.owner.Organisation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/usage-level/forms")
+@RequestMapping("/forms/usage-level")
 public class UsageLevelController {
     @GetMapping("/countries")
     public List<CountryDTO> getAllCountries() {
@@ -60,11 +60,20 @@ public class UsageLevelController {
         return null;
     }*/
 
-    @GetMapping(value = "/roles")
-    //http://localhost:8080/usage-level/forms/users?{countryIso: 'ISR', organisationId: 1,  }
-    public List<RoleDTO> getRoles(List<SearchRoleDto> searchRoleDtos) {
+    @GetMapping(value = "/roles", params = "searchRoles")
+    //http://localhost:8080/forms/usage-level/users?searchRoles={countryIso: 'ISR', organisationId: 1,  projectId: 1},{countryIso: 'FR', organisationId: 2,  projectId: 4}
+    public List<RoleDTO> getRoles(List<SearchRoleDto> searchRoles) {
         return null;
     }
+
+    @GetMapping(value = "/roles", params = "searchRole")
+    //http://localhost:8080/forms/usage-level/users?searchRole={countryIso: 'ISR', organisationId: 1,  projectId: 1}
+    public List<RoleDTO> getRole(SearchRoleDto searchRole) {
+        return null;
+    }
+
+
+
 //    @GetMapping("/users", params = {"countriesIso", "organisationsId", "projectsId"})
 //    //http://localhost:8080/forms/users?countriesIso=ISR,RUS,US&organisationsId=1,2,3&projectsId=1,2,3
 //    public List<RoleDTO> getUsers(@RequestParam List<String> countriesIso,
