@@ -11,8 +11,8 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/forms/usage-level")
-public class UsageLevelController {
+@RequestMapping("/api/admin/usage-level")
+public class UsageLevelAdminController {
     @GetMapping("/countries")
     public List<CountryDTO> getAllCountries() {
         return null;

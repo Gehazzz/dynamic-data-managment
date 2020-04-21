@@ -13,6 +13,7 @@ import java.util.List;
 //TODO:
 // 1. add paging
 // 2. optional search redesign
+// 3. validate list of usage levels on creation and update
 @Slf4j
 @RestController
 @RequestMapping("/api/admin/forms")
@@ -26,16 +27,28 @@ public class FormAdminController {
     //Can replace all search methods
     List<FormDTO> searchForms(SearchFormDTO searchFormDTO){return null;}
 
+    @GetMapping(params = "formType")
+    List<FormDTO> getForms(FormTypeDTO formType){return null;}
+
+    @GetMapping(params = {"label", "formType"})
+    List<FormDTO> getForms(String label, FormTypeDTO formType){return null;}
+
     @GetMapping(params = "formSubType")
     List<FormDTO> getForms(FormSubTypeDTO formSubType){return null;}
+
+    @GetMapping(params = {"label", "formSubType"})
+    List<FormDTO> getForms(String label, FormSubTypeDTO formSubType){return null;}
 
     @GetMapping(params = {"formSubType", "usageLevel"})
     List<FormDTO> getForms(FormSubTypeDTO formSubType, UsageLevelDTO usageLevel){return null;}
 
+    @GetMapping(params = {"label", "formSubType", "usageLevel"})
+    List<FormDTO> getForms(String label, FormSubTypeDTO formSubType, UsageLevelDTO usageLevel){return null;}
+
     @GetMapping(params = {"formSubType", "usageLevels"})
     List<FormDTO> getForms(FormSubTypeDTO formSubType, List<UsageLevelDTO> usageLevels){return null;}
 
-    @GetMapping(params = {"formSubType", "usageLevels"})
+    @GetMapping(params = {"formType", "formSubType"})
     List<FormDTO> getForms(FormTypeDTO formType, FormSubTypeDTO formSubType){return null;}
 
     @GetMapping(params = {"formType", "formSubType", "usageLevel"})
@@ -43,6 +56,9 @@ public class FormAdminController {
 
     @GetMapping(params = {"formType", "formSubType", "usageLevels"})
     List<FormDTO> getForms(FormTypeDTO formType, FormSubTypeDTO formSubType, List<UsageLevelDTO> usageLevels){return null;}
+
+    @GetMapping("/{id}/available-elements")
+    List<FormElementDTO> getFormAvailableElements(@PathVariable("id") Long id){return null;}
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -58,5 +74,5 @@ public class FormAdminController {
 
     @PutMapping("/{id}/assign-usage-level")
     @ResponseStatus(HttpStatus.OK)
-    FormDTO assignFormUsageLevel(@RequestBody List<UsageLevelDTO> usageLevel){return null;}
+    FormDTO assignFormUsageLevel(@PathVariable( "id" ) Long id, @RequestBody List<UsageLevelDTO> usageLevel){return null;}
 }
