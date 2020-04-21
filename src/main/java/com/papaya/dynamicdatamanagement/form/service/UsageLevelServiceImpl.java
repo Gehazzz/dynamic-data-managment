@@ -2,9 +2,9 @@ package com.papaya.dynamicdatamanagement.form.service;
 
 import com.papaya.dynamicdatamanagement.form.service.port.in.UsageLevelService;
 import com.papaya.dynamicdatamanagement.form.service.port.out.QueryUsageLevelInformationPort;
-import com.papaya.dynamicdatamanagement.form.usage.UsageLevelCountry;
-import com.papaya.dynamicdatamanagement.form.usage.UsageLevelOrganisation;
-import com.papaya.dynamicdatamanagement.form.usage.UsageLevelProject;
+import com.papaya.dynamicdatamanagement.form.usage.CountryInfo;
+import com.papaya.dynamicdatamanagement.form.usage.OrganisationInfo;
+import com.papaya.dynamicdatamanagement.form.usage.ProjectInfo;
 import com.papaya.dynamicdatamanagement.form.usage.UsageLevelRole;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,47 +15,41 @@ public class UsageLevelServiceImpl implements UsageLevelService {
     QueryUsageLevelInformationPort queryUsageLevelInformationPort;
 
     @Override
-    public List<UsageLevelOrganisation> getAllOrganisations() {
+    public List<OrganisationInfo> getAllOrganisations() {
         return queryUsageLevelInformationPort.getAllOrganisations();
     }
 
     @Override
-    public List<UsageLevelOrganisation> getAllOrganisationsByCountry(String countryId) {
+    public List<OrganisationInfo> getAllOrganisationsByCountry(String countryId) {
         return queryUsageLevelInformationPort.getAllOrganisationsByCountry(countryId);
     }
 
     @Override
-    public List<UsageLevelProject> getAllProjects() {
+    public List<ProjectInfo> getAllProjects() {
         return queryUsageLevelInformationPort.getAllProjects();
     }
 
     @Override
-    public List<UsageLevelProject> getAllProjectsByOrganisation(Long orgId) {
+    public List<ProjectInfo> getAllProjectsByOrganisation(Long orgId) {
         return queryUsageLevelInformationPort.getAllProjectsByOrganisation(orgId);
     }
 
     @Override
     public List<UsageLevelRole> getAllUsers() {
-        return queryUsageLevelInformationPort.getAllUsers();
+        return queryUsageLevelInformationPort.getAllRoles();
     }
 
     @Override
     public List<UsageLevelRole> getAllUsersByOrganisation(Long orgId) {
-        return queryUsageLevelInformationPort.getAllUsersByOrganisation(orgId);
+        return queryUsageLevelInformationPort.getAllRolesByOrganisation(orgId);
     }
-
     @Override
-    public List<UsageLevelRole> getAllUsersByProject(Long projectId) {
-        return queryUsageLevelInformationPort.getAllUsersByProject(projectId);
-    }
-
-    @Override
-    public List<UsageLevelCountry> getAllCountries() {
+    public List<CountryInfo> getAllCountries() {
         return queryUsageLevelInformationPort.getAllCountries();
     }
 
     @Override
-    public List<UsageLevelCountry> getAllCountriesByOrganization(Long orgId) {
+    public List<CountryInfo> getAllCountriesByOrganization(Long orgId) {
         return queryUsageLevelInformationPort.getAllCountriesByOrganisation(orgId);
     }
 }

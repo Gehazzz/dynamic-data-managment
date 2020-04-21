@@ -9,7 +9,8 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class UsageLevelProject {
+public class ProjectInfo {
     private long projectId;
     private String projectName;
+
 }

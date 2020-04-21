@@ -2,137 +2,63 @@ package com.papaya.dynamicdatamanagement.adapter.element;
 
 
 import com.papaya.dynamicdatamanagement.form.usage.*;
-import com.papaya.dynamicdatamanagement.repository.model.template.FormTemplate;
+import com.papaya.dynamicdatamanagement.repository.model.owner.*;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class UsageLevelAdapter {
 
-    public UsageLevel calculateUsageLevelFromFormTemplate(FormTemplate formTemplate){
-        UsageLevel usageLevel = new UsageLevel();
-        List<Country> countries = formTemplate.getCountries();
-        List<UsageLevelCountry> usageLevelCountries = getUsageLevelCountries(countries);
-        usageLevel.setUsageLevelCountries(usageLevelCountries);
-
-        List<Organisation> organisations = formTemplate.getOrganisations();
-        List<UsageLevelOrganisation> usageLevelOrganisations = getUsageLevelOrganisations(organisations);
-        usageLevel.setUsageLevelOrganisations(usageLevelOrganisations);
-
-        List<Project> projects = formTemplate.getProjects();
-        List<UsageLevelProject> usageLevelProjects = getUsageLevelProjects(projects);
-        usageLevel.setUsageLevelProjects(usageLevelProjects);
-        List<User> users = formTemplate.getUsers();
-        List<UsageLevelRole> usageLevelRoles = getUsageLevelUsers(users);
-        usageLevel.setUsageLevelRoles(usageLevelRoles);
-        return usageLevel;
+    public List<UsageLevel> getUsageLevelsFromFormUsageList(List<FormUsage> formUsages){
+        return formUsages.stream().map(formUsage -> UsageLevel.builder()
+                .countryIso(formUsage.getCountryIso())
+                .organisationId(formUsage.getOrganisationId())
+                .projectId(formUsage.getProjectId())
+                .usageLevelRoles(formUsage.getRoles().stream().map(role -> UsageLevelRole.builder().roleId(role.getId()).roleName(role.getTitle()).build()).collect(Collectors.toList())).build()
+        ).collect(Collectors.toList());
     }
 
-    public List<UsageLevelRole> getUsageLevelUsers(List<User> users) {
-        List<UsageLevelRole> usageLevelRoles = new ArrayList<>();
-        if(users!=null && !users.isEmpty()){
-            for (User user : users) {
-                usageLevelRoles.add(UsageLevelRole.builder()
-                        .userId(user.getId())
-                        .userName(user.getName())
-                        .build());
-            }
-        }
-        return usageLevelRoles;
+
+    public List<FormUsage> getFormUsageListFromUsageLevel(List<UsageLevel> usageLevels){
+       return usageLevels.stream().map(usageLevel -> FormUsage.builder()
+                .countryIso(usageLevel.getCountryIso())
+                .organisationId(usageLevel.getOrganisationId())
+                .projectId(usageLevel.getProjectId())
+                .roles(usageLevel.getUsageLevelRoles().stream().map(usageLevelRole -> Role.builder().id(usageLevelRole.getRoleId()).title(usageLevelRole.getRoleName()).build()).collect(Collectors.toList()))
+                .build()
+        ).collect(Collectors.toList());
     }
 
-    public List<User> getUsersFromUsageLevelUsers(List<UsageLevelRole> usageLevelRoles){
-        List<User> users = new ArrayList<>();
-        if(usageLevelRoles !=null && !usageLevelRoles.isEmpty()){
-            for (UsageLevelRole usageLevelRole : usageLevelRoles) {
-                users.add(User.builder()
-                        .id(usageLevelRole.getUserId())
-                        .name(usageLevelRole.getUserName())
-                        .build());
-            }
-        }
-        return users;
+    public CountryInfo getCountryInfo(Country country){
+        return CountryInfo.builder()
+                .countryId(country.getId())
+                .countryName(country.getName()).build();
     }
 
-    public List<UsageLevelProject> getUsageLevelProjects(List<Project> projects) {
-        List<UsageLevelProject> usageLevelProjects = new ArrayList<>();
-        if(projects!=null && !projects.isEmpty()){
-            for (Project project : projects) {
-                usageLevelProjects.add(UsageLevelProject.builder()
-                        .projectId(project.getId())
-                        .projectName(project.getName())
-                        .build());
-            }
-        }
-        return usageLevelProjects;
+    public OrganisationInfo getOrganisationInfo(Organisation organisation){
+        return OrganisationInfo.builder()
+                .countryInfo(getCountryInfo(organisation.getCountry()))
+                .organisationId(organisation.getId())
+                .organisationName(organisation.getName())
+                .usageLevelRoles(organisation.getRoles().stream().map(this::getUsageLevelRole).collect(Collectors.toList()))
+                .build();
     }
 
-    public List<Project> getProjectsFromUsageLevelProjects(List<UsageLevelProject> usageLevelProjects) {
-        List<Project> projects = new ArrayList<>();
-        if(usageLevelProjects!=null && !usageLevelProjects.isEmpty()){
-            for (UsageLevelProject project : usageLevelProjects) {
-                projects.add(Project.builder()
-                        .id(project.getProjectId())
-                        .name(project.getProjectName())
-                        .build());
-            }
-        }
-        return projects;
+    public ProjectInfo getProjectInfo(Project project){
+        return ProjectInfo.builder()
+                .projectId(project.getId())
+                .projectName(project.getName())
+                .build();
     }
 
-    public List<UsageLevelOrganisation> getUsageLevelOrganisations(List<Organisation> organisations) {
-        List<UsageLevelOrganisation> usageLevelOrganisations = new ArrayList<>();
-        if(organisations!=null&&!organisations.isEmpty()){
-            for (Organisation organisation : organisations) {
-                usageLevelOrganisations.add(UsageLevelOrganisation.builder()
-                        .organisationId(organisation.getId())
-                        .organisationName(organisation.getName())
-                        .build());
-            }
-        }
-        return usageLevelOrganisations;
+    public UsageLevelRole getUsageLevelRole(Role role){
+        return UsageLevelRole.builder()
+                .roleName(role.getTitle())
+                .roleId(role.getId())
+                .build();
     }
 
-    public List<Organisation> getOrganizationsDataFromUsageLevelOrganizations(List<UsageLevelOrganisation> usageLevelOrganisations){
-        List<Organisation> organisations = new ArrayList<>();
-        if(usageLevelOrganisations!=null&&!usageLevelOrganisations.isEmpty()){
-            for (UsageLevelOrganisation usageLevelOrganisation : usageLevelOrganisations) {
-                organisations.add(Organisation.builder()
-                        .id(usageLevelOrganisation.getOrganisationId())
-                        .name(usageLevelOrganisation.getOrganisationName())
-                        .build());
-            }
-        }
-        return organisations;
-    }
-
-    public List<UsageLevelCountry> getUsageLevelCountries(List<Country> countries) {
-        List<UsageLevelCountry> usageLevelCountries = new ArrayList<>();
-        if(countries!=null && !countries.isEmpty()){
-            for (Country country : countries) {
-                usageLevelCountries.add(UsageLevelCountry.builder()
-                        .countryId(country.getId())
-                        .countryName(country.getName())
-                        .build());
-            }
-        }
-        return usageLevelCountries;
-    }
-
-    public List<Country> getCountriesFromUsageLevelCountries(List<UsageLevelCountry> usageLevelCountries){
-        List<Country> countries = new ArrayList<>();
-        if(usageLevelCountries!=null && !usageLevelCountries.isEmpty()){
-            for (UsageLevelCountry usageLevelCountry : usageLevelCountries) {
-                countries.add(Country.builder()
-                        .id(usageLevelCountry.getCountryId())
-                        .name(usageLevelCountry.getCountryName())
-                        .build());
-            }
-        }
-        return countries;
-    }
-    
     
 }

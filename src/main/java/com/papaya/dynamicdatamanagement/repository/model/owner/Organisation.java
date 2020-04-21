@@ -21,12 +21,19 @@ public class Organisation {
     private Long id;
     private String name;
 
-    @ManyToMany(mappedBy = "organisations")
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private List<FormTemplate> formTemplates;
-
     @ManyToOne
     @JoinColumn(name = "countryId")
     @LazyCollection(LazyCollectionOption.FALSE)
     private Country country;
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinTable(name = "org_role",
+    joinColumns = @JoinColumn(name = "orgId"),
+            inverseJoinColumns = @JoinColumn(name = "roleId")
+    )
+    private List<Role> roles;
 }

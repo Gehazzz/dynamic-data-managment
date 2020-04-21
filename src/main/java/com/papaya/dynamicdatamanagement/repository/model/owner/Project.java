@@ -25,4 +25,9 @@ public class Project {
     @JoinColumn(name = "countryId")
     @LazyCollection(LazyCollectionOption.FALSE)
     private Country country;
+
+    @ManyToOne
+    @JoinColumn(name = "customerId")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Organisation organisation;
 }

@@ -9,7 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class UsageLevelCountry {
+public class CountryInfo {
     private String countryId;
     private String countryName;
 }

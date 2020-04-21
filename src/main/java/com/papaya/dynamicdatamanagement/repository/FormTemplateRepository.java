@@ -10,6 +10,4 @@ import java.util.Optional;
 
 public interface FormTemplateRepository extends JpaRepository<FormTemplate, Long>, QueryByExampleExecutor<FormTemplate> {
 
-    List<FormTemplate> findAllByUsersName(String userName);
-
 }

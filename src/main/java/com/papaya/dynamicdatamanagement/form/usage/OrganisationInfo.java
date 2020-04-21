@@ -9,7 +9,9 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class UsageLevelOrganisation {
+public class OrganisationInfo {
     private long organisationId;
     private String organisationName;
+    private CountryInfo countryInfo;
+    private List<UsageLevelRole> usageLevelRoles;
 }

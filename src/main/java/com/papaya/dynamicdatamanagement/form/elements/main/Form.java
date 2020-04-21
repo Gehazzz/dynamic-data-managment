@@ -27,7 +27,7 @@ public class Form {
 
     private FormSubType formSubType;
 
-    private UsageLevel usageLevel;
+    private List<UsageLevel> usageLevels;
 
     public Long getId() {
         return id;
@@ -47,10 +47,6 @@ public class Form {
 
     public FormSubType getFormSubType() {
         return formSubType;
-    }
-
-    public UsageLevel getUsageLevel() {
-        return usageLevel;
     }
 
     public Form add(AbstractFormElement formElement) {
@@ -78,15 +74,16 @@ public class Form {
 
     public Form() {
     }
+
     @Builder
-    public Form(Long id, Section mainSection, ArrayList<FormValidator> validators, String label, Form template, FormType formType, FormSubType formSubType, UsageLevel usageLevel) {
+    public Form(Long id, Form template, Section mainSection, ArrayList<FormValidator> validators, String label, FormType formType, FormSubType formSubType, List<UsageLevel> usageLevels) {
         this.id = id;
+        this.template = template;
         this.mainSection = mainSection;
         this.validators = validators;
         this.label = label;
-        this.template = template;
         this.formType = formType;
         this.formSubType = formSubType;
-        this.usageLevel = usageLevel;
+        this.usageLevels = usageLevels;
     }
 }
