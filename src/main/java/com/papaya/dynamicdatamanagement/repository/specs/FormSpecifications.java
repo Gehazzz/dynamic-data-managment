@@ -21,22 +21,22 @@ public class FormSpecifications {
 
             Predicate countryIsoValue = criteriaBuilder.equal(formUsageJoin.get(FormUsage.Fields.countryIso), countryIso);
             Predicate countryIsoNull = criteriaBuilder.isNull(formUsageJoin.get(FormUsage.Fields.countryIso));
-            Predicate countryIsoOrStatement = criteriaBuilder.or(countryIsoValue, countryIsoNull);
-            //if (!StringUtils.isEmpty(countryIso)) predicates.add(criteriaBuilder.or(countryIsoValue, countryIsoNull));
+            //Predicate countryIsoOrStatement = criteriaBuilder.or(countryIsoValue, countryIsoNull);
+            if (!StringUtils.isEmpty(countryIso)) predicates.add(criteriaBuilder.or(countryIsoValue, countryIsoNull));
 
             Predicate organisationIdValue = criteriaBuilder.equal(formUsageJoin.get(FormUsage.Fields.organisationId), organisationId);
             Predicate organisationIdNull = criteriaBuilder.isNull(formUsageJoin.get(FormUsage.Fields.organisationId));
-            Predicate organisationIdOrStatement = criteriaBuilder.or(organisationIdValue, organisationIdNull);
-            //if (organisationId != null) predicates.add(criteriaBuilder.or(organisationIdValue, organisationIdNull));
+            //Predicate organisationIdOrStatement = criteriaBuilder.or(organisationIdValue, organisationIdNull);
+            if (organisationId != null) predicates.add(criteriaBuilder.or(organisationIdValue, organisationIdNull));
 
             Predicate projectIdValue = criteriaBuilder.equal(formUsageJoin.get(FormUsage.Fields.projectId), projectId);
             Predicate projectIdNull = criteriaBuilder.isNull(formUsageJoin.get(FormUsage.Fields.projectId));
-            Predicate projectIdOrStatement = criteriaBuilder.or(projectIdValue, projectIdNull);
-            //if (projectId != null) predicates.add(criteriaBuilder.or(projectIdValue, projectIdNull));
+            //Predicate projectIdOrStatement = criteriaBuilder.or(projectIdValue, projectIdNull);
+            if (projectId != null) predicates.add(criteriaBuilder.or(projectIdValue, projectIdNull));
 
             if (roleList == null || roleList.isEmpty()) {
-                return criteriaBuilder.and(countryIsoOrStatement, organisationIdOrStatement, projectIdOrStatement);
-                //return criteriaBuilder.and(predicates.toArray(Predicate[]::new));
+                //return criteriaBuilder.and(countryIsoOrStatement, organisationIdOrStatement, projectIdOrStatement);
+                return criteriaBuilder.and(predicates.toArray(Predicate[]::new));
             } else {
                 Stream<Predicate> roleValues = roleList.stream()
                         .map(role -> {
@@ -49,8 +49,8 @@ public class FormSpecifications {
 
                 Predicate rolesOrStatement = criteriaBuilder.or(Stream.concat(Stream.of(roleEmpty), roleValues).toArray(Predicate[]::new));
                 predicates.add(rolesOrStatement);
-                return criteriaBuilder.and(countryIsoOrStatement, organisationIdOrStatement, projectIdOrStatement, rolesOrStatement);
-                //return criteriaBuilder.and(predicates.toArray(Predicate[]::new));
+                //return criteriaBuilder.and(countryIsoOrStatement, organisationIdOrStatement, projectIdOrStatement, rolesOrStatement);
+                return criteriaBuilder.and(predicates.toArray(Predicate[]::new));
             }
         };
     }

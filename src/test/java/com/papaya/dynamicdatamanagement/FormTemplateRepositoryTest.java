@@ -38,8 +38,8 @@ public class FormTemplateRepositoryTest {
     @Test
     @SneakyThrows
     void formTest(){
-        formTemplateRepository.deleteAll();
-        formUsageRepository.deleteAll();
+        //formTemplateRepository.deleteAll();
+        //formUsageRepository.deleteAll();
 
         SectionTemplate section = SectionTemplate.builder()
                 .label("section label")
@@ -79,6 +79,7 @@ public class FormTemplateRepositoryTest {
                 .build();
 
         FormTemplate saved = formTemplateRepository.save(formTemplate);
+        System.out.println(saved);
         //String s = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(saved);
         //System.out.println(s);
         List<FormTemplate> ch = formTemplateRepository.findAll(FormSpecifications.formsByUsageLevel("ch", 23L, 1L, null));
