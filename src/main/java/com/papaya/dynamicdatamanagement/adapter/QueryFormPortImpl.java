@@ -8,6 +8,7 @@ import com.papaya.dynamicdatamanagement.form.usage.*;
 import com.papaya.dynamicdatamanagement.repository.FormTemplateRepository;
 import com.papaya.dynamicdatamanagement.repository.model.template.*;
 import com.papaya.dynamicdatamanagement.form.elements.main.Form;
+import com.papaya.dynamicdatamanagement.repository.specs.FormSpecifications;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Component;
@@ -101,10 +102,7 @@ public class QueryFormPortImpl implements QueryFormPort {
 
     @Override
     public List<Form> getAllForms(UsageLevel usageLevel) {
-        return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
-                .formUsages(usageLevelAdapter.getFormUsageListFromUsageLevel(List.of(usageLevel)))
-                .build()))
-                .stream()
+       return formTemplateRepository.findAll(FormSpecifications.formsByUsageLevel(usageLevel.getCountryIso(),usageLevel.getOrganisationId(),usageLevel.getProjectId(),usageLevel.getUsageLevelRoles().stream().map(usageLevelRole -> usageLevelAdapter.getRole(usageLevelRole)).collect(Collectors.toList()))).stream()
                 .map(this::convertTemplateToForm)
                 .collect(Collectors.toList());
     }

@@ -1,6 +1,7 @@
 package com.papaya.dynamicdatamanagement;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.papaya.dynamicdatamanagement.form.service.port.out.QueryFormPort;
 import com.papaya.dynamicdatamanagement.repository.OrganizationsRepository;
 import com.papaya.dynamicdatamanagement.repository.model.owner.Country;
 import com.papaya.dynamicdatamanagement.repository.model.owner.Organisation;
@@ -21,18 +22,14 @@ public class UsageLevelTest {
     OrganizationsRepository organizationsRepository;
 
     @Autowired
+    QueryFormPort queryFormPort;
+
+    @Autowired
     ObjectMapper objectMapper;
     @Test
     void findTest(){
 
-        Country country = Country.builder().id("CH").name("Switzerland").build();
-        Organisation org = Organisation.builder().name("org").country(country).build();
-        //organizationsRepository.save(org);
-        List<Organisation> all = organizationsRepository.findAll();
-        List<Organisation> all1 = organizationsRepository.findAll(Example.of(Organisation.builder().country(Country.builder().id("ch").build()).build(), ExampleMatcher.matching().withMatcher("id",genericPropertyMatcher -> genericPropertyMatcher.exact()).withIgnoreNullValues().withIgnoreCase()));
-        Organisation organisation = all1.get(0);
-        List<Organisation> ch = organizationsRepository.findAll(OrganizationSpecs.getByCountryId("Switzerland"));
-        System.out.println(all);
+
     }
 
 }

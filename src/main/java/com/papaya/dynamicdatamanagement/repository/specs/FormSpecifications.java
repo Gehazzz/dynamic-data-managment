@@ -27,7 +27,7 @@ public class FormSpecifications {
             Predicate projectIdNull = criteriaBuilder.isNull(formUsageJoin.get(FormUsage.Fields.projectId));
             Predicate projectIdOrStatement = criteriaBuilder.or(projectIdValue, projectIdNull);
 
-            if (roleList.isEmpty()) {
+            if (roleList==null||roleList.isEmpty()) {
                 return criteriaBuilder.and(countryIsoOrStatement, organisationIdOrStatement, projectIdOrStatement);
             } else {
                 Stream<Predicate> roleValues = roleList.stream()

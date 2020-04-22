@@ -60,5 +60,9 @@ public class UsageLevelAdapter {
                 .build();
     }
 
+    public Role getRole(UsageLevelRole usageLevelRole){
+        return Role.builder().id(usageLevelRole.getRoleId()).title(usageLevelRole.getRoleName()).build();
+    }
+
     
 }

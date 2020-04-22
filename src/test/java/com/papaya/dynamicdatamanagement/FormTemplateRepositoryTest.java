@@ -6,8 +6,11 @@ import com.papaya.dynamicdatamanagement.form.elements.StringTextField;
 import com.papaya.dynamicdatamanagement.form.elements.main.*;
 import com.papaya.dynamicdatamanagement.form.model.SupplementaryWorker;
 import com.papaya.dynamicdatamanagement.form.validation.PatternValidator;
+import com.papaya.dynamicdatamanagement.repository.CountryRepository;
+import com.papaya.dynamicdatamanagement.repository.model.owner.FormUsage;
 import com.papaya.dynamicdatamanagement.repository.model.template.*;
 import com.papaya.dynamicdatamanagement.repository.FormTemplateRepository;
+import com.papaya.dynamicdatamanagement.repository.specs.FormSpecifications;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,9 @@ public class FormTemplateRepositoryTest {
     FormTemplateRepository formTemplateRepository;
     @Autowired
     ObjectMapper objectMapper;
+
+    @Autowired
+    CountryRepository countryRepository;
     @Test
     @SneakyThrows
     void formTest(){
@@ -63,12 +69,15 @@ public class FormTemplateRepositoryTest {
         FormTemplate formTemplate = FormTemplate.builder()
                 .label("form")
                 .mainSection(section)
+                .formUsages(List.of(FormUsage.builder().countryIso("ch").projectId(1L).build()))
                 .build();
 
         FormTemplate saved = formTemplateRepository.save(formTemplate);
         String s = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(saved);
         //System.out.println(s);
-        System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(createSupplementaryForm()));
+        List<FormTemplate> ch = formTemplateRepository.findAll(FormSpecifications.formsByUsageLevel("ch", null, 1L, null));
+        System.out.println(ch);
+        //        System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(createSupplementaryForm()));
     }
 
     public Form createSupplementaryForm(){

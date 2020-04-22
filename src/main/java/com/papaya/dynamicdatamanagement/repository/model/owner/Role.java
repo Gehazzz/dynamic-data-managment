@@ -12,11 +12,11 @@ import javax.persistence.*;
 import java.util.List;
 
 @Data
-@Builder
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldNameConstants
+@Builder
 @Table(name = "role", schema = "papaya")
 public class Role {
     @Id
@@ -37,4 +37,5 @@ public class Role {
             inverseJoinColumns = @JoinColumn(name = "orgId")
     )
     private List<Organisation> organisations;
+
 }
