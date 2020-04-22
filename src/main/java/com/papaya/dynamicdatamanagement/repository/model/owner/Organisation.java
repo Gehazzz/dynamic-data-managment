@@ -12,6 +12,7 @@ import java.util.List;
 @Builder
 @Getter
 @Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "org", schema = "papaya")
@@ -21,7 +22,7 @@ public class Organisation {
     private Long id;
     private String name;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "countryId")
     @LazyCollection(LazyCollectionOption.FALSE)
     private Country country;
