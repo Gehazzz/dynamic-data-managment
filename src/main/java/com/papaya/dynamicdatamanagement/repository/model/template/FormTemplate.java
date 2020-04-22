@@ -2,6 +2,7 @@ package com.papaya.dynamicdatamanagement.repository.model.template;
 
 import com.papaya.dynamicdatamanagement.repository.model.owner.FormUsage;
 import lombok.*;
+import lombok.experimental.FieldNameConstants;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@FieldNameConstants
 public class FormTemplate {
     @Id
     @GeneratedValue

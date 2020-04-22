@@ -2,6 +2,7 @@ package com.papaya.dynamicdatamanagement.repository.model.owner;
 
 import com.papaya.dynamicdatamanagement.repository.model.template.FormTemplate;
 import lombok.*;
+import lombok.experimental.FieldNameConstants;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -15,6 +16,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@FieldNameConstants
 @Table(name = "org", schema = "papaya")
 public class Organisation {
     @Id
