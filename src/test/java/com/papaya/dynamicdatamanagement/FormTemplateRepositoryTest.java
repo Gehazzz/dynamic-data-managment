@@ -7,6 +7,7 @@ import com.papaya.dynamicdatamanagement.form.elements.main.*;
 import com.papaya.dynamicdatamanagement.form.model.SupplementaryWorker;
 import com.papaya.dynamicdatamanagement.form.validation.PatternValidator;
 import com.papaya.dynamicdatamanagement.repository.CountryRepository;
+import com.papaya.dynamicdatamanagement.repository.FormUsageRepository;
 import com.papaya.dynamicdatamanagement.repository.model.owner.FormUsage;
 import com.papaya.dynamicdatamanagement.repository.model.template.*;
 import com.papaya.dynamicdatamanagement.repository.FormTemplateRepository;
@@ -28,6 +29,8 @@ public class FormTemplateRepositoryTest {
     @Autowired
     FormTemplateRepository formTemplateRepository;
     @Autowired
+    FormUsageRepository formUsageRepository;
+    @Autowired
     ObjectMapper objectMapper;
 
     @Autowired
@@ -35,6 +38,9 @@ public class FormTemplateRepositoryTest {
     @Test
     @SneakyThrows
     void formTest(){
+        formTemplateRepository.deleteAll();
+        formUsageRepository.deleteAll();
+
         SectionTemplate section = SectionTemplate.builder()
                 .label("section label")
                 .index(0)
@@ -75,9 +81,9 @@ public class FormTemplateRepositoryTest {
         FormTemplate saved = formTemplateRepository.save(formTemplate);
         String s = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(saved);
         //System.out.println(s);
-        List<FormTemplate> ch = formTemplateRepository.findAll(FormSpecifications.formsByUsageLevel("ch", null, 1L, null));
-        System.out.println(ch);
-        //        System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(createSupplementaryForm()));
+        List<FormTemplate> ch = formTemplateRepository.findAll(FormSpecifications.formsByUsageLevel("ch", 2L, 1L, null));
+        ch.forEach(System.out::println);
+        //System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(createSupplementaryForm()));
     }
 
     public Form createSupplementaryForm(){

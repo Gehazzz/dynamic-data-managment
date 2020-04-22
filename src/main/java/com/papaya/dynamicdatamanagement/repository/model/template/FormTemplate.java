@@ -37,9 +37,8 @@ public class FormTemplate {
     @JoinColumn(name = "form_id")
     private SectionTemplate mainSection;
 
-    @OneToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
+    @ManyToMany(cascade = {
+            CascadeType.ALL
     })
     @JoinTable(name = "form_template_form_usage",
             joinColumns = @JoinColumn(name = "form_template_id"),
