@@ -22,7 +22,7 @@ public class FormUsage {
     private String countryIso;
     private Long organisationId;
     private Long projectId;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "form_usage_id")
     private List<Role> roles;
 }
