@@ -1,5 +1,7 @@
 package com.papaya.dynamicdatamanagement.form.elements.main;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.papaya.dynamicdatamanagement.form.binding.Binding;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

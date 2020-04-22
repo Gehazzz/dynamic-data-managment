@@ -1,6 +1,7 @@
 package com.papaya.dynamicdatamanagement.form.elements;
 
 import com.papaya.dynamicdatamanagement.form.binding.Binding;
+import com.papaya.dynamicdatamanagement.form.elements.main.InputType;
 import com.papaya.dynamicdatamanagement.form.elements.main.Section;
 import com.papaya.dynamicdatamanagement.form.validation.FieldValidator;
 import lombok.Builder;
@@ -17,5 +18,10 @@ public class DoubleTextField extends TextField<Double>{
     @Override
     public Class<Double> getModelClass() {
         return Double.class;
+    }
+
+    @Override
+    public InputType getInputType() {
+        return InputType.DOUBLE_INPUT;
     }
 }

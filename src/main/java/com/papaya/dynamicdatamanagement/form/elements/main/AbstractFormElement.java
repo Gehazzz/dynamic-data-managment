@@ -1,5 +1,7 @@
 package com.papaya.dynamicdatamanagement.form.elements.main;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 @Setter
@@ -12,7 +14,7 @@ public abstract class AbstractFormElement {
     private String htmlId;
 
     private Integer index;
-
+    @JsonIgnoreProperties({"formElements","inputFields"})
     private Section parentSection;
 
     private boolean discarded = false;

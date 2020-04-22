@@ -1,6 +1,7 @@
 package com.papaya.dynamicdatamanagement.form.elements;
 
 import com.papaya.dynamicdatamanagement.form.binding.Binding;
+import com.papaya.dynamicdatamanagement.form.elements.main.InputType;
 import com.papaya.dynamicdatamanagement.form.elements.main.Section;
 import com.papaya.dynamicdatamanagement.form.validation.FieldValidator;
 import lombok.Builder;
@@ -21,6 +22,11 @@ public class TextArea extends AbstractInputField<String> {
 
     public void setPlaceholder(String placeholder) {
         this.placeholder = placeholder;
+    }
+
+    @Override
+    public InputType getInputType() {
+        return InputType.TEXT_AREA;
     }
 
     @Override

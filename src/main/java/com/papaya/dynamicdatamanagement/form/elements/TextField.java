@@ -1,6 +1,7 @@
 package com.papaya.dynamicdatamanagement.form.elements;
 
 import com.papaya.dynamicdatamanagement.form.binding.Binding;
+import com.papaya.dynamicdatamanagement.form.elements.main.InputType;
 import com.papaya.dynamicdatamanagement.form.elements.main.Section;
 import com.papaya.dynamicdatamanagement.form.validation.FieldValidator;
 import lombok.AllArgsConstructor;
@@ -31,6 +32,11 @@ public class TextField<T> extends AbstractInputField<T> {
     @Override
     public Class<T> getModelClass() {
         return modelClass;
+    }
+
+    @Override
+    public InputType getInputType() {
+        return InputType.TEXT_INPUT;
     }
 
     public void setModelClass(Class<T> modelClass) {

@@ -12,7 +12,7 @@ import java.util.Map;
 public class FilledFormDTO {
     Long formId;
 
-    Long formValueId;
+    //Long formValueId;
     /**
      * form type
      */

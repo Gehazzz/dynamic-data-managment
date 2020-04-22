@@ -1,7 +1,10 @@
 package com.papaya.dynamicdatamanagement.form.elements;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.papaya.dynamicdatamanagement.form.binding.Binding;
 import com.papaya.dynamicdatamanagement.form.elements.main.AbstractBoundField;
+import com.papaya.dynamicdatamanagement.form.elements.main.InputType;
 import com.papaya.dynamicdatamanagement.form.elements.main.Section;
 import com.papaya.dynamicdatamanagement.form.validation.FieldValidator;
 import lombok.NoArgsConstructor;
@@ -11,6 +14,8 @@ import java.util.List;
 import java.util.stream.Stream;
 
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(value = { "value", "parentSection" })
 public abstract class AbstractInputField<T> extends AbstractBoundField<T> {
     private String label;
 
@@ -102,6 +107,8 @@ public abstract class AbstractInputField<T> extends AbstractBoundField<T> {
     public Class<?> getModelClass() {
         return Object.class;
     }
+
+    public abstract InputType getInputType();
 
     public Stream<String> validateAndGetViolations() {
         return validators.stream().flatMap(validator -> validator.validate(this).stream());

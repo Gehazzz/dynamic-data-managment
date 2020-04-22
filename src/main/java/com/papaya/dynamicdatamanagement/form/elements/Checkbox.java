@@ -1,6 +1,7 @@
 package com.papaya.dynamicdatamanagement.form.elements;
 
 import com.papaya.dynamicdatamanagement.form.binding.Binding;
+import com.papaya.dynamicdatamanagement.form.elements.main.InputType;
 import com.papaya.dynamicdatamanagement.form.elements.main.Section;
 import com.papaya.dynamicdatamanagement.form.validation.FieldValidator;
 import lombok.Builder;
@@ -13,6 +14,11 @@ public class Checkbox extends AbstractInputField<Boolean> {
     @Override
     public Class<?> getModelClass() {
         return Boolean.class;
+    }
+
+    @Override
+    public InputType getInputType() {
+        return InputType.CHECKBOX;
     }
 
     @Builder
