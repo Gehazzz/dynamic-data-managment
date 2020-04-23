@@ -16,7 +16,7 @@ public class FormWorkerController {
     List<FormPreviewDTO> getForms(){return null;}
 
     @GetMapping("form/search")
-    List<FormDTO> searchForms(WorkerFormSearchDTO workerFormSearch) {
+    List<FormPreviewDTO> searchForms(WorkerFormSearchDTO workerFormSearch) {
         return null;
     }
 
@@ -32,7 +32,13 @@ public class FormWorkerController {
     @ResponseStatus(HttpStatus.OK)
     Long updateFilledForm(@PathVariable Long Id, @RequestBody FilledFormDTO filledForm){return null;}
 
-    @PutMapping("/filled/{id}/status/submit")
+    @PutMapping("/filled/{id}/submit")
     @ResponseStatus(HttpStatus.OK)
     Long submitFilledForm(@PathVariable Long Id, @RequestBody FilledFormDTO filledForm){return null;}
+
+    @DeleteMapping("/filled/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    Long deleteFilledForm(@PathVariable("id") Long id) {
+        return null;
+    }
 }

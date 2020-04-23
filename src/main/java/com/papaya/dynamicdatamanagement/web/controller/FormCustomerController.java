@@ -37,6 +37,24 @@ public class FormCustomerController {
         return null;
     }
 
+
+
+
+
+
+
+
+    @GetMapping("/filled")
+    List<FormPreviewDTO> getFilledForms() {
+        return null;
+    }
+
+    /**
+     *
+     * @param customerFormSearch
+     * @return filled by users forms from customer usage level
+     */
+
     @GetMapping("/filled/search")
     ///api/v1/org/{orgId}/project/{projectId}/customer/forms/search?status=submitted&userName=John&formType=dynamic&label=worker_expenses
     List<FormDTO> getSubmittedForms(CustomerFilledFormSearchDTO customerFormSearch) {
@@ -45,12 +63,12 @@ public class FormCustomerController {
 
 
 
-   /* @GetMapping("/filled/{id}")
+    @GetMapping("/filled/{id}")
     FormDTO getFilledForm(@PathVariable("id") Long id) {
         return null;
     }
 
-    @GetMapping("/submitted/{id}")
+    /*@GetMapping("/submitted/{id}")
     FormDTO getSubmittedForm(@PathVariable("id") Long id) {
         return null;
     }*/
@@ -72,7 +90,7 @@ public class FormCustomerController {
      * @param id submitted form id to be approved
      * @return approved filled form id
      */
-    @PutMapping("/filled/{id}/status/approved")
+    @PutMapping("/filled/{id}/approve")
     @ResponseStatus(HttpStatus.OK)
     Long approveSubmittedForm(@PathVariable("id") Long id){
         //TODO show to Ofer!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -80,7 +98,7 @@ public class FormCustomerController {
         return null;
     }
 
-    @PutMapping("/filled/{id}/status/submit")
+    @PutMapping("/filled/{id}/submit")
     @ResponseStatus(HttpStatus.OK)
     Long submitFilledForm(@PathVariable Long Id, @RequestBody FilledFormDTO filledForm){return null;}
 

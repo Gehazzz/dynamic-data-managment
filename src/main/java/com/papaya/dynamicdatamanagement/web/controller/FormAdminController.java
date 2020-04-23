@@ -35,7 +35,7 @@ public class FormAdminController {
     }
 
     //@GetMapping
-        //Can replace all search methods
+    //Can replace all search methods
     List<FormDTO> searchForms(AdminFormSearchDTO adminFormSearchDTO) {
         return null;
     }
@@ -135,8 +135,6 @@ public class FormAdminController {
     }
 
 
-
-
     /**
      * @return all filled forms
      */
@@ -163,31 +161,38 @@ public class FormAdminController {
 
     @PostMapping("/filled")
     @ResponseStatus(HttpStatus.CREATED)
-    Long createFilledForm(@RequestBody FilledFormDTO filledForm){return null;}
+    Long createFilledForm(@RequestBody FilledFormDTO filledForm) {
+        return null;
+    }
 
     //TODO we do not need additional methods to change status we can do it at update method status will be one of the available parameters;
 
-  /*  *//**
+    /**
      * admin will update filled form: filled data can be changed, status can be changed
-     * @param id filled form id to be managed
-     * @param filledFormWithStatus filled form
+     *
+     * @param id                   filled form id to be managed
+     * @param filledFormDTO filled form
      * @return approved filled form id
-     *//*
+     */
     @PutMapping("/filled/{id}")
     @ResponseStatus(HttpStatus.OK)
-    Long updateFilledForm(@PathVariable Long id, @RequestBody FilledFormWithStatusDTO filledFormWithStatus){return null;}
+    Long updateFilledForm(@PathVariable Long id, @RequestBody FilledFormDTO filledFormDTO) {
+        //TODO: validate that status is draft in any other case it can't be updated
+        return null;
+    }
 
-    @PutMapping("/filled/{id}/status/approved")
+    @PutMapping("/filled/{id}/approve")
     @ResponseStatus(HttpStatus.OK)
-    Long approveSubmittedForm(@PathVariable("id") Long id){
-        //TODO show to Ofer!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    Long approveSubmittedForm(@PathVariable("id") Long id) {
         new FilledFormWithStatusDTO();
         return null;
     }
 
-    @PutMapping("/filled/{id}/status/submit")
+    @PutMapping("/filled/{id}/submit")
     @ResponseStatus(HttpStatus.OK)
-    Long submitFilledForm(@PathVariable Long Id, @RequestBody FilledFormDTO filledForm){return null;}*/
+    Long submitFilledForm(@PathVariable Long Id, @RequestBody FilledFormDTO filledForm) {
+        return null;
+    }
 
     @DeleteMapping(value = "/filled/{id}")
     @ResponseStatus(HttpStatus.OK)
