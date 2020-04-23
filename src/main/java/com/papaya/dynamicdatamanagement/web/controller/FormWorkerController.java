@@ -1,8 +1,6 @@
 package com.papaya.dynamicdatamanagement.web.controller;
 
-import com.papaya.dynamicdatamanagement.web.dto.FilledFormDTO;
-import com.papaya.dynamicdatamanagement.web.dto.FormDTO;
-import com.papaya.dynamicdatamanagement.web.dto.FormPreviewDTO;
+import com.papaya.dynamicdatamanagement.web.dto.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,22 +11,28 @@ import java.util.List;
 @RequestMapping("/api/v1/me/org/{orgId}/project/{projectId}/forms")
 public class FormWorkerController {
 
-    @GetMapping
+    @GetMapping("/form")
     //get forms to fill by user
     List<FormPreviewDTO> getForms(){return null;}
+
+    @GetMapping("form/search")
+    List<FormDTO> searchForms(WorkerFormSearchDTO workerFormSearch) {
+        return null;
+    }
+
     //get filled form by filled formId (submmisionId if filledForm doesn't exist return form without bindings)
-    @GetMapping("/{id}")
+    @GetMapping("/form/{id}")
     FormDTO getForm(@PathVariable("id") Long id){return null;}
 
-    @PostMapping
+    @PostMapping("/filled")
     @ResponseStatus(HttpStatus.CREATED)
     Long createFilledForm(@RequestBody FilledFormDTO filledForm){return null;}
 
-    @PutMapping("/{id}")
+    @PutMapping("/filled/{id}")
     @ResponseStatus(HttpStatus.OK)
     Long updateFilledForm(@PathVariable Long Id, @RequestBody FilledFormDTO filledForm){return null;}
 
-    @PutMapping("/{id}/submit")
+    @PutMapping("/filled/{id}/status/submit")
     @ResponseStatus(HttpStatus.OK)
     Long submitFilledForm(@PathVariable Long Id, @RequestBody FilledFormDTO filledForm){return null;}
 }

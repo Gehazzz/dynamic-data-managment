@@ -1,10 +1,6 @@
 package com.papaya.dynamicdatamanagement.web.controller;
 
-import com.papaya.dynamicdatamanagement.form.elements.main.FormType;
-import com.papaya.dynamicdatamanagement.web.dto.CustomerFormSearchDTO;
-import com.papaya.dynamicdatamanagement.web.dto.FilledFormDTO;
-import com.papaya.dynamicdatamanagement.web.dto.FilledFormWithStatusDTO;
-import com.papaya.dynamicdatamanagement.web.dto.FormDTO;
+import com.papaya.dynamicdatamanagement.web.dto.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -17,21 +13,37 @@ import java.util.List;
 //api/v2/org/{orgId}/project/{projectId}/
 //TODO replace filled with submitted
 public class FormCustomerController {
-    @GetMapping
+
+    /**
+     * should return all forms for customer usage level
+     */
+    @GetMapping("/form")
     List<FormDTO> getForms() {
         return null;
     }
 
-    @GetMapping("/search")
-    ///api/v1/org/{orgId}/project/{projectId}/customer/forms/search?status=submitted&userName=John&formType=dynamic&label=worker_expenses
-    List<FormDTO> getSubmittedForms(CustomerFormSearchDTO customerFormSearch) {
+    @GetMapping("form/search")
+    List<FormDTO> searchForms(CustomerFormSearchDTO customerFormSearch) {
         return null;
     }
 
-    @GetMapping("/{id}")
+    /**
+     * should return form by id for customer usage level
+     * @param id
+     * @return
+     */
+    @GetMapping("/form/{id}")
     FormDTO getForm(@PathVariable("id") Long id) {
         return null;
     }
+
+    @GetMapping("/filled/search")
+    ///api/v1/org/{orgId}/project/{projectId}/customer/forms/search?status=submitted&userName=John&formType=dynamic&label=worker_expenses
+    List<FormDTO> getSubmittedForms(CustomerFilledFormSearchDTO customerFormSearch) {
+        return null;
+    }
+
+
 
    /* @GetMapping("/filled/{id}")
     FormDTO getFilledForm(@PathVariable("id") Long id) {
@@ -43,13 +55,13 @@ public class FormCustomerController {
         return null;
     }*/
 
-    @PostMapping
+    @PostMapping("/filled")
     @ResponseStatus(HttpStatus.CREATED)
     Long saveFilledForm(@RequestBody FilledFormDTO filledForm) {
         return null;
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/filled/{id}")
     @ResponseStatus(HttpStatus.OK)
     Long updateFilledForm(@PathVariable("id") Long filledFormId, @RequestBody FilledFormDTO filledForm) {
         return null;
@@ -60,7 +72,7 @@ public class FormCustomerController {
      * @param id submitted form id to be approved
      * @return approved filled form id
      */
-    @PutMapping("{id}/status/approved")
+    @PutMapping("/filled/{id}/status/approved")
     @ResponseStatus(HttpStatus.OK)
     Long approveSubmittedForm(@PathVariable("id") Long id){
         //TODO show to Ofer!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -73,7 +85,7 @@ public class FormCustomerController {
      * @param id filled/submitted form id to delete
      * @return id of deleted filled/submitted form
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/filled/{id}")
     @ResponseStatus(HttpStatus.OK)
     Long deleteFilledForm(@PathVariable("id") Long id) {
         return null;
