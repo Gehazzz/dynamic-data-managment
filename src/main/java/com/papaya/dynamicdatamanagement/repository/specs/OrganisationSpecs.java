@@ -7,7 +7,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
 
-public class OrganizationSpecs {
+public class OrganisationSpecs {
 
 
     public static Specification<Organisation> getByCountryId(String countryId){

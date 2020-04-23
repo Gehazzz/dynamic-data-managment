@@ -13,5 +13,5 @@ public class UsageLevelDTO {
     private String countryIso;
     private Long organisationId;
     private Long projectId;
-    private List<RoleDTO> usageLevelRoles;
+    private List<UserDTO> usageLevelUsers;
 }

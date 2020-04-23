@@ -1,15 +1,10 @@
 package com.papaya.dynamicdatamanagement.web.dto;
 
 import com.papaya.dynamicdatamanagement.form.elements.main.FormType;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.Map;
-@Getter
-@Setter
-@Builder
-public class FilledFormDTO {
+
+public class FilledFormWithStatusDTO {
     Long formId;
 
     //Long formValueId;
@@ -18,10 +13,10 @@ public class FilledFormDTO {
      */
     FormType formType;
 
+    FilledFormStatusDTO status;
     /**
      * Filled form values map
      * key - label, value - user input
      */
     Map<String, String> userInputs;
-
 }

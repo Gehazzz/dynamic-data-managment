@@ -26,5 +26,5 @@ public class SectionValue {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "parent_section_value_id")
-    private List<Value> dropDownsValues;
+    private List<Value> values;
 }

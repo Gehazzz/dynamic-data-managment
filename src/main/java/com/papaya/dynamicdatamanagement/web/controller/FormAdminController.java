@@ -13,7 +13,7 @@ import java.util.List;
 // 3. validate list of usage levels on creation and update
 @Slf4j
 @RestController
-@RequestMapping("/api/admin/forms")
+@RequestMapping("/api/v1/admin/forms")
 public class FormAdminController {
     /**
      * @return all forms, form templates, form creation templates
@@ -126,7 +126,7 @@ public class FormAdminController {
     void deleteForm(@PathVariable("id") Long id) {
     }
 
-    @PutMapping("/{id}/assign-usage-level")
+    @PutMapping("/{id}/usage-level")
     @ResponseStatus(HttpStatus.OK)
     FormDTO assignFormUsageLevel(@PathVariable("id") Long id, @RequestBody List<UsageLevelDTO> usageLevel) {
         return null;
