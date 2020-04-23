@@ -165,15 +165,29 @@ public class FormAdminController {
     @ResponseStatus(HttpStatus.CREATED)
     Long createFilledForm(@RequestBody FilledFormDTO filledForm){return null;}
 
-    /**
+    //TODO we do not need additional methods to change status we can do it at update method status will be one of the available parameters;
+
+  /*  *//**
      * admin will update filled form: filled data can be changed, status can be changed
      * @param id filled form id to be managed
      * @param filledFormWithStatus filled form
      * @return approved filled form id
-     */
+     *//*
     @PutMapping("/filled/{id}")
     @ResponseStatus(HttpStatus.OK)
     Long updateFilledForm(@PathVariable Long id, @RequestBody FilledFormWithStatusDTO filledFormWithStatus){return null;}
+
+    @PutMapping("/filled/{id}/status/approved")
+    @ResponseStatus(HttpStatus.OK)
+    Long approveSubmittedForm(@PathVariable("id") Long id){
+        //TODO show to Ofer!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        new FilledFormWithStatusDTO();
+        return null;
+    }
+
+    @PutMapping("/filled/{id}/status/submit")
+    @ResponseStatus(HttpStatus.OK)
+    Long submitFilledForm(@PathVariable Long Id, @RequestBody FilledFormDTO filledForm){return null;}*/
 
     @DeleteMapping(value = "/filled/{id}")
     @ResponseStatus(HttpStatus.OK)

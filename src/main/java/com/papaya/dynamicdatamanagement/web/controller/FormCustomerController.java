@@ -80,6 +80,10 @@ public class FormCustomerController {
         return null;
     }
 
+    @PutMapping("/filled/{id}/status/submit")
+    @ResponseStatus(HttpStatus.OK)
+    Long submitFilledForm(@PathVariable Long Id, @RequestBody FilledFormDTO filledForm){return null;}
+
     /**
      *
      * @param id filled/submitted form id to delete
