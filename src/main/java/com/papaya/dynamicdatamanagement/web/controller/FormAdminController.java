@@ -17,10 +17,9 @@ import java.util.List;
 //@RequestMapping("/api/v1/admin/form")
 public class FormAdminController {
     /**
-     * @return all forms, form templates, form creation templates
+     * @return all forms
      */
-    @GetMapping("/form")
-    //@GetMapping("/forms")
+    @GetMapping
     List<FormDTO> getAllForms() {
         return null;
     }
@@ -29,7 +28,7 @@ public class FormAdminController {
      * @param id form id
      * @return form by id, it can be form, form template or form creation template
      */
-    @GetMapping("/form/{id}")
+    @GetMapping("/{id}")
     FormDTO getForm(@PathVariable("id") Long id) {
         return null;
     }
@@ -44,7 +43,7 @@ public class FormAdminController {
      * @param formType DYNAMIC, SUPPLEMENTARY_WORKER_INFORMATION
      * @return all forms, form templates, form creation templates of provided type
      */
-    @GetMapping(path = "/form", params = "formType")
+    @GetMapping(params = "formType")
     List<FormDTO> getForms(FormTypeDTO formType) {
         return null;
     }
@@ -57,7 +56,7 @@ public class FormAdminController {
      * Can be useful once we want request specific form of dynamic type
      */
 
-    @GetMapping(path = "/form", params = {"label", "formType"})
+    @GetMapping(params = {"label", "formType"})
     List<FormDTO> getForms(String label, FormTypeDTO formType) {
         return null;
     }
@@ -66,42 +65,42 @@ public class FormAdminController {
      * @param formSubType FORM, FORM_TEMPLATE, FORM_CREATION_TEMPLATE
      * @return all forms of provided sub type
      */
-    @GetMapping(path = "/form", params = "formSubType")
+    @GetMapping(params = "formSubType")
     List<FormDTO> getForms(@RequestParam FormSubTypeDTO formSubType) {
         return null;
     }
 
-    @GetMapping(path = "/form", params = {"label", "formSubType"})
+    @GetMapping(params = {"label", "formSubType"})
     List<FormDTO> getForms(@RequestParam String label, @RequestParam FormSubTypeDTO formSubType) {
         return null;
     }
 
-    @GetMapping(path = "/form", params = {"formSubType", "usageLevel"})
+    @GetMapping(params = {"formSubType", "usageLevel"})
     List<FormDTO> getForms(@RequestParam FormSubTypeDTO formSubType, @RequestParam UsageLevelDTO usageLevel) {
         return null;
     }
 
-    @GetMapping(path = "/form", params = {"label", "formSubType", "usageLevel"})
+    @GetMapping(params = {"label", "formSubType", "usageLevel"})
     List<FormDTO> getForms(@RequestParam String label, @RequestParam FormSubTypeDTO formSubType, @RequestParam UsageLevelDTO usageLevel) {
         return null;
     }
 
-    @GetMapping(path = "/form", params = {"formSubType", "usageLevels"})
+    @GetMapping(params = {"formSubType", "usageLevels"})
     List<FormDTO> getForms(@RequestParam FormSubTypeDTO formSubType, @RequestParam List<UsageLevelDTO> usageLevels) {
         return null;
     }
 
-    @GetMapping(path = "/form", params = {"formType", "formSubType"})
+    @GetMapping(params = {"formType", "formSubType"})
     List<FormDTO> getForms(@RequestParam FormTypeDTO formType, @RequestParam FormSubTypeDTO formSubType) {
         return null;
     }
 
-    @GetMapping(path = "/form", params = {"formType", "formSubType", "usageLevel"})
+    @GetMapping(params = {"formType", "formSubType", "usageLevel"})
     List<FormDTO> getForms(@RequestParam FormTypeDTO formType, @RequestParam FormSubTypeDTO formSubType, @RequestParam UsageLevelDTO usageLevel) {
         return null;
     }
 
-    @GetMapping(path = "/form", params = {"formType", "formSubType", "usageLevels"})
+    @GetMapping(params = {"formType", "formSubType", "usageLevels"})
     List<FormDTO> getForms(@RequestParam FormTypeDTO formType, @RequestParam FormSubTypeDTO formSubType, @RequestParam List<UsageLevelDTO> usageLevels) {
         return null;
     }
