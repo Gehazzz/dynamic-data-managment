@@ -14,6 +14,8 @@ public class AdminFilledFormController {
     /**
      * @return all filled forms
      */
+    //will return all submitted filled forms related to customer org.
+    //TODO add request optional parameter to include filled draft and approved or include all types. by default return only submitted
     @GetMapping
     List<FormPreviewDTO> getAllFilledForms() {
         return null;
@@ -39,8 +41,6 @@ public class AdminFilledFormController {
     Long createFilledForm(@RequestBody FilledFormDTO filledForm) {
         return null;
     }
-
-    //TODO we do not need additional methods to change status we can do it at update method status will be one of the available parameters;
 
     /**
      * admin will update filled form: filled data can be changed, status can be changed

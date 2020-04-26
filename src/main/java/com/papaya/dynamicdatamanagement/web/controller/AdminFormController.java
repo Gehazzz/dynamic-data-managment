@@ -54,6 +54,7 @@ public class AdminFormController {
         return null;
     }
 
+    //while update should be generated new version
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     FormDTO updateForm(@PathVariable("id") Long id, @RequestBody FormDTO formDTO) {
@@ -66,9 +67,22 @@ public class AdminFormController {
         return null;
     }
 
+    //assign and unassign usage level
     @PutMapping("/{id}/usage-level")
     @ResponseStatus(HttpStatus.OK)
     FormDTO assignFormUsageLevel(@PathVariable("id") Long id, @RequestBody List<UsageLevelDTO> usageLevel) {
+        return null;
+    }
+
+    @PutMapping("/{id}/activate")
+    @ResponseStatus(HttpStatus.OK)
+    FormDTO activateForm(@PathVariable("id") Long id) {
+        return null;
+    }
+
+    @PutMapping("/{id}/deactivate")
+    @ResponseStatus(HttpStatus.OK)
+    FormDTO deactivateForm(@PathVariable("id") Long id) {
         return null;
     }
 

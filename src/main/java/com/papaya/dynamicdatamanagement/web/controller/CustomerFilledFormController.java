@@ -11,6 +11,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/customer/org/{orgId}/project/{projectId}/filled-forms")
 public class CustomerFilledFormController {
+    //will return all submitted filled forms related to customer org.
+    //TODO add request optional parameter to include filled draft and approved or include all types. by default return only submitted
     @GetMapping
     List<FormPreviewDTO> getFilledForms() {
         return null;
@@ -37,7 +39,7 @@ public class CustomerFilledFormController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    Long saveFilledForm(@RequestBody FilledFormDTO filledForm) {
+    Long createFilledForm(@RequestBody FilledFormDTO filledForm) {
         return null;
     }
 
