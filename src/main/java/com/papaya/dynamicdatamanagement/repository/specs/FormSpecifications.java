@@ -42,8 +42,8 @@ public class FormSpecifications {
                 Stream<Predicate> roleValues = userList.stream()
                         .map(user -> {
                             Predicate id = criteriaBuilder.equal(userJoin.get(User.Fields.id), user.getId());
-                            Predicate userName = criteriaBuilder.equal(userJoin.get(Role.Fields.code), user.getUserName());
-                            Predicate email = criteriaBuilder.equal(userJoin.get(Role.Fields.title), user.getEmail());
+                            Predicate userName = criteriaBuilder.equal(userJoin.get(User.Fields.userName), user.getUserName());
+                            Predicate email = criteriaBuilder.equal(userJoin.get(User.Fields.email), user.getEmail());
                             return criteriaBuilder.and(id, userName, email);
                         });
                 Predicate roleEmpty = criteriaBuilder.isEmpty(formUsageJoin.get(FormUsage.Fields.users));
