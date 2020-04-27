@@ -4,7 +4,8 @@ package com.papaya.dynamicdatamanagement.adapter.element;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.papaya.dynamicdatamanagement.form.validation.BooleanValidator;
 import com.papaya.dynamicdatamanagement.form.validation.FieldValidator;
-import com.papaya.dynamicdatamanagement.repository.model.template.*;
+import com.papaya.dynamicdatamanagement.repository.model.CheckboxTemplate;
+import com.papaya.dynamicdatamanagement.repository.model.ValidationRule;
 import com.papaya.dynamicdatamanagement.form.elements.Checkbox;
 import org.springframework.stereotype.Component;
 

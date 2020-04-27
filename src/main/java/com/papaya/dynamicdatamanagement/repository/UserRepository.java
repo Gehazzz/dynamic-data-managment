@@ -1,7 +1,6 @@
 package com.papaya.dynamicdatamanagement.repository;
 
-import com.papaya.dynamicdatamanagement.repository.model.owner.Role;
-import com.papaya.dynamicdatamanagement.repository.model.owner.User;
+import com.papaya.dynamicdatamanagement.repository.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

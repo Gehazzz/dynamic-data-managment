@@ -5,9 +5,8 @@ import com.papaya.dynamicdatamanagement.adapter.element.CheckBoxAdapter;
 import com.papaya.dynamicdatamanagement.form.elements.Checkbox;
 import com.papaya.dynamicdatamanagement.form.elements.main.AbstractFormElement;
 import com.papaya.dynamicdatamanagement.form.elements.main.Section;
-import com.papaya.dynamicdatamanagement.repository.model.template.AbstractFormElementTemplate;
-import com.papaya.dynamicdatamanagement.repository.model.template.CheckboxTemplate;
-import com.papaya.dynamicdatamanagement.repository.model.template.SectionTemplate;
+import com.papaya.dynamicdatamanagement.repository.model.CheckboxTemplate;
+import com.papaya.dynamicdatamanagement.repository.model.SectionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package com.papaya.dynamicdatamanagement.repository.model.template;
+package com.papaya.dynamicdatamanagement.repository.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

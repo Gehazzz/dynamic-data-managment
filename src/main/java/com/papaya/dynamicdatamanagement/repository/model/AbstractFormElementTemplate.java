@@ -1,4 +1,4 @@
-package com.papaya.dynamicdatamanagement.repository.model.template;
+package com.papaya.dynamicdatamanagement.repository.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;

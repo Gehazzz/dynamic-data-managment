@@ -1,6 +1,6 @@
 package com.papaya.dynamicdatamanagement.repository;
 
-import com.papaya.dynamicdatamanagement.repository.model.owner.Project;
+import com.papaya.dynamicdatamanagement.repository.model.Project;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

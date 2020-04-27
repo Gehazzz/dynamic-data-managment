@@ -1,4 +1,4 @@
-package com.papaya.dynamicdatamanagement.repository.model.owner;
+package com.papaya.dynamicdatamanagement.repository.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

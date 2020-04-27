@@ -1,6 +1,5 @@
-package com.papaya.dynamicdatamanagement.repository.model.template;
+package com.papaya.dynamicdatamanagement.repository.model;
 
-import com.papaya.dynamicdatamanagement.repository.model.owner.FormUsage;
 import lombok.*;
 import lombok.experimental.FieldNameConstants;
 

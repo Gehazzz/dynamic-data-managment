@@ -2,7 +2,7 @@ package com.papaya.dynamicdatamanagement.adapter.element;
 
 
 import com.papaya.dynamicdatamanagement.form.usage.*;
-import com.papaya.dynamicdatamanagement.repository.model.owner.*;
+import com.papaya.dynamicdatamanagement.repository.model.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

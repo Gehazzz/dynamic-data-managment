@@ -1,6 +1,5 @@
-package com.papaya.dynamicdatamanagement.repository.model.owner;
+package com.papaya.dynamicdatamanagement.repository.model;
 
-import com.papaya.dynamicdatamanagement.web.dto.RoleDTO;
 import lombok.*;
 import lombok.experimental.FieldNameConstants;
 
@@ -21,7 +20,6 @@ public class FormUsage {
     private String countryIso;
     private Long organisationId;
     private Long projectId;
-    //TODO change to many to many
     @ToString.Exclude
     @ManyToMany(cascade = {
             CascadeType.ALL

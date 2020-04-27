@@ -1,6 +1,6 @@
 package com.papaya.dynamicdatamanagement.repository;
 
-import com.papaya.dynamicdatamanagement.repository.model.owner.Organisation;
+import com.papaya.dynamicdatamanagement.repository.model.Organisation;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

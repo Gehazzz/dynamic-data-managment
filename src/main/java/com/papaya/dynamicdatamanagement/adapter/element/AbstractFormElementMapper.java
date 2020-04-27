@@ -1,6 +1,6 @@
 package com.papaya.dynamicdatamanagement.adapter.element;
 
-import com.papaya.dynamicdatamanagement.repository.model.template.AbstractFormElementTemplate;
+import com.papaya.dynamicdatamanagement.repository.model.AbstractFormElementTemplate;
 import com.papaya.dynamicdatamanagement.form.elements.main.AbstractFormElement;
 
 public interface AbstractFormElementMapper {

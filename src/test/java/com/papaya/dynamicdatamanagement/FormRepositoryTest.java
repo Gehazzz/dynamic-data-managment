@@ -2,10 +2,9 @@ package com.papaya.dynamicdatamanagement;
 
 import com.papaya.dynamicdatamanagement.repository.FormTemplateRepository;
 import com.papaya.dynamicdatamanagement.repository.FormUsageRepository;
-import com.papaya.dynamicdatamanagement.repository.model.owner.FormUsage;
-import com.papaya.dynamicdatamanagement.repository.model.owner.Role;
-import com.papaya.dynamicdatamanagement.repository.model.owner.User;
-import com.papaya.dynamicdatamanagement.repository.model.template.FormTemplate;
+import com.papaya.dynamicdatamanagement.repository.model.FormUsage;
+import com.papaya.dynamicdatamanagement.repository.model.User;
+import com.papaya.dynamicdatamanagement.repository.model.FormTemplate;
 import com.papaya.dynamicdatamanagement.repository.specs.FormSpecifications;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.papaya.dynamicdatamanagement.repository.model.template;
+package com.papaya.dynamicdatamanagement.repository.model;
 
 public enum FormTemplateType {
     PAYMENT_TEMPLATE,

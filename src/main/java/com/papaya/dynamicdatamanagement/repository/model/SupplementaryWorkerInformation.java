@@ -1,6 +1,5 @@
 package com.papaya.dynamicdatamanagement.repository.model;
 
-import com.papaya.dynamicdatamanagement.repository.model.template.value.Value;
 import lombok.*;
 import lombok.experimental.FieldNameConstants;
 

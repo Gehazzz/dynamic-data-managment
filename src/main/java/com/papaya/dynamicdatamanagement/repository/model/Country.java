@@ -1,13 +1,10 @@
-package com.papaya.dynamicdatamanagement.repository.model.owner;
+package com.papaya.dynamicdatamanagement.repository.model;
 
-import com.papaya.dynamicdatamanagement.repository.model.template.FormTemplate;
 import lombok.*;
 import lombok.experimental.FieldNameConstants;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
-import java.util.List;
+
 @Entity
 @Builder
 @Getter

@@ -1,4 +1,4 @@
-package com.papaya.dynamicdatamanagement.repository.model.template;
+package com.papaya.dynamicdatamanagement.repository.model;
 
 public enum  Constraint {
     ASSERT_TRUE ("AssertTrue"),

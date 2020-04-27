@@ -4,11 +4,7 @@ import com.papaya.dynamicdatamanagement.adapter.element.UsageLevelAdapter;
 import com.papaya.dynamicdatamanagement.form.service.port.out.QueryUsageLevelInformationPort;
 import com.papaya.dynamicdatamanagement.form.usage.*;
 import com.papaya.dynamicdatamanagement.repository.*;
-import com.papaya.dynamicdatamanagement.repository.model.owner.Organisation;
-import com.papaya.dynamicdatamanagement.repository.model.owner.Role;
-import com.papaya.dynamicdatamanagement.repository.model.owner.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;

@@ -1,9 +1,8 @@
 package com.papaya.dynamicdatamanagement.repository.specs;
 
-import com.papaya.dynamicdatamanagement.repository.model.owner.FormUsage;
-import com.papaya.dynamicdatamanagement.repository.model.owner.Role;
-import com.papaya.dynamicdatamanagement.repository.model.owner.User;
-import com.papaya.dynamicdatamanagement.repository.model.template.FormTemplate;
+import com.papaya.dynamicdatamanagement.repository.model.FormUsage;
+import com.papaya.dynamicdatamanagement.repository.model.User;
+import com.papaya.dynamicdatamanagement.repository.model.FormTemplate;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.StringUtils;
 

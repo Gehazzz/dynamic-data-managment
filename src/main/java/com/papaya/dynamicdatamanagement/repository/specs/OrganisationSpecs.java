@@ -1,8 +1,7 @@
 package com.papaya.dynamicdatamanagement.repository.specs;
 
-import com.papaya.dynamicdatamanagement.repository.model.owner.Country;
-import com.papaya.dynamicdatamanagement.repository.model.owner.Organisation;
-import org.hibernate.query.criteria.internal.path.SingularAttributeJoin;
+import com.papaya.dynamicdatamanagement.repository.model.Country;
+import com.papaya.dynamicdatamanagement.repository.model.Organisation;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;

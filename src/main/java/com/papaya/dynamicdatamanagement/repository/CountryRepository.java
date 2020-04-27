@@ -1,6 +1,6 @@
 package com.papaya.dynamicdatamanagement.repository;
 
-import com.papaya.dynamicdatamanagement.repository.model.owner.Country;
+import com.papaya.dynamicdatamanagement.repository.model.Country;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
