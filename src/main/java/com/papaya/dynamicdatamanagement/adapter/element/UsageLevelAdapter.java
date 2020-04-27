@@ -16,7 +16,7 @@ public class UsageLevelAdapter {
                 .countryIso(formUsage.getCountryIso())
                 .organisationId(formUsage.getOrganisationId())
                 .projectId(formUsage.getProjectId())
-                .usageLevelRoles(formUsage.getRoles().stream().map(role -> UsageLevelRole.builder().roleId(role.getId()).roleName(role.getTitle()).build()).collect(Collectors.toList())).build()
+                .usageLevelRoles(formUsage.getUsers().stream().map(user -> UsageLevelUser.builder().id(user.getId()).userName(user.getUserName()).build()).collect(Collectors.toList())).build()
         ).collect(Collectors.toList());
     }
 
@@ -26,7 +26,7 @@ public class UsageLevelAdapter {
                 .countryIso(usageLevel.getCountryIso())
                 .organisationId(usageLevel.getOrganisationId())
                 .projectId(usageLevel.getProjectId())
-                .roles(usageLevel.getUsageLevelRoles().stream().map(usageLevelRole -> Role.builder().id(usageLevelRole.getRoleId()).title(usageLevelRole.getRoleName()).build()).collect(Collectors.toList()))
+                .users(usageLevel.getUsageLevelRoles().stream().map(usageLevelUser -> User.builder().id(usageLevelUser.getId()).userName(usageLevelUser.getUserName()).email(usageLevelUser.getEmail()).build()).collect(Collectors.toList()))
                 .build()
         ).collect(Collectors.toList());
     }
@@ -42,7 +42,6 @@ public class UsageLevelAdapter {
                 .countryInfo(getCountryInfo(organisation.getCountry()))
                 .organisationId(organisation.getId())
                 .organisationName(organisation.getName())
-                .usageLevelRoles(organisation.getRoles().stream().map(this::getUsageLevelRole).collect(Collectors.toList()))
                 .build();
     }
 
@@ -53,15 +52,16 @@ public class UsageLevelAdapter {
                 .build();
     }
 
-    public UsageLevelRole getUsageLevelRole(Role role){
-        return UsageLevelRole.builder()
-                .roleName(role.getTitle())
-                .roleId(role.getId())
+    public UsageLevelUser getUsageLevelUser(User user){
+        return UsageLevelUser.builder()
+                .id(user.getId())
+                .userName(user.getUserName())
+                .email(user.getEmail())
                 .build();
     }
 
-    public Role getRole(UsageLevelRole usageLevelRole){
-        return Role.builder().id(usageLevelRole.getRoleId()).title(usageLevelRole.getRoleName()).build();
+    public User getRole(UsageLevelUser usageLevelUser){
+        return User.builder().id(usageLevelUser.getId()).userName(usageLevelUser.getUserName()).email(usageLevelUser.getEmail()).build();
     }
 
     

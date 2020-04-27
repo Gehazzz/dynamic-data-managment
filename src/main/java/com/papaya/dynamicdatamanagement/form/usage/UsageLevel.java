@@ -13,5 +13,6 @@ public class UsageLevel {
     private String countryIso;
     private Long organisationId;
     private Long projectId;
-    private List<UsageLevelRole> usageLevelRoles;
+    private List<UsageLevelUser> usageLevelRoles;
 }
+

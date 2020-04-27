@@ -22,7 +22,13 @@ public class FormUsage {
     private String countryIso;
     private Long organisationId;
     private Long projectId;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "form_usage_id")
-    private List<Role> roles;
+    //TODO change to many to many
+    @ManyToMany(cascade = {
+            CascadeType.ALL
+    })
+    @JoinTable(name = "form_usage_user",
+            joinColumns = @JoinColumn(name = "form_usage_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<User> users;
 }

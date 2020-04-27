@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @Slf4j
-@RestController
+//@RestController
 @RequestMapping("/api/v1/me/org/{orgId}/project/{projectId}/forms")
 public class FormWorkerController {
 

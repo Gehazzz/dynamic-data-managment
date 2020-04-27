@@ -83,8 +83,8 @@ public class FormTemplateRepositoryTest {
         //String s = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(saved);
         //System.out.println(s);
         List<FormTemplate> ch = formTemplateRepository.findAll(FormSpecifications.formsByUsageLevel("ch", null, null, null));
-        ch.forEach(System.out::println);
-        //System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(createSupplementaryForm()));
+        //ch.forEach(System.out::println);
+        System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(createSupplementaryForm()));
     }
 
     public Form createSupplementaryForm(){

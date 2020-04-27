@@ -9,7 +9,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/v1/customer/org/{orgId}/project/{projectId}/filled-forms")
+@RequestMapping("/api/v1/customer/org/{orgId}/filled-forms")
 public class CustomerFilledFormController {
     //will return all submitted filled forms related to customer org.
     //TODO add request optional parameter to include filled draft and approved or include all types. by default return only submitted

@@ -12,7 +12,7 @@ import java.util.List;
 // 2. optional search redesign
 // 3. validate list of usage levels on creation and update
 @Slf4j
-@RestController
+//@RestController
 @RequestMapping("/api/v1/admin/forms")
 //@RequestMapping("/api/v1/admin/form")
 public class FormAdminController {

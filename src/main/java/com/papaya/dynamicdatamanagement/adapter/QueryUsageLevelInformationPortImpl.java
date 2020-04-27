@@ -3,12 +3,10 @@ package com.papaya.dynamicdatamanagement.adapter;
 import com.papaya.dynamicdatamanagement.adapter.element.UsageLevelAdapter;
 import com.papaya.dynamicdatamanagement.form.service.port.out.QueryUsageLevelInformationPort;
 import com.papaya.dynamicdatamanagement.form.usage.*;
-import com.papaya.dynamicdatamanagement.repository.CountryRepository;
-import com.papaya.dynamicdatamanagement.repository.OrganizationsRepository;
-import com.papaya.dynamicdatamanagement.repository.ProjectsRepository;
-import com.papaya.dynamicdatamanagement.repository.RoleRepository;
+import com.papaya.dynamicdatamanagement.repository.*;
 import com.papaya.dynamicdatamanagement.repository.model.owner.Organisation;
 import com.papaya.dynamicdatamanagement.repository.model.owner.Role;
+import com.papaya.dynamicdatamanagement.repository.model.owner.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Component;
@@ -23,6 +21,8 @@ public class QueryUsageLevelInformationPortImpl implements QueryUsageLevelInform
 
     @Autowired
     RoleRepository roleRepository;
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
     private UsageLevelAdapter usageLevelAdapter;
@@ -63,14 +63,14 @@ public class QueryUsageLevelInformationPortImpl implements QueryUsageLevelInform
     }
 
     @Override
-    public List<UsageLevelRole> getAllRoles() {
-        return roleRepository.findAll().stream().map(role -> usageLevelAdapter.getUsageLevelRole(role)).collect(Collectors.toList());
+    public List<UsageLevelUser> getAllUsers() {
+        return userRepository.findAll().stream().map(role -> usageLevelAdapter.getUsageLevelUser(role)).collect(Collectors.toList());
     }
 
-    @Override
-    public List<UsageLevelRole> getAllRolesByOrganisation(Long orgId) {
-        return roleRepository.findAll(Example.of(Role.builder().organisations(List.of(Organisation.builder().id(orgId).build())).build())).stream().map(role -> usageLevelAdapter.getUsageLevelRole(role)).collect(Collectors.toList());
-    }
+    /*@Override
+    public List<UsageLevelUser> getAllUsersByOrganisation(Long orgId) {
+        return userRepository.findAll(Example.of(User.builder().organisations(List.of(Organisation.builder().id(orgId).build())).build())).stream().map(role -> usageLevelAdapter.getUsageLevelUser(role)).collect(Collectors.toList());
+    }*/
 
     @Override
     public List<CountryInfo> getAllCountries() {

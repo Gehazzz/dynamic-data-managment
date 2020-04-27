@@ -13,7 +13,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/v1/customer/org/{orgId}/project/{projectId}/forms")
+@RequestMapping("/api/v1/customer/org/{orgId}/forms")
 public class CustomerFormController {
     /**
      * should return all forms for customer usage level (all forms that the org and project have)

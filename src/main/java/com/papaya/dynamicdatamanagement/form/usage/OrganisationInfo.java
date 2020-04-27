@@ -13,5 +13,5 @@ public class OrganisationInfo {
     private long organisationId;
     private String organisationName;
     private CountryInfo countryInfo;
-    private List<UsageLevelRole> usageLevelRoles;
+    private List<UsageLevelUser> usageLevelUsers;
 }

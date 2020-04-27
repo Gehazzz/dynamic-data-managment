@@ -2,6 +2,7 @@ package com.papaya.dynamicdatamanagement.repository.specs;
 
 import com.papaya.dynamicdatamanagement.repository.model.owner.FormUsage;
 import com.papaya.dynamicdatamanagement.repository.model.owner.Role;
+import com.papaya.dynamicdatamanagement.repository.model.owner.User;
 import com.papaya.dynamicdatamanagement.repository.model.template.FormTemplate;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.StringUtils;
@@ -12,10 +13,10 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class FormSpecifications {
-    public static Specification<FormTemplate> formsByUsageLevel(String countryIso, Long organisationId, Long projectId, List<Role> roleList) {
+    public static Specification<FormTemplate> formsByUsageLevel(String countryIso, Long organisationId, Long projectId, List<User> userList) {
         return (Specification<FormTemplate>) (root, query, criteriaBuilder) -> {
             ListJoin<FormTemplate, FormUsage> formUsageJoin = root.joinList(FormTemplate.Fields.formUsages);
-            ListJoin<FormUsage, Role> roleJoin = formUsageJoin.joinList(FormUsage.Fields.roles);
+            ListJoin<FormUsage, User> userJoin = formUsageJoin.joinList(FormUsage.Fields.users);
 
             List<Predicate> predicates = new ArrayList<>();
 
@@ -34,18 +35,18 @@ public class FormSpecifications {
             //Predicate projectIdOrStatement = criteriaBuilder.or(projectIdValue, projectIdNull);
             if (projectId != null) predicates.add(criteriaBuilder.or(projectIdValue, projectIdNull));
 
-            if (roleList == null || roleList.isEmpty()) {
+            if (userList == null || userList.isEmpty()) {
                 //return criteriaBuilder.and(countryIsoOrStatement, organisationIdOrStatement, projectIdOrStatement);
                 return criteriaBuilder.and(predicates.toArray(Predicate[]::new));
             } else {
-                Stream<Predicate> roleValues = roleList.stream()
-                        .map(role -> {
-                            Predicate id = criteriaBuilder.equal(roleJoin.get(Role.Fields.id), role.getId());
-                            Predicate code = criteriaBuilder.equal(roleJoin.get(Role.Fields.code), role.getCode());
-                            Predicate title = criteriaBuilder.equal(roleJoin.get(Role.Fields.title), role.getTitle());
-                            return criteriaBuilder.and(id, code, title);
+                Stream<Predicate> roleValues = userList.stream()
+                        .map(user -> {
+                            Predicate id = criteriaBuilder.equal(userJoin.get(User.Fields.id), user.getId());
+                            Predicate userName = criteriaBuilder.equal(userJoin.get(Role.Fields.code), user.getUserName());
+                            Predicate email = criteriaBuilder.equal(userJoin.get(Role.Fields.title), user.getEmail());
+                            return criteriaBuilder.and(id, userName, email);
                         });
-                Predicate roleEmpty = criteriaBuilder.isEmpty(formUsageJoin.get(FormUsage.Fields.roles));
+                Predicate roleEmpty = criteriaBuilder.isEmpty(formUsageJoin.get(FormUsage.Fields.users));
 
                 Predicate rolesOrStatement = criteriaBuilder.or(Stream.concat(Stream.of(roleEmpty), roleValues).toArray(Predicate[]::new));
                 predicates.add(rolesOrStatement);

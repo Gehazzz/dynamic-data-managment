@@ -7,7 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class UsageLevelRole {
-    private long roleId;
-    private String roleName;
+public class UsageLevelUser {
+    private long id;
+    private String userName;
+    private String email;
 }

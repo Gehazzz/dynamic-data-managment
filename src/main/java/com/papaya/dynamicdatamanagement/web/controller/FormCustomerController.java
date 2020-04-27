@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
-@RestController
+//@RestController
 @RequestMapping("/api/v1/customer/org/{orgId}/project/{projectId}/forms")
 //api/v2/org/{orgId}/project/{projectId}/
 //TODO replace filled with submitted
