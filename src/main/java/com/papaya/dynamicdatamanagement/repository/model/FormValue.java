@@ -18,4 +18,6 @@ public class FormValue {
     @OneToOne(mappedBy = "formValue", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, optional = false)
     private SectionValue mainSectionValue;
+    @Enumerated(EnumType.STRING)
+    FormValueStatus status;
 }

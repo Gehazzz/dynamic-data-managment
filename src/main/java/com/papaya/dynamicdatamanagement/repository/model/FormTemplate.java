@@ -23,6 +23,8 @@ public class FormTemplate {
     private FormTemplateType formType;
     @Enumerated(EnumType.STRING)
     private FormTemplateSubType formTemplateSubType;
+    @Enumerated(EnumType.STRING)
+    private FormTemplateStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "template_id")
