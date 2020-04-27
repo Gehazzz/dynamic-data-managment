@@ -1,15 +1,14 @@
 package com.papaya.dynamicdatamanagement.repository.model.owner;
 
 import com.papaya.dynamicdatamanagement.web.dto.RoleDTO;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldNameConstants;
 
 import javax.persistence.*;
 import java.util.List;
 @Data
+@Getter
+@Setter
 @Builder
 @Entity
 @AllArgsConstructor
@@ -23,6 +22,7 @@ public class FormUsage {
     private Long organisationId;
     private Long projectId;
     //TODO change to many to many
+    @ToString.Exclude
     @ManyToMany(cascade = {
             CascadeType.ALL
     })

@@ -31,7 +31,7 @@ public class FormRepositoryTest {
         FormUsage us = FormUsage.builder().countryIso("US").users(List.of(admin2)).build();
         FormTemplate firstForm = FormTemplate.builder().label("form-1").formUsages(List.of(isr, us)).build();
 
-        User manager = User.builder().userName("manager-700").build();
+        User manager = User.builder().userName("manager-700").email("fr").build();
         FormUsage isr2 = FormUsage.builder().countryIso(null).users(List.of(manager)).build();
         FormUsage us2 = FormUsage.builder().countryIso("US").organisationId(17L).build();
         FormTemplate secondForm = FormTemplate.builder().label("form-2").formUsages(List.of(isr2, us2)).build();
