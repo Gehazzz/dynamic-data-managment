@@ -18,8 +18,8 @@ import java.util.List;
 public class TextAreaDetails extends AbstractInputField {
     private String placeholder;
     @OneToMany(cascade=CascadeType.ALL)
-    @JoinTable(name = "text_area_value",
-            joinColumns = @JoinColumn(name = "text_area_id"),
+    @JoinTable(name = "text_area_details_value",
+            joinColumns = @JoinColumn(name = "text_area_details_id"),
             inverseJoinColumns = @JoinColumn(name = "value_id")
     )
     List<Value> values;
