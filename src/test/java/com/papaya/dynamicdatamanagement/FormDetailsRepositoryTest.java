@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @SpringBootTest
-public class FormTemplateRepositoryTest {
+public class FormDetailsRepositoryTest {
     @Autowired
     FormTemplateRepository formTemplateRepository;
     @Autowired
@@ -40,7 +40,7 @@ public class FormTemplateRepositoryTest {
         formTemplateRepository.deleteAll();
         formUsageRepository.deleteAll();
 
-        SectionTemplate section = SectionTemplate.builder()
+        SectionDetails section = SectionDetails.builder()
                 .label("section label")
                 .index(0)
                 .build();
@@ -54,7 +54,7 @@ public class FormTemplateRepositoryTest {
         List<ValidationRule> validationRules = new ArrayList<>();
         validationRules.add(validationRule);
 
-        InputField inputField = InputField.builder()
+        InputFieldDetails inputFieldDetails = InputFieldDetails.builder()
                 .label("input label")
                 .hint("this is hint")
                 .index(0)
@@ -66,22 +66,22 @@ public class FormTemplateRepositoryTest {
                 .validationRules(validationRules)
                 .build();
 
-        List<InputField> fields = new ArrayList<>();
-        fields.add(inputField);
+        List<InputFieldDetails> fields = new ArrayList<>();
+        fields.add(inputFieldDetails);
 
-        section.setInputFields(fields);
+        section.setInputFieldDetails(fields);
 
-        FormTemplate formTemplate = FormTemplate.builder()
+        FormDetails formDetails = FormDetails.builder()
                 .label("form")
                 .mainSection(section)
                 .formUsages(List.of(FormUsage.builder().countryIso("ch").projectId(1L).build()))
                 .build();
 
-        FormTemplate saved = formTemplateRepository.save(formTemplate);
+        FormDetails saved = formTemplateRepository.save(formDetails);
         System.out.println(saved);
         //String s = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(saved);
         //System.out.println(s);
-        List<FormTemplate> ch = formTemplateRepository.findAll(FormSpecifications.formsByUsageLevel("ch", null, null, null));
+        List<FormDetails> ch = formTemplateRepository.findAll(FormSpecifications.formsByUsageLevel("ch", null, null, null));
         //ch.forEach(System.out::println);
         System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(createSupplementaryForm()));
     }

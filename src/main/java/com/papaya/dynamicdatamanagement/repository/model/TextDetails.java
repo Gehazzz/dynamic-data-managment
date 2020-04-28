@@ -14,7 +14,7 @@ import javax.persistence.Entity;
 @SuperBuilder
 @NoArgsConstructor
 //@AllArgsConstructor
-public class TextTemplate extends AbstractFormElementTemplate {
+public class TextDetails extends AbstractFormElementTemplate {
     @Column(columnDefinition="LONGTEXT")
     private String text;
 }

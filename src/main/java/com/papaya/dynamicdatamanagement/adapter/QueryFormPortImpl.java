@@ -6,9 +6,9 @@ import com.papaya.dynamicdatamanagement.form.elements.main.FormType;
 import com.papaya.dynamicdatamanagement.form.service.port.out.QueryFormPort;
 import com.papaya.dynamicdatamanagement.form.usage.*;
 import com.papaya.dynamicdatamanagement.repository.FormTemplateRepository;
-import com.papaya.dynamicdatamanagement.repository.model.FormTemplate;
-import com.papaya.dynamicdatamanagement.repository.model.FormTemplateSubType;
-import com.papaya.dynamicdatamanagement.repository.model.FormTemplateType;
+import com.papaya.dynamicdatamanagement.repository.model.FormDetails;
+import com.papaya.dynamicdatamanagement.repository.model.FormSubTypeDetails;
+import com.papaya.dynamicdatamanagement.repository.model.FormTypeDetails;
 import com.papaya.dynamicdatamanagement.form.elements.main.Form;
 import com.papaya.dynamicdatamanagement.repository.specs.FormSpecifications;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,29 +39,29 @@ public class QueryFormPortImpl implements QueryFormPort {
 
     @Override
     public Form getForm(Long id, FormSubType subType) {
-        FormTemplate formTemplate = formTemplateRepository.findAll(Example.of(FormTemplate.builder()
-                .formTemplateSubType(getFormTemplateSubTypeFromFormSubType(subType))
+        FormDetails formDetails = formTemplateRepository.findAll(Example.of(FormDetails.builder()
+                .formSubTypeDetails(getFormTemplateSubTypeFromFormSubType(subType))
                 .build())).get(0);
-        return convertTemplateToForm(formTemplate);
+        return convertTemplateToForm(formDetails);
     }
 
     @Override
     public Form getForm(Long id, FormType formType, FormSubType subType) {
-        FormTemplate formTemplate = formTemplateRepository.findAll(Example.of(FormTemplate.builder()
-                .formTemplateSubType(getFormTemplateSubTypeFromFormSubType(subType))
+        FormDetails formDetails = formTemplateRepository.findAll(Example.of(FormDetails.builder()
+                .formSubTypeDetails(getFormTemplateSubTypeFromFormSubType(subType))
                 .formType(getFormTemplateType(formType))
                 .id(id)
                 .build())).get(0);
-        return convertTemplateToForm(formTemplate);
+        return convertTemplateToForm(formDetails);
     }
 
     @Override
     public Form getForm(Long id, String label, FormSubType subType) {
-        FormTemplate formTemplate = formTemplateRepository.findAll(Example.of(FormTemplate.builder()
-                .formTemplateSubType(getFormTemplateSubTypeFromFormSubType(subType))
+        FormDetails formDetails = formTemplateRepository.findAll(Example.of(FormDetails.builder()
+                .formSubTypeDetails(getFormTemplateSubTypeFromFormSubType(subType))
                 .label(label)
                 .build())).get(0);
-        return convertTemplateToForm(formTemplate);
+        return convertTemplateToForm(formDetails);
     }
 
     @Override
@@ -71,15 +71,15 @@ public class QueryFormPortImpl implements QueryFormPort {
 
     @Override
     public List<Form> getAllForms(FormSubType subType) {
-      return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
-                .formTemplateSubType(getFormTemplateSubTypeFromFormSubType(subType))
+      return formTemplateRepository.findAll(Example.of(FormDetails.builder()
+                .formSubTypeDetails(getFormTemplateSubTypeFromFormSubType(subType))
                 .build())).stream().map(this::convertTemplateToForm).collect(Collectors.toList());
     }
 
     @Override
     public List<Form> getAllForms(FormType formType, FormSubType subType) {
-        return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
-                .formTemplateSubType(getFormTemplateSubTypeFromFormSubType(subType))
+        return formTemplateRepository.findAll(Example.of(FormDetails.builder()
+                .formSubTypeDetails(getFormTemplateSubTypeFromFormSubType(subType))
                 .build()))
                 .stream()
                 .map(this::convertTemplateToForm)
@@ -88,9 +88,9 @@ public class QueryFormPortImpl implements QueryFormPort {
 
     @Override
     public List<Form> getAllForms(FormSubType formSubType, UsageLevel usageLevel) {
-        return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
+        return formTemplateRepository.findAll(Example.of(FormDetails.builder()
                 .formUsages(usageLevelAdapter.getFormUsageListFromUsageLevel(List.of(usageLevel)))
-                .formTemplateSubType(getFormTemplateSubTypeFromFormSubType(formSubType))
+                .formSubTypeDetails(getFormTemplateSubTypeFromFormSubType(formSubType))
                 .build()))
                 .stream()
                 .map(this::convertTemplateToForm)
@@ -111,7 +111,7 @@ public class QueryFormPortImpl implements QueryFormPort {
 
     @Override
     public List<Form> getAllForms(FormType formType, UsageLevel usageLevel) {
-        return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
+        return formTemplateRepository.findAll(Example.of(FormDetails.builder()
                 .formUsages(usageLevelAdapter.getFormUsageListFromUsageLevel(List.of(usageLevel)))
                 .formType(getFormTemplateType(formType))
                 .build()))
@@ -122,10 +122,10 @@ public class QueryFormPortImpl implements QueryFormPort {
 
     @Override
     public List<Form> getAllForms(FormType formType, FormSubType subType, UsageLevel usageLevel) {
-        return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
+        return formTemplateRepository.findAll(Example.of(FormDetails.builder()
                 .formUsages(usageLevelAdapter.getFormUsageListFromUsageLevel(List.of(usageLevel)))
                 .formType(getFormTemplateType(formType))
-                .formTemplateSubType(getFormTemplateSubTypeFromFormSubType(subType))
+                .formSubTypeDetails(getFormTemplateSubTypeFromFormSubType(subType))
                 .build()))
                 .stream()
                 .map(this::convertTemplateToForm)
@@ -139,11 +139,11 @@ public class QueryFormPortImpl implements QueryFormPort {
 
     @Override
     public List<Form> getAllForms(FormType formType, FormSubType subType, UsageLevel usageLevel, String label) {
-        return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
+        return formTemplateRepository.findAll(Example.of(FormDetails.builder()
                 .formUsages(usageLevelAdapter.getFormUsageListFromUsageLevel(List.of(usageLevel)))
                 .formType(getFormTemplateType(formType))
                 .label(label)
-                .formTemplateSubType(getFormTemplateSubTypeFromFormSubType(subType))
+                .formSubTypeDetails(getFormTemplateSubTypeFromFormSubType(subType))
                 .build()))
                 .stream()
                 .map(this::convertTemplateToForm)
@@ -155,50 +155,50 @@ public class QueryFormPortImpl implements QueryFormPort {
         return null;
     }
 
-    private Form convertTemplateToForm(FormTemplate formTemplate){
+    private Form convertTemplateToForm(FormDetails formDetails){
         return Form.builder()
-                .id(formTemplate.getId())
-                .formType(getFormType(formTemplate.getFormType()))
-                .usageLevels(usageLevelAdapter.getUsageLevelsFromFormUsageList(formTemplate.getFormUsages()))
-                .mainSection(sectionMapper.getSectionFromTemplate(formTemplate.getMainSection())).build();
+                .id(formDetails.getId())
+                .formType(getFormType(formDetails.getFormType()))
+                .usageLevels(usageLevelAdapter.getUsageLevelsFromFormUsageList(formDetails.getFormUsages()))
+                .mainSection(sectionMapper.getSectionFromTemplate(formDetails.getMainSection())).build();
     }
 
 
     public List<FormType> getAvailableFormCreationTemplateTypes(UsageLevel usageLevel) {
-        return formTemplateRepository.findAll(Example.of(FormTemplate.builder()
+        return formTemplateRepository.findAll(Example.of(FormDetails.builder()
                 .formUsages(usageLevelAdapter.getFormUsageListFromUsageLevel(List.of(usageLevel)))
                 .build())).stream().map(formTemplate -> getFormType(formTemplate.getFormType())).collect(Collectors.toList());
     }
 
-    FormTemplateType getFormTemplateType(FormType formType){
+    FormTypeDetails getFormTemplateType(FormType formType){
         if(FormType.DYNAMIC.equals(formType)){
-            return FormTemplateType.DYNAMIC;
+            return FormTypeDetails.DYNAMIC;
         }
         else if(FormType.SUPPLEMENTARY_WORKER_INFORMATION.equals(formType)){
-            return FormTemplateType.SUPPLEMENTARY_WORKER_INFORMATION;
+            return FormTypeDetails.SUPPLEMENTARY_WORKER_INFORMATION;
         }
         else if(FormType.WORKER_ON_BOARDING.equals(formType)){
-            return FormTemplateType.WORKER_ON_BOARDING;
+            return FormTypeDetails.WORKER_ON_BOARDING;
         }
         else if(FormType.PAYMENT_TEMPLATE.equals(formType)){
-            return FormTemplateType.PAYMENT_TEMPLATE;
+            return FormTypeDetails.PAYMENT_TEMPLATE;
         }
         return null;
     }
 
 
 
-    FormType getFormType(FormTemplateType formTemplateType){
-        if(FormTemplateType.DYNAMIC.equals(formTemplateType)){
+    FormType getFormType(FormTypeDetails formTypeDetails){
+        if(FormTypeDetails.DYNAMIC.equals(formTypeDetails)){
             return FormType.DYNAMIC;
         }
-        if(FormTemplateType.SUPPLEMENTARY_WORKER_INFORMATION.equals(formTemplateType)){
+        if(FormTypeDetails.SUPPLEMENTARY_WORKER_INFORMATION.equals(formTypeDetails)){
             return FormType.SUPPLEMENTARY_WORKER_INFORMATION;
         }
-        else if(FormTemplateType.WORKER_ON_BOARDING.equals(formTemplateType)){
+        else if(FormTypeDetails.WORKER_ON_BOARDING.equals(formTypeDetails)){
             return FormType.WORKER_ON_BOARDING;
         }
-        else if(FormTemplateType.PAYMENT_TEMPLATE.equals(formTemplateType)){
+        else if(FormTypeDetails.PAYMENT_TEMPLATE.equals(formTypeDetails)){
             return FormType.PAYMENT_TEMPLATE;
         }
         return null;
@@ -206,28 +206,28 @@ public class QueryFormPortImpl implements QueryFormPort {
 
 
 
-    FormSubType getFormSubTypeFromFormTemplateSubType(FormTemplateSubType formTemplateSubType){
-        if(FormTemplateSubType.CREATION_TEMPLATE.equals(formTemplateSubType)){
+    FormSubType getFormSubTypeFromFormTemplateSubType(FormSubTypeDetails formSubTypeDetails){
+        if(FormSubTypeDetails.CREATION_TEMPLATE.equals(formSubTypeDetails)){
             return FormSubType.CREATION_TEMPLATE;
         }
-        if(FormTemplateSubType.FORM.equals(formTemplateSubType)){
+        if(FormSubTypeDetails.FORM.equals(formSubTypeDetails)){
             return FormSubType.FORM;
         }
-        if(FormTemplateSubType.TEMPLATE.equals(formTemplateSubType)){
+        if(FormSubTypeDetails.TEMPLATE.equals(formSubTypeDetails)){
             return FormSubType.TEMPLATE;
         }
         return null;
     }
 
-    FormTemplateSubType getFormTemplateSubTypeFromFormSubType(FormSubType formSubType){
+    FormSubTypeDetails getFormTemplateSubTypeFromFormSubType(FormSubType formSubType){
         if(FormSubType.CREATION_TEMPLATE.equals(formSubType)){
-            return FormTemplateSubType.CREATION_TEMPLATE;
+            return FormSubTypeDetails.CREATION_TEMPLATE;
         }
         if(FormSubType.FORM.equals(formSubType)){
-            return FormTemplateSubType.FORM;
+            return FormSubTypeDetails.FORM;
         }
         if(FormSubType.TEMPLATE.equals(formSubType)){
-            return FormTemplateSubType.TEMPLATE;
+            return FormSubTypeDetails.TEMPLATE;
         }
         return null;
     }

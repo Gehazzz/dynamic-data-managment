@@ -9,15 +9,16 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class FormValue {
+//TODO FormValue rename to FormData or FilledForm
+public class FormSubmission {
     @Id
     @GeneratedValue
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
-    private FormTemplate formTemplate;
-    @OneToOne(mappedBy = "formValue", cascade = CascadeType.ALL,
+    private FormDetails formDetails;
+    @OneToOne(mappedBy = "formSubmission", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, optional = false)
-    private SectionValue mainSectionValue;
+    private SectionSubmission mainSectionSubmission;
     @Enumerated(EnumType.STRING)
-    FormValueStatus status;
+    FormSubmissionStatus status;
 }

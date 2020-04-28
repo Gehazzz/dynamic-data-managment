@@ -4,7 +4,7 @@ package com.papaya.dynamicdatamanagement.adapter.element;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.papaya.dynamicdatamanagement.form.validation.BooleanValidator;
 import com.papaya.dynamicdatamanagement.form.validation.FieldValidator;
-import com.papaya.dynamicdatamanagement.repository.model.CheckboxTemplate;
+import com.papaya.dynamicdatamanagement.repository.model.CheckboxDetails;
 import com.papaya.dynamicdatamanagement.repository.model.ValidationRule;
 import com.papaya.dynamicdatamanagement.form.elements.Checkbox;
 import org.springframework.stereotype.Component;
@@ -18,17 +18,17 @@ public class CheckBoxAdapter
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    public Checkbox mapToServiceEntity(CheckboxTemplate checkboxTemplate) {
+    public Checkbox mapToServiceEntity(CheckboxDetails checkboxDetails) {
 
        return Checkbox.builder()
-                .id(checkboxTemplate.getId())
-                .discarded(checkboxTemplate.isDiscarded())
-                .enabled(checkboxTemplate.isEnabled())
-                .hint(checkboxTemplate.getHint())
-                .label(checkboxTemplate.getLabel())
-                .requiredMessage(checkboxTemplate.getRequiredMessage())
-                .required(checkboxTemplate.isRequired())
-                .fieldValidators(getValidators(checkboxTemplate.getValidationRules())).build();
+                .id(checkboxDetails.getId())
+                .discarded(checkboxDetails.isDiscarded())
+                .enabled(checkboxDetails.isEnabled())
+                .hint(checkboxDetails.getHint())
+                .label(checkboxDetails.getLabel())
+                .requiredMessage(checkboxDetails.getRequiredMessage())
+                .required(checkboxDetails.isRequired())
+                .fieldValidators(getValidators(checkboxDetails.getValidationRules())).build();
     }
 
     public List<FieldValidator<Boolean>> getValidators(List<ValidationRule> fieldValidators){
@@ -49,10 +49,10 @@ public class CheckBoxAdapter
         return validationRules;
     }
 
-    public CheckboxTemplate mapToDataEntity(Checkbox abstractFormElement) {
+    public CheckboxDetails mapToDataEntity(Checkbox abstractFormElement) {
         Checkbox checkbox = objectMapper.convertValue(abstractFormElement, Checkbox.class);
 
-        return CheckboxTemplate.builder().validationRules(getValidationRules(checkbox.getValidators())).build();
+        return CheckboxDetails.builder().validationRules(getValidationRules(checkbox.getValidators())).build();
     }
 
 

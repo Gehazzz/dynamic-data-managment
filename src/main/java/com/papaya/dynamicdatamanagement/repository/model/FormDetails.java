@@ -14,35 +14,36 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldNameConstants
-public class FormTemplate {
+//TODO FormTemplate rename to FormDetails
+public class FormDetails {
     @Id
     @GeneratedValue
     private Long id;
     private String label;
     @Enumerated(EnumType.STRING)
-    private FormTemplateType formType;
+    private FormTypeDetails formType;
     @Enumerated(EnumType.STRING)
-    private FormTemplateSubType formTemplateSubType;
+    private FormSubTypeDetails formSubTypeDetails;
     @Enumerated(EnumType.STRING)
-    private FormTemplateStatus status;
+    private FormStatusDetails status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "template_id")
-    private FormTemplate template;
+    @JoinColumn(name = "form_details_template_id")
+    private FormDetails template;
     @OneToMany(mappedBy = "template",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-    private List<FormTemplate> createdByThisTemplate;
+    private List<FormDetails> createdByThisTemplate;
 
     @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "form_id")
-    private SectionTemplate mainSection;
+    @JoinColumn(name = "form_details_id")
+    private SectionDetails mainSection;
 
     @ManyToMany(cascade = {
             CascadeType.ALL
     })
-    @JoinTable(name = "form_template_form_usage",
-            joinColumns = @JoinColumn(name = "form_template_id"),
+    @JoinTable(name = "form_details_form_usage",
+            joinColumns = @JoinColumn(name = "form_details_id"),
             inverseJoinColumns = @JoinColumn(name = "form_usage_id")
     )
     private List<FormUsage> formUsages;

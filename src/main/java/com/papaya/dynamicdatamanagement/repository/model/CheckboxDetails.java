@@ -1,6 +1,5 @@
 package com.papaya.dynamicdatamanagement.repository.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,13 +13,17 @@ import java.util.List;
 @Setter
 @SuperBuilder
 @NoArgsConstructor
-@AllArgsConstructor
-public class TextAreaTemplate extends AbstractInputField {
-    private String placeholder;
+//@AllArgsConstructor
+public class CheckboxDetails extends AbstractInputField{
+
     @OneToMany(cascade=CascadeType.ALL)
-    @JoinTable(name = "text_area_value",
-            joinColumns = @JoinColumn(name = "text_area_id"),
+    @JoinTable(name = "checkbox_details_value",
+            joinColumns = @JoinColumn(name = "checkbox_details_id"),
             inverseJoinColumns = @JoinColumn(name = "value_id")
     )
     List<Value> values;
+
+    @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "checkbox_id")
+    private List<ValidationRule> validationRules;
 }

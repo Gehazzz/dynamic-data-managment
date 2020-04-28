@@ -2,7 +2,7 @@ package com.papaya.dynamicdatamanagement.repository.specs;
 
 import com.papaya.dynamicdatamanagement.repository.model.FormUsage;
 import com.papaya.dynamicdatamanagement.repository.model.User;
-import com.papaya.dynamicdatamanagement.repository.model.FormTemplate;
+import com.papaya.dynamicdatamanagement.repository.model.FormDetails;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.StringUtils;
 
@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class FormSpecifications {
-    public static Specification<FormTemplate> formsByUsageLevel(String countryIso, Long organisationId, Long projectId, List<User> userList) {
-        return (Specification<FormTemplate>) (root, query, criteriaBuilder) -> {
-            ListJoin<FormTemplate, FormUsage> formUsageJoin = root.joinList(FormTemplate.Fields.formUsages);
+    public static Specification<FormDetails> formsByUsageLevel(String countryIso, Long organisationId, Long projectId, List<User> userList) {
+        return (Specification<FormDetails>) (root, query, criteriaBuilder) -> {
+            ListJoin<FormDetails, FormUsage> formUsageJoin = root.joinList(FormDetails.Fields.formUsages);
             ListJoin<FormUsage, User> userJoin = formUsageJoin.joinList(FormUsage.Fields.users);
 
             List<Predicate> predicates = new ArrayList<>();

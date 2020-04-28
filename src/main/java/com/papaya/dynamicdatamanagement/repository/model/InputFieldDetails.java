@@ -12,16 +12,16 @@ import java.util.List;
 @NoArgsConstructor
 @SuperBuilder
 @AllArgsConstructor
-public class InputField extends AbstractInputField{
+public class InputFieldDetails extends AbstractInputField{
     private String placeholder;
     private InputJavaType type;
     @OneToMany(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "input_field_id")
+    @JoinColumn(name = "input_field_details_id")
     private List<ValidationRule> validationRules;
 
     @OneToMany(cascade=CascadeType.ALL)
-    @JoinTable(name = "input_field_value",
-            joinColumns = @JoinColumn(name = "input_field_id"),
+    @JoinTable(name = "input_field_details_value",
+            joinColumns = @JoinColumn(name = "input_field_details_id"),
             inverseJoinColumns = @JoinColumn(name = "value_id")
     )
     List<Value> values;

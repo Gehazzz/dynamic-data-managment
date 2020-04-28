@@ -1,7 +1,6 @@
 package com.papaya.dynamicdatamanagement.repository.model;
 
-public enum FormValueStatus {
+public enum FormStatusDetails {
     DRAFT,
-    SUBMITTED,
-    APPROVED;
+    PUBLISHED;
 }

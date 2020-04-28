@@ -1,6 +1,6 @@
 package com.papaya.dynamicdatamanagement.repository.model;
 
-public enum FormTemplateType {
+public enum FormTypeDetails {
     PAYMENT_TEMPLATE,
     WORKER_ON_BOARDING,
     SUPPLEMENTARY_WORKER_INFORMATION,

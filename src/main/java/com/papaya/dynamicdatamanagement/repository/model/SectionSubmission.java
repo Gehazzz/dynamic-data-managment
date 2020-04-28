@@ -10,20 +10,20 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SectionValue {
+public class SectionSubmission {
     @Id
     @GeneratedValue
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
-    private SectionTemplate section;
+    private SectionDetails section;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "form_value_id")
-    private FormValue formValue;
+    @JoinColumn(name = "form_submission_id")
+    private FormSubmission formSubmission;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_section_value_id")
-    private List<SectionValue> sectionValues;
+    @JoinColumn(name = "parent_section_submission_id")
+    private List<SectionSubmission> sectionSubmissions;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_section_value_id")
+    @JoinColumn(name = "parent_section_submission_id")
     private List<Value> values;
 }

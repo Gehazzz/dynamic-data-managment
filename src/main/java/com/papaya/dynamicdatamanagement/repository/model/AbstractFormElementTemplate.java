@@ -22,7 +22,7 @@ public abstract class AbstractFormElementTemplate {
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "parent_section_id")
     @JsonIgnore
-    private SectionTemplate parentSection;
+    private SectionDetails parentSection;
     /**
      * Marks this form element as "discarded", meaning that the user did
      * something with the consequence that the input from this form element must
