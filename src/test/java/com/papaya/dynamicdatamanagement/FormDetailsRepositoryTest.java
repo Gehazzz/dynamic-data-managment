@@ -16,10 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -74,7 +71,7 @@ public class FormDetailsRepositoryTest {
         FormDetails formDetails = FormDetails.builder()
                 .label("form")
                 .mainSection(section)
-                .formUsages(List.of(FormUsage.builder().countryIso("ch").projectId(1L).build()))
+                .formUsages(Set.of(FormUsage.builder().countryIso("ch").projectId(1L).build()))
                 .build();
 
         FormDetails saved = formTemplateRepository.save(formDetails);

@@ -6,7 +6,10 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import javax.xml.stream.FactoryConfigurationError;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Builder
@@ -19,23 +22,21 @@ import java.util.List;
 @Table(name = "org", schema = "papaya")
 public class Organisation {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "countryId")
-    @LazyCollection(LazyCollectionOption.FALSE)
     private Country country;
 
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE
-    })
-    @LazyCollection(LazyCollectionOption.FALSE)
+    }, fetch = FetchType.LAZY)
     @JoinTable(name = "org_role",
     joinColumns = @JoinColumn(name = "orgId"),
             inverseJoinColumns = @JoinColumn(name = "roleId")
     )
-    private List<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 }

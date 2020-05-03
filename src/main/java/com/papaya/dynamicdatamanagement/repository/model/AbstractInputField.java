@@ -12,6 +12,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @SuperBuilder
 public abstract class AbstractInputField extends AbstractFormElementTemplate {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     /**
      * The label of the input field. This label should be displayed
      * next to the input field itself, so that it is clear what input

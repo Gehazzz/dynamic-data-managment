@@ -2,6 +2,8 @@ package com.papaya.dynamicdatamanagement.repository.model;
 
 import lombok.*;
 import lombok.experimental.FieldNameConstants;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -17,17 +19,15 @@ import javax.persistence.*;
 @Table(name = "project", schema = "papaya")
 public class Project {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "countryId")
-    @LazyCollection(LazyCollectionOption.TRUE)
     private Country country;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customerId")
-    @LazyCollection(LazyCollectionOption.TRUE)
     private Organisation organisation;
 }

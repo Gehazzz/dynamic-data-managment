@@ -5,6 +5,8 @@ import lombok.experimental.FieldNameConstants;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
+
 @Data
 @Getter
 @Setter
@@ -28,5 +30,5 @@ public class FormUsage {
             joinColumns = @JoinColumn(name = "form_usage_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    private List<User> users;
+    private Set<User> users;
 }

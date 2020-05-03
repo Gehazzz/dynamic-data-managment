@@ -39,7 +39,7 @@ public class Value {
     @ManyToOne(fetch = FetchType.LAZY)
     private InputFieldDetails inputFieldDetails;
     @ManyToOne(fetch = FetchType.LAZY)
-    private RadioGroupDetails radioGroup;
+    private RadioGroupDetails radioGroupDetails;
     @ManyToOne(fetch = FetchType.LAZY)
     private TextAreaDetails textArea;
     private InputJavaType type;

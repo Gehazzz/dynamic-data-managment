@@ -16,8 +16,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DropDownDetails extends AbstractInputField{
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_drop_down_details_id")
+    @OneToMany(mappedBy = "dropDownDetails",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     List<Choice> choices;
 
     @OneToMany(cascade=CascadeType.ALL)

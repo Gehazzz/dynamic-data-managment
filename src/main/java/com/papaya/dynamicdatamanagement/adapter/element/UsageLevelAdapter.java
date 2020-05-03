@@ -6,12 +6,13 @@ import com.papaya.dynamicdatamanagement.repository.model.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
 public class UsageLevelAdapter {
 
-    public List<UsageLevel> getUsageLevelsFromFormUsageList(List<FormUsage> formUsages){
+    public List<UsageLevel> getUsageLevelsFromFormUsageSet(Set<FormUsage> formUsages){
         return formUsages.stream().map(formUsage -> UsageLevel.builder()
                 .countryIso(formUsage.getCountryIso())
                 .organisationId(formUsage.getOrganisationId())
@@ -21,14 +22,14 @@ public class UsageLevelAdapter {
     }
 
 
-    public List<FormUsage> getFormUsageListFromUsageLevel(List<UsageLevel> usageLevels){
+    public Set<FormUsage> getFormUsageSetFromUsageLevel(Set<UsageLevel> usageLevels){
        return usageLevels.stream().map(usageLevel -> FormUsage.builder()
                 .countryIso(usageLevel.getCountryIso())
                 .organisationId(usageLevel.getOrganisationId())
                 .projectId(usageLevel.getProjectId())
-                .users(usageLevel.getUsageLevelRoles().stream().map(usageLevelUser -> User.builder().id(usageLevelUser.getId()).userName(usageLevelUser.getUserName()).email(usageLevelUser.getEmail()).build()).collect(Collectors.toList()))
+                .users(usageLevel.getUsageLevelRoles().stream().map(usageLevelUser -> User.builder().id(usageLevelUser.getId()).userName(usageLevelUser.getUserName()).email(usageLevelUser.getEmail()).build()).collect(Collectors.toSet()))
                 .build()
-        ).collect(Collectors.toList());
+        ).collect(Collectors.toSet());
     }
 
     public CountryInfo getCountryInfo(Country country){

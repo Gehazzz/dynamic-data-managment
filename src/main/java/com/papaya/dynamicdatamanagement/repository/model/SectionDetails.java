@@ -1,19 +1,23 @@
 package com.papaya.dynamicdatamanagement.repository.model;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@SuperBuilder
 @NoArgsConstructor
 public class SectionDetails extends AbstractFormElementTemplate {
+    @Id
+    private Long id;
     private String label;
+   /* @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
+    private FormDetails formDetails;*/
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "parent_section_details_id")
     private List<SectionDetails> sections;
@@ -39,17 +43,4 @@ public class SectionDetails extends AbstractFormElementTemplate {
     @JoinColumn(name = "parent_section_details_id")
     private List<DropDownDetails> dropDowns;
 
-    @Builder
-    public SectionDetails(Long id, Integer index, SectionDetails parentSection, boolean discarded, boolean visible, String label, List<SectionDetails> sections, List<TextDetails> textElements, List<InputFieldDetails> inputFieldDetails, List<TextAreaDetails> textAreas, List<CheckboxDetails> checkboxes, List<CheckboxGroupDetails> checkboxGroups, List<RadioGroupDetails> radioGroups, List<DropDownDetails> dropDowns) {
-        super(id, index, parentSection, discarded, visible);
-        this.label = label;
-        this.sections = sections;
-        this.textElements = textElements;
-        this.inputFieldDetails = inputFieldDetails;
-        this.textAreas = textAreas;
-        this.checkboxes = checkboxes;
-        this.checkboxGroups = checkboxGroups;
-        this.radioGroups = radioGroups;
-        this.dropDowns = dropDowns;
-    }
 }

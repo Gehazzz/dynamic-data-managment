@@ -13,13 +13,11 @@ import javax.persistence.*;
 @AllArgsConstructor
 @MappedSuperclass
 public abstract class AbstractFormElementTemplate {
-    @Id
-    @GeneratedValue
-    private Long id;
+
     @Column(name = "element_index")
     private Integer index;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_section_id")
     @JsonIgnore
     private SectionDetails parentSection;

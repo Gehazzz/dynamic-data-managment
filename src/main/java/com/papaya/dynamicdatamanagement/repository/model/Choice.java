@@ -1,5 +1,6 @@
 package com.papaya.dynamicdatamanagement.repository.model;
 
+import com.papaya.dynamicdatamanagement.form.elements.DropDown;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,5 +23,8 @@ public class Choice {
     private int index;
     private String value;
     private InputJavaType type;
+    private DropDownDetails dropDownDetails;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private RadioGroupDetails radioGroupDetails;
 
 }

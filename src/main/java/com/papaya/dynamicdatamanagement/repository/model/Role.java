@@ -9,7 +9,9 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -20,7 +22,7 @@ import java.util.List;
 @Table(name = "role", schema = "papaya")
 public class Role {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String code;
@@ -31,11 +33,10 @@ public class Role {
             CascadeType.PERSIST,
             CascadeType.MERGE
     })
-    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(name = "org_role",
             joinColumns = @JoinColumn(name = "roleId"),
             inverseJoinColumns = @JoinColumn(name = "orgId")
     )
-    private List<Organisation> organisations;
+    private Set<Organisation> organisations = new HashSet<>();
 
 }

@@ -16,6 +16,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
@@ -89,7 +90,7 @@ public class QueryFormPortImpl implements QueryFormPort {
     @Override
     public List<Form> getAllForms(FormSubType formSubType, UsageLevel usageLevel) {
         return formTemplateRepository.findAll(Example.of(FormDetails.builder()
-                .formUsages(usageLevelAdapter.getFormUsageListFromUsageLevel(List.of(usageLevel)))
+                .formUsages(usageLevelAdapter.getFormUsageSetFromUsageLevel(Set.of(usageLevel)))
                 .formSubTypeDetails(getFormTemplateSubTypeFromFormSubType(formSubType))
                 .build()))
                 .stream()
@@ -112,7 +113,7 @@ public class QueryFormPortImpl implements QueryFormPort {
     @Override
     public List<Form> getAllForms(FormType formType, UsageLevel usageLevel) {
         return formTemplateRepository.findAll(Example.of(FormDetails.builder()
-                .formUsages(usageLevelAdapter.getFormUsageListFromUsageLevel(List.of(usageLevel)))
+                .formUsages(usageLevelAdapter.getFormUsageSetFromUsageLevel(Set.of(usageLevel)))
                 .formType(getFormTemplateType(formType))
                 .build()))
                 .stream()
@@ -123,7 +124,7 @@ public class QueryFormPortImpl implements QueryFormPort {
     @Override
     public List<Form> getAllForms(FormType formType, FormSubType subType, UsageLevel usageLevel) {
         return formTemplateRepository.findAll(Example.of(FormDetails.builder()
-                .formUsages(usageLevelAdapter.getFormUsageListFromUsageLevel(List.of(usageLevel)))
+                .formUsages(usageLevelAdapter.getFormUsageSetFromUsageLevel(Set.of(usageLevel)))
                 .formType(getFormTemplateType(formType))
                 .formSubTypeDetails(getFormTemplateSubTypeFromFormSubType(subType))
                 .build()))
@@ -140,7 +141,7 @@ public class QueryFormPortImpl implements QueryFormPort {
     @Override
     public List<Form> getAllForms(FormType formType, FormSubType subType, UsageLevel usageLevel, String label) {
         return formTemplateRepository.findAll(Example.of(FormDetails.builder()
-                .formUsages(usageLevelAdapter.getFormUsageListFromUsageLevel(List.of(usageLevel)))
+                .formUsages(usageLevelAdapter.getFormUsageSetFromUsageLevel(Set.of(usageLevel)))
                 .formType(getFormTemplateType(formType))
                 .label(label)
                 .formSubTypeDetails(getFormTemplateSubTypeFromFormSubType(subType))
@@ -159,14 +160,14 @@ public class QueryFormPortImpl implements QueryFormPort {
         return Form.builder()
                 .id(formDetails.getId())
                 .formType(getFormType(formDetails.getFormType()))
-                .usageLevels(usageLevelAdapter.getUsageLevelsFromFormUsageList(formDetails.getFormUsages()))
+                .usageLevels(usageLevelAdapter.getUsageLevelsFromFormUsageSet(formDetails.getFormUsages()))
                 .mainSection(sectionMapper.getSectionFromTemplate(formDetails.getMainSection())).build();
     }
 
 
     public List<FormType> getAvailableFormCreationTemplateTypes(UsageLevel usageLevel) {
         return formTemplateRepository.findAll(Example.of(FormDetails.builder()
-                .formUsages(usageLevelAdapter.getFormUsageListFromUsageLevel(List.of(usageLevel)))
+                .formUsages(usageLevelAdapter.getFormUsageSetFromUsageLevel(Set.of(usageLevel)))
                 .build())).stream().map(formTemplate -> getFormType(formTemplate.getFormType())).collect(Collectors.toList());
     }
 
