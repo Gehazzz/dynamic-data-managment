@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-//TODO FormValue rename to FormData or FilledForm
 public class FormSubmission {
     @Id
     @GeneratedValue

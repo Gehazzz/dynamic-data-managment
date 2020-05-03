@@ -13,6 +13,10 @@ public abstract class   AbstractSingleChoice<T> extends AbstractInputField<T> {
 
     private Class<T> modelClass;
 
+    public AbstractSingleChoice() {
+
+    }
+
     public List<T> getChoices() {
         return choices;
     }

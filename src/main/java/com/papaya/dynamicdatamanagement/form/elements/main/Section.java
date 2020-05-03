@@ -1,5 +1,6 @@
 package com.papaya.dynamicdatamanagement.form.elements.main;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.papaya.dynamicdatamanagement.form.elements.AbstractInputField;
 import com.papaya.dynamicdatamanagement.form.validation.SectionValidator;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
-
 @NoArgsConstructor
 public class Section extends AbstractFormElement {
     private String label;

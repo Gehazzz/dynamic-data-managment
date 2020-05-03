@@ -10,6 +10,9 @@ import lombok.Builder;
 import java.util.List;
 
 public class CheckboxGroup<T> extends AbstractMultiChoice<T> {
+    public CheckboxGroup(){
+        super();
+    }
 
     @Builder
     public CheckboxGroup(Long id, String htmlId, Integer index, Section parentSection, boolean discarded, boolean visible, boolean showRemoveButton, Binding<List<T>> binding, String label, String hint, boolean required, boolean enabled, String requiredMessage, List<FieldValidator<List<T>>> fieldValidators, List<T> userInput, List<T> choices, String choiceLabel) {

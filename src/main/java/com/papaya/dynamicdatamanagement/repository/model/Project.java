@@ -17,17 +17,17 @@ import javax.persistence.*;
 @Table(name = "project", schema = "papaya")
 public class Project {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String name;
 
     @ManyToOne
     @JoinColumn(name = "countryId")
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @LazyCollection(LazyCollectionOption.TRUE)
     private Country country;
 
     @ManyToOne
     @JoinColumn(name = "customerId")
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @LazyCollection(LazyCollectionOption.TRUE)
     private Organisation organisation;
 }

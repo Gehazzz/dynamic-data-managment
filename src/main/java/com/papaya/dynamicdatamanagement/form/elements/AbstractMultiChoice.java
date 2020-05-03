@@ -10,6 +10,10 @@ public abstract class AbstractMultiChoice<T> extends AbstractInputField<List<T>>
 
     private String choiceLabel;
 
+    public AbstractMultiChoice() {
+
+    }
+
     public void setChoices(List<T> choices) {
         this.choices = choices;
     }

@@ -14,7 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldNameConstants
-//TODO FormTemplate rename to FormDetails
 public class FormDetails {
     @Id
     @GeneratedValue
@@ -38,6 +37,10 @@ public class FormDetails {
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "form_details_id")
     private SectionDetails mainSection;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "form_details_id")
+    private List<FormSubmission> formSubmissions;
 
     @ManyToMany(cascade = {
             CascadeType.ALL

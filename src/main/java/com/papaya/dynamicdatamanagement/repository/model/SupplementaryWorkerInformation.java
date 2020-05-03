@@ -4,8 +4,9 @@ import lombok.*;
 import lombok.experimental.FieldNameConstants;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
-@Entity
+//@Entity
 @Getter
 @Setter
 @Builder
@@ -14,7 +15,7 @@ import java.util.List;
 @FieldNameConstants
 public class SupplementaryWorkerInformation {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String lastName;
@@ -33,5 +34,5 @@ public class SupplementaryWorkerInformation {
             joinColumns = @JoinColumn(name = "supplementary_worker_information_id"),
             inverseJoinColumns = @JoinColumn(name = "value_id")
     )
-    private List<Value> values;
+    private List<Value> values = new ArrayList<>();
 }

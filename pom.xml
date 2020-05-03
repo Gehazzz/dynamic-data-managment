@@ -57,11 +57,11 @@
             </exclusions>
         </dependency>
 
-       <!-- <dependency>
+        <dependency>
             <groupId>io.hypersistence</groupId>
             <artifactId>hypersistence-optimizer</artifactId>
-            <version>2.1.0-trial</version>
-        </dependency>-->
+            <version>2.1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
