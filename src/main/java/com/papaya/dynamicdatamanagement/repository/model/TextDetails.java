@@ -19,4 +19,6 @@ public class TextDetails extends AbstractFormElementTemplate {
     private Long id;
     @Column(columnDefinition="LONGTEXT")
     private String text;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private SectionDetails parentSectionDetails;
 }

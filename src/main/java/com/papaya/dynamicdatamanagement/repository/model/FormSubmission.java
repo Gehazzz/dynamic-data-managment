@@ -11,12 +11,12 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class FormSubmission {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
     private FormDetails formDetails;
-    @OneToOne(mappedBy = "formSubmission", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
     private SectionSubmission mainSectionSubmission;
     @Enumerated(EnumType.STRING)
     FormSubmissionStatus status;

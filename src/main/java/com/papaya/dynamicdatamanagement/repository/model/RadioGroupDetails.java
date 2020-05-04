@@ -17,6 +17,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RadioGroupDetails extends AbstractInputField{
+    @ManyToOne(fetch = FetchType.LAZY)
+    private SectionDetails parentSectionDetails;
     @OneToMany(mappedBy = "radioGroupDetails", cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<Choice> choices = new ArrayList<>();

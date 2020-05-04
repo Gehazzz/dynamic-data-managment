@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,32 +16,118 @@ public class SectionDetails extends AbstractFormElementTemplate {
     @Id
     private Long id;
     private String label;
-   /* @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
-    private FormDetails formDetails;*/
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_section_details_id")
-    private List<SectionDetails> sections;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_section_details_id")
-    private List<TextDetails> textElements;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_section_details_id")
-    private List<InputFieldDetails> inputFieldDetails;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_section_details_id")
-    private List<TextAreaDetails> textAreas;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_section_details_id")
-    private List<CheckboxDetails> checkboxes;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_section_details_id")
-    private List<CheckboxGroupDetails> checkboxGroups;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_section_details_id")
-    private List<RadioGroupDetails> radioGroups;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_section_details_id")
-    private List<DropDownDetails> dropDowns;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private SectionDetails sectionDetails;
+    @OneToMany(mappedBy = "sectionDetails",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<SectionDetails> sections = new ArrayList<>();
+    @OneToMany(mappedBy = "parentSectionDetails",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<TextDetails> textElements = new ArrayList<>();
+    @OneToMany(mappedBy = "parentSectionDetails",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<InputFieldDetails> inputFields = new ArrayList<>();
+    @OneToMany(mappedBy = "parentSectionDetails",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<TextAreaDetails> textAreas = new ArrayList<>();
+    @OneToMany(mappedBy = "parentSectionDetails",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<CheckboxDetails> checkboxes = new ArrayList<>();
+    @OneToMany(mappedBy = "parentSectionDetails",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<CheckboxGroupDetails> checkboxGroups = new ArrayList<>();
+    @OneToMany(mappedBy = "parentSectionDetails",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<RadioGroupDetails> radioGroups = new ArrayList<>();
+    @OneToMany(mappedBy = "parentSectionDetails",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<DropDownDetails> dropDowns = new ArrayList<>();
 
+    public void addSectionDetails(SectionDetails sectionDetails) {
+        sections.add(sectionDetails);
+        sectionDetails.setParentSection(this);
+    }
+
+    public void removeSectionDetails(SectionDetails sectionDetails) {
+        sections.remove(sectionDetails);
+        sectionDetails.setParentSection(null);
+    }
+
+    public void addTextDetails(TextDetails textDetails) {
+        textElements.add(textDetails);
+        textDetails.setParentSectionDetails(this);
+    }
+
+    public void removeTextDetails(TextDetails textDetails) {
+        textElements.remove(textDetails);
+        textDetails.setParentSectionDetails(null);
+    }
+
+    public void addInputFieldDetails(InputFieldDetails inputFieldDetails) {
+        inputFields.add(inputFieldDetails);
+        inputFieldDetails.setParentSectionDetails(this);
+    }
+
+    public void removeInputFieldDetails(InputFieldDetails inputFieldDetails) {
+        inputFields.remove(inputFieldDetails);
+        inputFieldDetails.setParentSectionDetails(null);
+    }
+
+    public void addTextAreaDetails(TextAreaDetails textAreaDetails) {
+        textAreas.add(textAreaDetails);
+        textAreaDetails.setParentSectionDetails(this);
+    }
+
+    public void removeTextAreaDetails(TextAreaDetails textAreaDetails) {
+        textAreas.remove(textAreaDetails);
+        textAreaDetails.setParentSectionDetails(null);
+    }
+
+    public void addCheckboxDetails(CheckboxDetails checkboxDetails) {
+        checkboxes.add(checkboxDetails);
+        checkboxDetails.setParentSectionDetails(this);
+    }
+
+    public void removeCheckboxDetails(CheckboxDetails checkboxDetails) {
+        checkboxes.remove(checkboxDetails);
+        checkboxDetails.setParentSectionDetails(null);
+    }
+
+    public void addCheckboxGroupDetails(CheckboxGroupDetails checkboxGroupDetails) {
+        checkboxGroups.add(checkboxGroupDetails);
+        checkboxGroupDetails.setParentSectionDetails(this);
+    }
+
+    public void removeCheckboxGroupDetails(CheckboxGroupDetails checkboxGroupDetails) {
+        checkboxGroups.remove(checkboxGroupDetails);
+        checkboxGroupDetails.setParentSectionDetails(null);
+    }
+
+    public void addRadioGroupDetails(RadioGroupDetails radioGroupDetails) {
+        radioGroups.add(radioGroupDetails);
+        radioGroupDetails.setParentSectionDetails(this);
+    }
+
+    public void removeRadioGroupDetails(RadioGroupDetails radioGroupDetails) {
+        radioGroups.remove(radioGroupDetails);
+        radioGroupDetails.setParentSectionDetails(null);
+    }
+
+    public void addDropDownDetails(DropDownDetails dropDownDetails) {
+        dropDowns.add(dropDownDetails);
+        dropDownDetails.setParentSectionDetails(this);
+    }
+
+    public void removeDropDownDetails(DropDownDetails dropDownDetails) {
+        dropDowns.remove(dropDownDetails);
+        dropDownDetails.setParentSectionDetails(null);
+    }
 }

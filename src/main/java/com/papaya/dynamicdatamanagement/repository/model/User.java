@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldNameConstants;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
@@ -25,5 +27,5 @@ public class User {
 
     private String email;
     @ManyToMany(mappedBy = "users")
-    List<FormUsage> formUsageList;
+    Set<FormUsage> formUsageList = new HashSet<>();
 }

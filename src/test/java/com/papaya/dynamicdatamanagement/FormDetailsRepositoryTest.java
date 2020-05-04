@@ -66,7 +66,7 @@ public class FormDetailsRepositoryTest {
         List<InputFieldDetails> fields = new ArrayList<>();
         fields.add(inputFieldDetails);
 
-        section.setInputFieldDetails(fields);
+        section.setInputFields(fields);
 
         FormDetails formDetails = FormDetails.builder()
                 .label("form")

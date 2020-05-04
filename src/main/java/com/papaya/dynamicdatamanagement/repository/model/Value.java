@@ -3,7 +3,10 @@ package com.papaya.dynamicdatamanagement.repository.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -13,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Value {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String valueName;
     @Column(columnDefinition="LONGTEXT")
@@ -24,23 +27,52 @@ public class Value {
     private String boundColumnName;
     private String boundPropertyName;
     private Long boundTableRowId;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_value_id")
-    private List<Value> values;
-    @OneToMany(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "value_id")
-    private List<ValidationRule> validationRules;
     @ManyToOne(fetch = FetchType.LAZY)
-    private CheckboxDetails checkbox;
+    private Value parentValue;
+    @OneToMany(mappedBy = "parentValue",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Value> values = new ArrayList<>();
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "value_validation_rule",
+            joinColumns = @JoinColumn(name = "value_id"),
+            inverseJoinColumns = @JoinColumn(name = "validation_rule_id")
+    )
+    private Set<ValidationRule> validationRules = new HashSet<>();
     @ManyToOne(fetch = FetchType.LAZY)
-    private CheckboxGroupDetails checkboxGroup;
+    private CheckboxDetails checkboxDetails;
     @ManyToOne(fetch = FetchType.LAZY)
-    private DropDownDetails dropDown;
+    private CheckboxGroupDetails checkboxGroupDetails;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private DropDownDetails dropDownDetails;
     @ManyToOne(fetch = FetchType.LAZY)
     private InputFieldDetails inputFieldDetails;
     @ManyToOne(fetch = FetchType.LAZY)
     private RadioGroupDetails radioGroupDetails;
     @ManyToOne(fetch = FetchType.LAZY)
-    private TextAreaDetails textArea;
+    private TextAreaDetails textAreaDetails;
     private InputJavaType type;
+
+    public void addValue(Value value){
+        values.add(value);
+        value.addValue(this);
+    }
+
+    public void removeValue(Value value){
+        values.remove(value);
+        value.removeValue(this);
+    }
+
+    public void addValidationRule(ValidationRule validationRule){
+        validationRules.add(validationRule);
+        validationRule.addValue(this);
+    }
+
+    public void removeValidationRule(ValidationRule validationRule){
+        validationRules.remove(validationRule);
+        validationRule.removeValue(this);
+    }
 }

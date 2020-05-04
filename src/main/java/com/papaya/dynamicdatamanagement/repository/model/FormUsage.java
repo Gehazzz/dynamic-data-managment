@@ -17,14 +17,15 @@ import java.util.Set;
 @FieldNameConstants
 public class FormUsage {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String countryIso;
     private Long organisationId;
     private Long projectId;
     @ToString.Exclude
     @ManyToMany(cascade = {
-            CascadeType.ALL
+            CascadeType.PERSIST,
+            CascadeType.MERGE
     })
     @JoinTable(name = "form_usage_user",
             joinColumns = @JoinColumn(name = "form_usage_id"),
