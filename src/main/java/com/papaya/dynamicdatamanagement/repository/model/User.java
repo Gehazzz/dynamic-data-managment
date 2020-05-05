@@ -27,5 +27,14 @@ public class User {
 
     private String email;
     @ManyToMany(mappedBy = "users")
-    Set<FormUsage> formUsageList = new HashSet<>();
+    Set<FormUsage> formUsages = new HashSet<>();
+
+    public void addFormUsage(FormUsage formUsage){
+        formUsages.add(formUsage);
+        formUsage.getUsers().add(this);
+    }
+    public void removeFormUsage(FormUsage formUsage){
+        formUsages.remove(formUsage);
+        formUsage.getUsers().remove(this);
+    }
 }

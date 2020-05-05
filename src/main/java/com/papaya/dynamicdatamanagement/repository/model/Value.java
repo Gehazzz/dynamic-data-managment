@@ -54,6 +54,8 @@ public class Value {
     private RadioGroupDetails radioGroupDetails;
     @ManyToOne(fetch = FetchType.LAZY)
     private TextAreaDetails textAreaDetails;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private SectionSubmission sectionSubmission;
     private InputJavaType type;
 
     public void addValue(Value value){

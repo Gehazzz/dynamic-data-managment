@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldNameConstants;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -31,5 +32,16 @@ public class FormUsage {
             joinColumns = @JoinColumn(name = "form_usage_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    private Set<User> users;
+    private Set<User> users = new HashSet<>();
+
+    public void addUser(User user){
+        users.add(user);
+        user.getFormUsages().add(this);
+        //user.addFormUsage(this);
+    }
+    public void removeUser(User user){
+        users.remove(user);
+        user.getFormUsages().remove(this);
+        //user.removeFormUsage(this);
+    }
 }
