@@ -105,7 +105,7 @@ public class QueryFormPortImpl implements QueryFormPort {
 
     @Override
     public List<Form> getAllForms(UsageLevel usageLevel) {
-       return formTemplateRepository.findAll(FormSpecifications.formsByUsageLevel(usageLevel.getCountryIso(),usageLevel.getOrganisationId(),usageLevel.getProjectId(),usageLevel.getUsageLevelRoles().stream().map(usageLevelRole -> usageLevelAdapter.getRole(usageLevelRole)).collect(Collectors.toList()))).stream()
+       return formTemplateRepository.findAll(FormSpecifications.formsByUsageLevel(usageLevel.getCountryIso(),usageLevel.getOrganisationId(),usageLevel.getProjectId(),usageLevel.getUsageLevelRoles().stream().map(usageLevelRole -> usageLevelAdapter.getRole(usageLevelRole)).collect(Collectors.toSet()))).stream()
                 .map(this::convertTemplateToForm)
                 .collect(Collectors.toList());
     }

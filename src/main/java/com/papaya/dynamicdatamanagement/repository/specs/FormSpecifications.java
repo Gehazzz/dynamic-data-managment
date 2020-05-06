@@ -9,13 +9,14 @@ import org.springframework.util.StringUtils;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 public class FormSpecifications {
-    public static Specification<FormDetails> formsByUsageLevel(String countryIso, Long organisationId, Long projectId, List<User> userList) {
+    public static Specification<FormDetails> formsByUsageLevel(String countryIso, Long organisationId, Long projectId, Set<User> userList) {
         return (Specification<FormDetails>) (root, query, criteriaBuilder) -> {
-            ListJoin<FormDetails, FormUsage> formUsageJoin = root.joinList(FormDetails.Fields.formUsages);
-            ListJoin<FormUsage, User> userJoin = formUsageJoin.joinList(FormUsage.Fields.users);
+            SetJoin<FormDetails, FormUsage> formUsageJoin = root.joinSet(FormDetails.Fields.formUsages);
+            SetJoin<FormUsage, User> userJoin = formUsageJoin.joinSet(FormUsage.Fields.users);
 
             List<Predicate> predicates = new ArrayList<>();
 

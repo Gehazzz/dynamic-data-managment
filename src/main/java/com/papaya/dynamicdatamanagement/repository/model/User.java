@@ -1,9 +1,6 @@
 package com.papaya.dynamicdatamanagement.repository.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldNameConstants;
 
 import javax.persistence.*;
@@ -12,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 @Data
+@EqualsAndHashCode(exclude = {"formUsages"})
 @Builder
 @Entity
 @AllArgsConstructor

@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 public class SectionDetails extends AbstractFormElementTemplate {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String label;
     @ManyToOne(fetch = FetchType.LAZY)
