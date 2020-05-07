@@ -50,7 +50,10 @@ public class FormDetails {
             orphanRemoval = true)
     private List<FormSubmission> formSubmissions = new ArrayList<>();
 
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
     @JoinTable(name = "form_details_form_usage",
             joinColumns = @JoinColumn(name = "form_details_id"),
             inverseJoinColumns = @JoinColumn(name = "form_usage_id")

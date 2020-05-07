@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldNameConstants;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,6 +25,11 @@ public class User {
     private String userName;
 
     private String email;
+    @OneToMany(mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<FormSubmission> formSubmissions = new ArrayList<>();
+
     @ManyToMany(mappedBy = "users")
     Set<FormUsage> formUsages = new HashSet<>();
 

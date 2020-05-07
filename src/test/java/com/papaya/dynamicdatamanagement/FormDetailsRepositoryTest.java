@@ -9,7 +9,7 @@ import com.papaya.dynamicdatamanagement.form.validation.PatternValidator;
 import com.papaya.dynamicdatamanagement.repository.CountryRepository;
 import com.papaya.dynamicdatamanagement.repository.FormUsageRepository;
 import com.papaya.dynamicdatamanagement.repository.model.*;
-import com.papaya.dynamicdatamanagement.repository.FormTemplateRepository;
+import com.papaya.dynamicdatamanagement.repository.FormDetailsRepository;
 import com.papaya.dynamicdatamanagement.repository.specs.FormSpecifications;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @SpringBootTest
 public class FormDetailsRepositoryTest {
     @Autowired
-    FormTemplateRepository formTemplateRepository;
+    FormDetailsRepository formDetailsRepository;
     @Autowired
     FormUsageRepository formUsageRepository;
     @Autowired
@@ -34,7 +34,7 @@ public class FormDetailsRepositoryTest {
     @Test
     @SneakyThrows
     void formTest(){
-        formTemplateRepository.deleteAll();
+        formDetailsRepository.deleteAll();
         formUsageRepository.deleteAll();
 
         SectionDetails section = SectionDetails.builder()
@@ -74,13 +74,13 @@ public class FormDetailsRepositoryTest {
                 .formUsages(Set.of(FormUsage.builder().countryIso("ch").projectId(1L).build()))
                 .build();
 
-        FormDetails saved = formTemplateRepository.save(formDetails);
+        FormDetails saved = formDetailsRepository.save(formDetails);
         System.out.println(saved);
         //String s = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(saved);
         //System.out.println(s);
-        List<FormDetails> ch = formTemplateRepository.findAll(FormSpecifications.formsByUsageLevel("ch", null, null, null));
-        //ch.forEach(System.out::println);
-        System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(createSupplementaryForm()));
+        List<FormDetails> ch = formDetailsRepository.findAll(FormSpecifications.searchFormDetails("ch", null, null, null));
+        ch.forEach(System.out::println);
+        //System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(createSupplementaryForm()));
     }
 
     public Form createSupplementaryForm(){

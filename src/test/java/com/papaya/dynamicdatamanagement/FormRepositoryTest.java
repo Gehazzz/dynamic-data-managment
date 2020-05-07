@@ -1,6 +1,6 @@
 package com.papaya.dynamicdatamanagement;
 
-import com.papaya.dynamicdatamanagement.repository.FormTemplateRepository;
+import com.papaya.dynamicdatamanagement.repository.FormDetailsRepository;
 import com.papaya.dynamicdatamanagement.repository.FormUsageRepository;
 import com.papaya.dynamicdatamanagement.repository.model.FormUsage;
 import com.papaya.dynamicdatamanagement.repository.model.SectionDetails;
@@ -17,7 +17,7 @@ import java.util.Set;
 @SpringBootTest
 public class FormRepositoryTest {
     @Autowired
-    FormTemplateRepository formRepository;
+    FormDetailsRepository formRepository;
     @Autowired
     FormUsageRepository formUsageRepository;
 
@@ -38,7 +38,7 @@ public class FormRepositoryTest {
         FormDetails secondForm = FormDetails.builder().mainSection(SectionDetails.builder().build()).label("form-2").formUsages(Set.of(isr2, us2)).build();
         formRepository.save(firstForm);
         formRepository.save(secondForm);
-        List<FormDetails> forms = formRepository.findAll(FormSpecifications.formsByUsageLevel("ISR", 23L, 9L, Set.of(manager)));
+        List<FormDetails> forms = formRepository.findAll(FormSpecifications.searchFormDetails("ISR", 23L, 9L, Set.of(manager)));
         forms.forEach(System.out::println);
     }
     @Test

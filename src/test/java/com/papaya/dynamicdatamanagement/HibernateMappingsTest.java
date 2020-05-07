@@ -1,6 +1,6 @@
 package com.papaya.dynamicdatamanagement;
 
-import com.papaya.dynamicdatamanagement.repository.FormTemplateRepository;
+import com.papaya.dynamicdatamanagement.repository.FormDetailsRepository;
 import io.hypersistence.optimizer.HypersistenceOptimizer;
 import io.hypersistence.optimizer.core.config.JpaConfig;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ public class HibernateMappingsTest {
     @PersistenceUnit
     private EntityManagerFactory entityManagerFactory;
     @Autowired
-    private FormTemplateRepository formTemplateRepository;
+    private FormDetailsRepository formDetailsRepository;
 
     @PostConstruct
     void init() {
@@ -27,6 +27,6 @@ public class HibernateMappingsTest {
 
     @Test
     public void test() {
-        formTemplateRepository.findAll();
+        formDetailsRepository.findAll();
     }
 }

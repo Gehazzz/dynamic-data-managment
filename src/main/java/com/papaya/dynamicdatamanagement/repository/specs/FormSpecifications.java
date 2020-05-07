@@ -13,8 +13,9 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 public class FormSpecifications {
-    public static Specification<FormDetails> formsByUsageLevel(String countryIso, Long organisationId, Long projectId, Set<User> userList) {
+    public static Specification<FormDetails> searchFormDetails(String countryIso, Long organisationId, Long projectId, Set<User> userList) {
         return (Specification<FormDetails>) (root, query, criteriaBuilder) -> {
+            root.fetch(FormDetails.Fields.formUsages);
             SetJoin<FormDetails, FormUsage> formUsageJoin = root.joinSet(FormDetails.Fields.formUsages);
             SetJoin<FormUsage, User> userJoin = formUsageJoin.joinSet(FormUsage.Fields.users);
 
