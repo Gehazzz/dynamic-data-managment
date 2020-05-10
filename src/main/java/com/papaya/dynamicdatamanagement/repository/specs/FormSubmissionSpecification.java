@@ -49,7 +49,6 @@ public class FormSubmissionSpecification {
                 Predicate statusValue = criteriaBuilder.equal(root.get(FormSubmission.Fields.status), formSubmissionSearch.getStatus());
                 predicates.add(statusValue);
             }
-
             return criteriaBuilder.and(predicates.toArray(Predicate[]::new));
         };
     }

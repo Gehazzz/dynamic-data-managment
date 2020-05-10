@@ -35,6 +35,11 @@ public class FormSubmissionRepositoryTest {
                 .build();
         List<FormSubmission> all = formSubmissionRepository.findAll(FormSubmissionSpecification.searchFormSubmissions(searchByUserName));
         all.forEach(System.out::println);
+        searchByUserName.setStatus(FormSubmissionStatus.DRAFT);
+        List<FormSubmission> allDrafts = formSubmissionRepository.findAll(FormSubmissionSpecification.searchFormSubmissions(searchByUserName));
+        allDrafts.forEach(System.out::println);
+        System.out.println();
+        formSubmissionRepository.deleteAll();
     }
 
     FormSubmission createFormSubmissionDetails(){
@@ -53,24 +58,28 @@ public class FormSubmissionRepositoryTest {
     private User createUser(Set<FormUsage> formUsages) {
         Optional<FormUsage> formUsageOptional = formUsages.stream().findFirst();
         FormUsage formUsage = formUsageOptional.orElseThrow();
-        return User.builder()
+        User papayaUser = User.builder()
                 .userName("Papaya user")
                 .email("email@papayaglobal.com")
-                .formUsages(formUsages)
+                .formUsages(new HashSet<>())
                 .build();
+        formUsage.addUser(papayaUser);
+        return papayaUser;
     }
 
     SectionSubmission createSectionSubmissionDetails(SectionDetails sectionDetails) {
-        return SectionSubmission.builder()
+        SectionSubmission sectionSubmission = SectionSubmission.builder()
                 .section(sectionDetails)
+                .values(new ArrayList<>())
                 //.sectionSubmission(createSectionSubmissionDetails(sectionDetails.getParentSection()))
                 //.sectionSubmissions(sectionDetails.getSections().stream()
-                       // .map(this::createSectionSubmissionDetails).collect(Collectors.toList()))
-                .values(createValues(sectionDetails))
+                // .map(this::createSectionSubmissionDetails).collect(Collectors.toList()))
                 .build();
+        createValues(sectionDetails).forEach(sectionSubmission::addValue);
+        return sectionSubmission;
     }
 
-    private List<Value> createValues(SectionDetails sectionDetails) {
+    List<Value> createValues(SectionDetails sectionDetails) {
         return sectionDetails.getInputFields().stream()
                 .map(inputFieldDetails -> Value.builder()
                     .inputFieldDetails(inputFieldDetails)
@@ -105,7 +114,7 @@ public class FormSubmissionRepositoryTest {
                 .required(true)
                 .requiredMessage("You should fill this input")
                 .type(InputJavaType.STRING_TYPE)
-                .parentSection(section)
+                .parentSectionDetails(section)
                 .validationRules(validationRules)
                 .build();
 
@@ -114,10 +123,15 @@ public class FormSubmissionRepositoryTest {
 
         section.setInputFields(fields);
 
+        Set<FormUsage> formUsages = new HashSet<>();
+        formUsages.add(FormUsage.builder().countryIso("ch").projectId(1L).users(new HashSet<>()).build());
+
         FormDetails formDetails = FormDetails.builder()
+                .formType(FormTypeDetails.DYNAMIC)
+                .status(FormStatusDetails.PUBLISHED)
                 .label("form")
                 .mainSection(section)
-                .formUsages(Set.of(FormUsage.builder().countryIso("ch").projectId(1L).build()))
+                .formUsages(formUsages)
                 .build();
         return formDetails;
     }

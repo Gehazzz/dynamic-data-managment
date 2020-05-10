@@ -16,7 +16,7 @@ public class SectionSubmission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private SectionDetails section;
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)

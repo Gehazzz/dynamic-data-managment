@@ -59,7 +59,7 @@ public class FormDetailsRepositoryTest {
                 .required(true)
                 .requiredMessage("You should fill this input")
                 .type(InputJavaType.STRING_TYPE)
-                .parentSection(section)
+                .parentSectionDetails(section)
                 .validationRules(validationRules)
                 .build();
 

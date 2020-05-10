@@ -18,6 +18,7 @@ import java.util.List;
 @ToString
 public class InputFieldDetails extends AbstractInputField {
     private String placeholder;
+    @Enumerated(EnumType.STRING)
     private InputJavaType type;
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)

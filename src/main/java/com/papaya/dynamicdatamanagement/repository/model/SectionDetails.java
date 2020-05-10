@@ -18,8 +18,8 @@ public class SectionDetails extends AbstractFormElementTemplate {
     private Long id;
     private String label;
     @ManyToOne(fetch = FetchType.LAZY)
-    private SectionDetails sectionDetails;
-    @OneToMany(mappedBy = "sectionDetails",
+    private SectionDetails parentSectionDetails;
+    @OneToMany(mappedBy = "parentSectionDetails",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<SectionDetails> sections = new ArrayList<>();
@@ -67,12 +67,12 @@ public class SectionDetails extends AbstractFormElementTemplate {
 
     public void addSectionDetails(SectionDetails sectionDetails) {
         sections.add(sectionDetails);
-        sectionDetails.setParentSection(this);
+        sectionDetails.setParentSectionDetails(this);
     }
 
     public void removeSectionDetails(SectionDetails sectionDetails) {
         sections.remove(sectionDetails);
-        sectionDetails.setParentSection(null);
+        sectionDetails.setParentSectionDetails(null);
     }
 
     public void addTextDetails(TextDetails textDetails) {

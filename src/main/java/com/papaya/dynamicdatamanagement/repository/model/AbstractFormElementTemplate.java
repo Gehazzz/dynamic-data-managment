@@ -17,10 +17,12 @@ public abstract class AbstractFormElementTemplate {
     @Column(name = "element_index")
     private Integer index;
 
-    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    /*@ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_section_id")
     @JsonIgnore
-    private SectionDetails parentSection;
+    private SectionDetails parentSection;*/
+    /*@ManyToOne(fetch = FetchType.LAZY)
+    private SectionDetails parentSection;*/
     /**
      * Marks this form element as "discarded", meaning that the user did
      * something with the consequence that the input from this form element must
