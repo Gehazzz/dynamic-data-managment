@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Builder
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldNameConstants
@@ -15,6 +16,7 @@ public class FormSubmission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
     @ManyToOne(fetch = FetchType.LAZY)

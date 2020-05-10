@@ -53,16 +53,5 @@ public class FormSubmissionSpecification {
             return criteriaBuilder.and(predicates.toArray(Predicate[]::new));
         };
     }
-    @Data
-    @Builder
-    @FieldNameConstants
-    public class FormSubmissionSearch{
-        String countryIso;
-        Long organisationId;
-        Long projectId;
-        String userName;
-        FormType formType;
-        String label;
-        FormSubmissionStatus status;
-    }
+
 }

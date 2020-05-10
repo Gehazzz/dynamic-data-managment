@@ -15,9 +15,11 @@ import java.util.List;
 @NoArgsConstructor
 @SuperBuilder
 @AllArgsConstructor
+@ToString
 public class InputFieldDetails extends AbstractInputField {
     private String placeholder;
     private InputJavaType type;
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     private SectionDetails parentSectionDetails;
     @OneToMany(mappedBy = "inputFieldDetails",
@@ -32,7 +34,7 @@ public class InputFieldDetails extends AbstractInputField {
                 inverseJoinColumns = @JoinColumn(name = "value_id")
         )
         List<Value> values;*/
-
+    @ToString.Exclude
     @OneToMany(mappedBy = "inputFieldDetails",
             cascade = CascadeType.ALL,
             orphanRemoval = true)

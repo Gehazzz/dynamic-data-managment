@@ -11,12 +11,14 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class SectionSubmission {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
     private SectionDetails section;
-
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     private SectionSubmission sectionSubmission;
 

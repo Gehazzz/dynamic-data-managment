@@ -23,6 +23,9 @@ public class SectionDetails extends AbstractFormElementTemplate {
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<SectionDetails> sections = new ArrayList<>();
+    @OneToMany(mappedBy = "section",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List<SectionSubmission> sectionSubmissions = new ArrayList<>();
     @OneToMany(mappedBy = "parentSectionDetails",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
@@ -51,6 +54,16 @@ public class SectionDetails extends AbstractFormElementTemplate {
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<DropDownDetails> dropDowns = new ArrayList<>();
+
+    public void addSectionSubmission(SectionSubmission sectionSubmission) {
+        sectionSubmissions.add(sectionSubmission);
+        sectionSubmission.setSection(this);
+    }
+
+    public void removeSectionSubmission(SectionSubmission sectionSubmission) {
+        sectionSubmissions.remove(sectionSubmission);
+        sectionSubmission.setSection(null);
+    }
 
     public void addSectionDetails(SectionDetails sectionDetails) {
         sections.add(sectionDetails);

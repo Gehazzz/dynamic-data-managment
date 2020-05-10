@@ -44,7 +44,7 @@ public class FormDetails {
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     private SectionDetails mainSection;
-
+    @ToString.Exclude
     @OneToMany(mappedBy = "formDetails",
             cascade = CascadeType.ALL,
             orphanRemoval = true)

@@ -14,6 +14,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Value {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +28,7 @@ public class Value {
     private String boundColumnName;
     private String boundPropertyName;
     private Long boundTableRowId;
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     private Value parentValue;
     @OneToMany(mappedBy = "parentValue",
@@ -54,6 +56,7 @@ public class Value {
     private RadioGroupDetails radioGroupDetails;
     @ManyToOne(fetch = FetchType.LAZY)
     private TextAreaDetails textAreaDetails;
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     private SectionSubmission sectionSubmission;
     private InputJavaType type;
